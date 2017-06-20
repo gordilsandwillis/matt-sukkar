@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-nginx -C nginx_app.conf -i php.ini --verbose
+web: vendor/bin/heroku-php-nginx -C nginx.conf -i php.ini --verbose
