@@ -1,0 +1,12 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	{% for post in posts %}
+		<div class="col-3">
+			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+		</div>
+	{% endfor %}
+	
+	{% include 'partials/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+{% endblock %}

@@ -1,0 +1,99 @@
+section.clipped-section.top-area.intro-video {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 999;
+}
+
+.home-page-container {
+	top: 0;
+	right: 0;
+	left: 0;
+	position: fixed;
+	z-index: 5;
+}
+
+.featured-slideshow {
+	background: $light-grey;
+	z-index: 7;
+	.slide {
+		vertical-align: top;
+	}
+}
+
+.home-page {
+	height: 100vh;
+	section.intro {
+		> .container {
+			padding: 5rem 0;
+			@include respond($md) {
+				padding: 8rem 0;
+			}
+			@include respond($lg) {
+				padding: 11rem 0;
+			}
+			p {
+				margin-top: 0;
+				max-width: 19em;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+	}
+	.featured-grid {
+		.col {
+			@include respond($md) {
+				width: 50%;
+			}
+			@include respond($xlg) {
+				width: 25%;
+			}
+		}
+	}
+	.home-grid {
+		.bricklayer-column-sizer {
+			@include respond($md) {
+				width: 50%;
+			}
+		}
+		.col {
+			margin-bottom: $mobile-margin;
+			@include respond($md) {
+				margin-bottom: $margin;
+			}
+		}
+		.thumb-info {
+			max-width: 30rem;
+			padding-top: 1rem;
+			h6 {
+				@include tiny-caps();
+				color: $light-text-color;
+			}
+			h6,
+			h3,
+			p {
+				margin-top: .4rem;
+				margin-bottom: .4rem;
+			}
+		}
+	}
+	.instagrid {
+		.col {
+			width: 50%;
+			@include respond($md) {
+				width: 25%;
+			}
+		}
+		.instagram-thumb {
+			position: relative;
+			padding-bottom: 100%;
+			background-size: cover;
+			background-position: center;
+			background-color: darken($bg-color, 4%);
+			img {
+				display: none;
+			}
+		}
+	}
+}

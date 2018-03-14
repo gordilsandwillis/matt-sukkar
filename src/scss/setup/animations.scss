@@ -1,0 +1,13 @@
+@keyframes rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes transition-in {
+	100% {
+		transform: none;
+		opacity: 1;
+		visibility: visible;
+	}
+}

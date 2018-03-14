@@ -1,0 +1,107 @@
+//CSS Animation
+@mixin keyframes($name) {
+  @-o-keyframes $name { @content };
+  @-moz-keyframes $name { @content };
+  @-webkit-keyframes $name { @content }; 
+  @-keyframes $name { @content };
+}
+@mixin animation($animation...) {
+  -o-animation: $animation;
+  -moz-animation: $animation;
+  -webkit-animation: $animation;
+  animation: $animation;
+}
+
+@mixin transition($transition: all .2s ease-in-out) {
+  -webkit-transition: $transition;
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+}
+
+@mixin opacity($opactiy: .5) {
+  -moz-opacity: $opactiy;
+  -khtml-opacity: $opactiy;
+  opacity: $opactiy;
+}
+
+@mixin border-radius($radius: 3px) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+// Fade In
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@-moz-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@-o-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+@mixin fadeIn($time: 1s) {
+  -moz-animation:     fadein $time;
+  -webkit-animation:  fadein $time;
+  -o-animation:       fadein $time;
+  animation:          fadein $time;
+}
+
+// Fade Out
+@keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
+@-moz-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
+@-webkit-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
+@-o-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
+
+@mixin fadeOut($time: 1s) {
+  -moz-animation:     fadeout $time;
+  -webkit-animation:  fadeout $time;
+  -o-animation:       fadeout $time;
+  animation:          fadeout $time;
+}
+
+@mixin transition($transition: all .2s ease-in-out) {
+  -webkit-transition: $transition;
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+}
+
+@mixin opacity($opactiy: .5) {
+  -moz-opacity: $opactiy;
+  -khtml-opacity: $opactiy;
+  opacity: $opactiy;
+}
+
+@mixin border-radius($radius: 5px) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+// Grayscale
+@mixin grayscale() {
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter ….3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  filter: gray;
+  -webkit-filter: grayscale(100%);
+}
+
+// Respond
+@mixin respond($breakpoint) {
+    @media only screen and (min-width: $breakpoint + px) { @content; }
+}
+
+// Box Shaodw
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin grayscale(){
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter ….3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  filter: gray;
+  -webkit-filter: grayscale(100%);
+  -webkit-backface-visibility: hidden;
+}

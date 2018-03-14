@@ -1,0 +1,107 @@
+{% extends "tease.twig" %}
+
+{% block content %}
+	<h2 class="h2"><a href="{{post.link}}">{{post.title}}</a></h2>
+		<p>{{post.preview.length(25)}}</p>
+		{% if post.thumbnail.src %}
+			<div class="grid-flex">
+				<div class="col-3 wide-space-after">
+					<h3>gw-sm</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-sm')}}</p>
+					<img src="{{post.thumbnail.src('gw-sm')}}" />
+				</div>
+				<div class="col-3 wide-space-after">
+					<h3>gw-md</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-md')}}</p>
+					<img src="{{post.thumbnail.src('gw-md')}}" />
+				</div>
+				<div class="col-3 wide-space-after">
+					<h3>gw-lg</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-lg')}}</p>
+					<img src="{{post.thumbnail.src('gw-lg')}}" />
+				</div>
+				<div class="col-3 wide-space-after">
+					<h3>gw-xlg</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-xlg')}}</p>
+					<img src="{{post.thumbnail.src('gw-xlg')}}" />
+				</div>
+
+				<div class="col-3 wide-space-after">
+					<h3>gw-sm-3-2</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-sm-3-2')}}</p>
+					<img src="{{post.thumbnail.src('gw-sm-3-2')}}" />
+				</div>
+				<div class="col-3 wide-space-after">
+					<h3>gw-md-3-2</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-md-3-2')}}</p>
+					<img src="{{post.thumbnail.src('gw-md-3-2')}}" />
+				</div>
+				<div class="col-3 wide-space-after">
+					<h3>gw-lg-3-2</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-lg-3-2')}}</p>
+					<img src="{{post.thumbnail.src('gw-lg-3-2')}}" />
+				</div>
+				<div class="col-3 wide-space-after">
+					<h3>gw-xlg-3-2</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-xlg-3-2')}}</p>
+					<img src="{{post.thumbnail.src('gw-xlg-3-2')}}" />
+				</div>
+
+				<div class="col-3 wide-space-after">
+					<h3>gw-sm-2-3</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-sm-2-3')}}</p>
+					<img src="{{post.thumbnail.src('gw-sm-2-3')}}" />
+				</div>
+				<div class="col-3 wide-space-after">
+					<h3>gw-md-2-3</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-md-2-3')}}</p>
+					<img src="{{post.thumbnail.src('gw-md-2-3')}}" />
+				</div>
+				<div class="col-3 wide-space-after">
+					<h3>gw-lg-2-3</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-lg-2-3')}}</p>
+					<img src="{{post.thumbnail.src('gw-lg-2-3')}}" />
+				</div>
+				<div class="col-3 wide-space-after">
+					<h3>gw-xlg-2-3</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-xlg-2-3')}}</p>
+					<img src="{{post.thumbnail.src('gw-xlg-2-3')}}" />
+				</div>
+
+				<div class="col-3 wide-space-after">
+					<h3>gw-1000</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src('gw-1000')}}</p>
+					<img src="{{post.thumbnail.src('gw-1000')}}" />
+				</div>
+
+				<div class="col-3 wide-space-after">
+					<h3>original</h3>
+					<hr class="no-space-before tight-space-after">
+					<p>{{post.thumbnail.src}}</p>
+					<img src="{{post.thumbnail.src}}" />
+				</div>
+			</div>
+
+			<img src="{{post.thumbnail.src}}" />
+			<p>original {{post.thumbnail.src}}</p><br><br>
+			
+			{% if post.thumbnail.aspect < 1 %}
+		    {# handle vertical image pretty cool to have #}
+			{% else %}
+			{% endif %}
+
+		{% endif %}
+{% endblock %}

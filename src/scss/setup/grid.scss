@@ -1,0 +1,215 @@
+$col: 100% / 12;
+
+@mixin grid-setup() {
+	display: block;
+	margin-left: calc(#{$gutter} * -.5);
+	margin-right: calc(#{$gutter} * -.5);
+}
+
+@mixin wide-gutter-grid-setup() {
+	display: block;
+	margin-left: calc(#{$margin} * -.5);
+	margin-right: calc(#{$margin} * -.5);
+}
+
+@mixin tight-gutter-grid-setup() {
+	display: block;
+	margin-left: calc(#{$gutter-tight} * -.5);
+	margin-right: calc(#{$gutter-tight} * -.5);
+}
+
+@mixin no-gutter-grid-setup() {
+	display: block;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+@mixin col-setup() {
+	// Column Rules
+	*[class^="col"],
+	.col {
+		font-size: inherit;
+		flex-grow: 0;
+		padding-left: calc(#{$gutter} / 2);
+		padding-right: calc(#{$gutter} / 2);
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+
+	@for $col-count from 1 through 12 {
+    > .col-#{$col-count} {
+      width: calc(#{$col} * #{$col-count});
+    }
+  }
+
+  /* 
+  Use .push classes to move columns over
+  Gernerally better to do this manually at breakpoints
+  */
+
+  @for $push-count from 1 through 12 {
+    .push-right-#{$push-count} {
+      margin-right: calc(#{$col} * #{$push-count});
+    }
+    .push-left-#{$push-count} {
+      margin-left: calc(#{$col} * #{$push-count});
+    }
+  }
+}
+
+@mixin flex-grid() {
+	display: flex !important;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	&.center {
+		justify-content: center;
+	}
+	&.left {
+		justify-content: flex-start;
+	}
+	&.right {
+		justify-content: flex-end;
+	}
+	&.middle {
+		align-items: center;
+	}
+	&.bottom {
+		align-items: flex-end;
+	}
+	&.baseline {
+		align-items: baseline;
+	}
+}
+
+@mixin wide-gutter() {
+	&.wide-gutter {
+		@include wide-gutter-grid-setup();
+		*[class^="col"],
+		.col {
+			padding-left: calc(#{$margin} / 2);
+			padding-right: calc(#{$margin} / 2);
+		}
+	}
+}
+
+@mixin tight-gutter() {
+	&.tight-gutter {
+		@include tight-gutter-grid-setup();
+		*[class^="col"],
+		.col {
+			padding-left: calc(#{$tight-gutter} / 2);
+			padding-right: calc(#{$tight-gutter} / 2);
+		}
+	}
+}
+
+@mixin no-gutter() {
+	&.no-gutter {
+		@include no-gutter-grid-setup();
+		*[class^="col"],
+		.col {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}
+
+.grid-flex {
+	// Turn grid on at different breakpoints
+	&:not(.no-break):not(.break-lg):not(.break-xlg):not(.break-sm) {
+	  @include respond($md) {
+	    @include grid-setup();
+	    @include col-setup();
+	  }
+	  @include respond($lg) {
+	  	@include wide-gutter();
+	  }
+	}
+	&.no-break {
+	  @include grid-setup();
+	  @include col-setup();
+	  @include wide-gutter();
+	}
+	&.break-sm {
+	  @include respond($sm) {
+	    @include grid-setup();
+	    @include col-setup();
+	    @include wide-gutter();
+	  }
+	}
+	&.break-lg {
+	  @include respond($lg) {
+	    @include grid-setup();
+	    @include col-setup();
+	    @include wide-gutter();
+	  }
+	}
+	&.break-xlg {
+	  @include respond($xlg) {
+	    @include grid-setup();
+	    @include col-setup();
+	    @include wide-gutter();
+	  }
+	}
+	&.v-spaced {
+		*[class^="col"],
+		.col {
+			margin-bottom: $gutter;
+		}
+		margin-bottom: -$gutter;
+	}
+	&.v-wide-spaced {
+		*[class^="col"],
+		.col {
+			margin-bottom: $mobile-margin;
+			@include respond($lg) {
+				margin-bottom: $margin;
+			}
+		}
+		margin-bottom: -$mobile-margin;
+		@include respond($lg) {
+			margin-bottom: -$margin;
+		}
+	}
+	&.v-md-spaced {
+		*[class^="col"],
+		.col {
+			margin-bottom: $mobile-margin;
+			@include respond($lg) {
+				margin-bottom: $margin * .65;
+			}
+		}
+		margin-bottom: -$mobile-margin;
+		@include respond($lg) {
+			margin-bottom: -$margin * .65;
+		}
+	}
+}
+
+.grid-flex {
+	// Turn grid on at different breakpoints
+	&:not(.no-break):not(.break-lg):not(.break-xlg):not(.break-sm) {
+	  @include respond($md) {
+	    @include flex-grid();
+	  }
+	}
+	&.no-break {
+	  @include flex-grid();
+	}
+	&.break-sm {
+	  @include respond($sm) {
+	    @include flex-grid();
+	  }
+	}
+	&.break-lg {
+	  @include respond($lg) {
+	    @include flex-grid();
+	  }
+	}
+	&.break-xlg {
+	  @include respond($xlg) {
+	    @include flex-grid();
+	  }
+	}
+}

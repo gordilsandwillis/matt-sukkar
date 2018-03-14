@@ -29,13 +29,16 @@ define('DB_USER', getenv('DB_USER'));
 define('DB_PASSWORD',getenv('DB_PASSWORD'));
 
 /** MySQL hostname */
-define('DB_HOST', getenv('DB_HOST') . ":" . getenv('DB_PORT'));
+define('DB_HOST', getenv('DB_HOST'));
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
+define('DBI_AWS_ACCESS_KEY_ID', getenv('DBI_AWS_ACCESS_KEY_ID'));
+define('DBI_AWS_SECRET_ACCESS_KEY', getenv('DBI_AWS_SECRET_ACCESS_KEY'));
 
 /** Disallow file edits. */
 $file_edit = getenv('DISALLOW_FILE_EDIT') ? getenv('DISALLOW_FILE_EDIT')  :  false;
@@ -82,6 +85,7 @@ $table_prefix  = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define('WP_DEBUG', false);
+ini_set( 'display_errors', 0 );
 
 /* That's all, stop editing! Happy blogging. */
 

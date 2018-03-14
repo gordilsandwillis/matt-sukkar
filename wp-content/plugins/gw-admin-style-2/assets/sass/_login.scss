@@ -1,0 +1,258 @@
+$login-bg : #f8f7f3;
+$login-logo-width : 100%;
+$login-logo-height : 50px;
+$base-border-radius : 0px;
+$main-color : #373232;
+$text-color: #373232;
+$light-text-color: rgba($text-color, .3);
+$light-color: darken(#f8f7f3, 5%);
+$animataion-speed: .75s;
+$delay: .1s;
+
+@keyframes transition-in {
+	100% {
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+	}
+}
+
+body {
+	&.login {
+		background: $login-bg;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		#login {
+			position: relative;
+			padding: 0;
+			margin-bottom: auto;
+			h1 {
+				margin-top: 0;
+				margin-bottom: 22px;
+				opacity: 0;
+				transform: translate3d(0, 30px, 0);
+				animation: transition-in $animataion-speed ($delay * 0) $ease-in-out forwards;
+				a {
+					background-image: url('../../images/logo.svg');
+					background-size: contain;
+					background-position: center;
+					width: $login-logo-width;
+					height: $login-logo-height;
+				}
+			}
+			.message,
+			#login_error {
+				background: $light-color;
+				color: $text-color;
+				border-color: $main-color;
+				border-radius: $base-border-radius;
+				opacity: 0;
+				transform: scale(.9);
+				box-shadow: none;
+				animation: transition-in $animataion-speed ($delay * 1) $ease-in-out forwards;
+				a {
+					color: $text-color;
+				}
+			}
+			#login_error {
+				border-color: #DF693D;
+			}
+			form {
+				padding: 0;
+				background: transparent;
+				-webkit-box-shadow: none;
+		    box-shadow: none;
+		    position: relative;
+		    padding-bottom: 100px;
+		    p {
+		    	&.forgetmenot {
+		    		opacity: 0;
+						transform: translate3d(0, 30px, 0);
+						animation: transition-in $animataion-speed ($delay * 3) $ease-in-out forwards;
+		    		label {
+		    			text-indent: 0;
+		    			overflow: auto;
+		    		}
+		    	}
+		    	&:nth-child(2) {
+		    		margin-bottom: 8px;
+		    	}
+		    	&.submit {
+		    		position: absolute;
+		    		left: 0;
+		    		right: 0;
+		    		bottom: 30px;
+		    		text-align: center;
+		    		opacity: 0;
+						transform: translate3d(0, 30px, 0);
+						animation: transition-in $animataion-speed ($delay * 4) $ease-in-out forwards;
+		    		.button-primary {
+		    			display: inline-block;
+		    			vertical-align: top;
+		    			float: none;
+		    			-webkit-box-shadow: none;
+					    box-shadow: none;
+					    height: 40px;
+					    font-size: 14px;
+					    padding: 0 20px 2px;
+					    line-height: 28px;
+					    border: none;
+				    	outline: none;
+					    text-shadow: none;
+					    margin: 0;
+					    border-radius: $base-border-radius;
+					    color: $login-bg;
+					    background: $main-color;
+					    font-weight: 500;
+					    transition: background $md-speed $ease, border $md-speed $ease, color $md-speed $ease, opacity $md-speed $ease;
+					    &:hover {
+					    	border: none;
+					    	outline: none;
+					    	text-shadow: none;
+					    	background: darken($main-color, 10%);
+					    }
+		    		}
+		    	}
+		    	label {
+		    		font-size: 12px;
+		    		color: $light-text-color;
+		    		position: relative;
+		    		height: auto;
+		    		display: block;
+		    		text-indent: -999px;
+		    		overflow: hidden;
+		    		&[for='user_login'] {
+		    			opacity: 0;
+							transform: translate3d(0, 30px, 0);
+							animation: transition-in $animataion-speed ($delay * 1) $ease-in-out forwards;
+		    			&:after {
+		    				@include material-icons-style();
+		            font-size: 18px;
+		            // width: 24px;
+		            // height: 24px;
+		    				content: 'person';
+		    				position: absolute;
+		    				bottom: 16px;
+		    				left: -10px;
+		    				width: 40px;
+		    				height: 40px;
+		    				color: $text-color;
+		    				display: block;
+		    				line-height: 40px;
+		    				text-align: center;
+		    				text-indent: 0;
+		    			}
+		    		}
+		    		&[for='user_pass'] {
+		    			opacity: 0;
+							transform: translate3d(0, 30px, 0);
+							animation: transition-in $animataion-speed ($delay * 2) $ease-in-out forwards;
+		    			&:after {
+		    				@include material-icons-style();
+		            font-size: 18px;
+		            // width: 24px;
+		            // height: 24px;
+		    				content: 'vpn_key';
+		    				position: absolute;
+		    				bottom: 16px;
+		    				left: -10px;
+		    				width: 40px;
+		    				height: 40px;
+		    				color: $text-color;
+		    				display: block;
+		    				line-height: 40px;
+		    				text-align: center;
+		    				text-indent: 0;
+		    			}
+		    		}
+		    	}
+		    }
+		    input[type=checkbox] {
+		    	width: 20px;
+		    	height: 20px;
+		    	margin-bottom: -2px;
+		    	background: $light-color;
+		    	border: none;
+		    	border-radius: $base-border-radius;
+		    	outline: none;
+		    	box-shadow: none !important;
+		    	&:active,
+		    	&:focus {
+		    		outline: none;
+		    		box-shadow: none !important;
+		    	}
+		    	&:before {
+		    		color: $main-color;
+		    		top: 4px;
+		    		left: 4px;
+		    		margin: -1px 0px 0px -1px;
+		    	}
+		    }
+		    input[type=email],
+		    input[type=text],
+		    input[type=password] {
+		    	border: none;
+		    	border-radius: none;
+		    	border-bottom: 1px solid rgba($text-color, .25);
+		    	outline: none;
+		    	-webkit-box-shadow: none;
+			    box-shadow: none;
+			    background: transparent !important;
+			    height: 40px;
+			    font-size: 14px;
+			    padding: 2px 0 2px 30px;
+			    transition: border $md-speed $ease;
+			    display: block;
+			    margin-top: -20px;
+			    margin-bottom: 16px;
+			    color: $text-color;
+			    &:focus {
+			    	border-color: $text-color;
+			    }
+			    &:hover {
+			    	border-color: $light-text-color;
+			    	&:focus {
+			    		border-color: $text-color;
+			    	}
+			    }
+		    }
+			}
+			#nav {
+				padding: 0;
+				margin: 0;
+				display: inline-block;
+				position: absolute;
+				bottom: 100px;
+				right: 0;
+				font-size: 12px;
+				opacity: 0;
+				transform: translate3d(0, 30px, 0);
+				animation: transition-in $animataion-speed ($delay * 3) $ease-in-out forwards;
+				a {
+					transition: color $md-speed $ease;
+					color: $light-text-color;
+					&:hover {
+						color: $main-color;
+					}
+				}
+			}
+			#backtoblog {
+				display: none;
+				position: absolute;
+				bottom: -20px;
+				left: 0;
+				right: 0;
+				text-align: center;
+				font-size: 12px;
+				a {
+					transition: color $md-speed $ease;
+					color: $light-text-color;
+					&:hover {
+						color: $main-color;
+					}
+				}
+			}
+		}
+	}
+}

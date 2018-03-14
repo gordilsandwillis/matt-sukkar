@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
+	 height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g id="Layer_1" display="none">
+	<g display="inline">
+		<rect x="1" y="3" fill="#454545" width="22" height="18"/>
+	</g>
+</g>
+<g id="Layer_5" display="none">
+	<g display="inline">
+		<rect x="1" y="3" fill="#454545" width="6" height="18"/>
+		<rect x="9" y="3" opacity="0.3" fill="#454545" width="6" height="18"/>
+		<rect x="17" y="3" opacity="0.3" fill="#454545" width="6" height="18"/>
+	</g>
+</g>
+<g id="Layer_4" display="none">
+	<g display="inline">
+		<rect x="1" y="3" fill="#454545" width="14" height="18"/>
+		<rect x="17" y="3" opacity="0.3" fill="#454545" width="6" height="18"/>
+	</g>
+</g>
+<g id="Layer_3" display="none">
+	<g display="inline">
+		<rect x="1" y="3" fill="#454545" width="10" height="18"/>
+		<rect x="13" y="3" opacity="0.3" fill="#454545" width="10" height="18"/>
+	</g>
+</g>
+<g id="Layer_2" display="none">
+	<g display="inline">
+		<rect x="1" y="3" fill="#454545" width="4" height="18"/>
+		<rect x="7" y="3" opacity="0.3" fill="#454545" width="4" height="18"/>
+		<rect x="13" y="3" opacity="0.3" fill="#454545" width="4" height="18"/>
+		<rect x="19" y="3" opacity="0.3" fill="#454545" width="4" height="18"/>
+	</g>
+</g>
+<g id="Layer_6">
+	<path fill="#454545" d="M16,2H8C6.895,2,6,2.895,6,4v16c0,1.105,0.895,2,2,2h8c1.105,0,2-0.895,2-2V4C18,2.895,17.105,2,16,2z
+		 M12,20c-0.828,0-1.5-0.672-1.5-1.5S11.172,17,12,17s1.5,0.672,1.5,1.5S12.828,20,12,20z M13,5h-2c-0.276,0-0.5-0.224-0.5-0.5
+		S10.724,4,11,4h2c0.276,0,0.5,0.224,0.5,0.5S13.276,5,13,5z"/>
+</g>
+<g id="Layer_7" display="none">
+	<path display="inline" fill="#454545" d="M23,7V5c0-1.105-0.895-2-2-2H3C1.895,3,1,3.895,1,5v2H23z"/>
+	<circle display="inline" fill="#FFFFFF" cx="3" cy="5" r="1"/>
+	<circle display="inline" fill="#FFFFFF" cx="6" cy="5" r="1"/>
+	<circle display="inline" fill="#FFFFFF" cx="9" cy="5" r="1"/>
+	<path display="inline" opacity="0.4" fill="#454545" d="M1,7v12c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V7H1z"/>
+</g>
+<g id="Layer_8" display="none">
+	<g display="inline">
+		<rect x="5" y="3" fill="#454545" width="14" height="18"/>
+	</g>
+</g>
+</svg>

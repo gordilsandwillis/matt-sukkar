@@ -1,0 +1,32 @@
+// Setup
+@import 'setup/reset';
+@import 'setup/variables';
+@import 'setup/mixins';
+@import 'setup/grid';
+@import 'setup/fonts';
+@import 'setup/typography';
+@import 'setup/icons';
+@import 'setup/animations';
+// @import 'setup/scrollbars';
+@import 'setup/tooltips';
+@import 'setup/spacing';
+@import 'setup/global';
+
+// Components
+@import 'components/header';
+@import 'components/menu';
+@import 'components/footer';
+@import 'components/buttons';
+@import 'components/rich-text';
+@import 'components/inputs';
+@import 'components/slick';
+@import 'components/bricklayer';
+@import 'components/loaders';
+@import 'components/endless-loader';
+// @import 'components/ui-kit';
+@import 'site-specific/page-loader';
+@import 'site-specific/animsition';
+// @import 'components/ui-list';
+
+// Pages
+@import 'site-specific/home';

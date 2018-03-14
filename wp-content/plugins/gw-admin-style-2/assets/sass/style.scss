@@ -1,0 +1,32 @@
+@import "mixins";
+@import "php-variables";
+@import "variables";
+@import "hacks";
+@import "buttons";
+@import "field_customizations";
+@import "login";
+
+.column-post_thumb {
+  width: 75px;
+  &.post_thumb {
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      + .wp-menu-image {
+        display: none;
+      }
+    }
+    .wp-menu-image {
+      width: 75px;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, .07);
+      &:before {
+        color: rgba(0, 0, 0, .15);
+      }
+    }
+  }
+}

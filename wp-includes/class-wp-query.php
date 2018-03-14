@@ -3032,7 +3032,15 @@ class WP_Query {
 			 */
 			$this->found_posts = $wpdb->get_var( apply_filters_ref_array( 'found_posts_query', array( 'SELECT FOUND_ROWS()', &$this ) ) );
 		} else {
-			$this->found_posts = count( $this->posts );
+			if ( is_array( $this->posts ) ) {
+				$this->found_posts = count( $this->posts );
+			} else {
+				if ( null === $this->posts ) {  
+					$this->found_posts = 0;
+				} else {
+					$this->found_posts = 1;
+				}
+			}
 		}
 
 		/**
@@ -3362,7 +3370,7 @@ class WP_Query {
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param string   $name      Method to call.
+	 * @param callable $name      Method to call.
 	 * @param array    $arguments Arguments to pass when calling.
 	 * @return mixed|false Return value of the callback, false otherwise.
 	 */
