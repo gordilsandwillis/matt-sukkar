@@ -1,30 +1,37 @@
-$margin: 6.25rem;
-$mobile-margin: 7.5%;
-$max-site-width: 1500px;
-// $max-site-width: 900px;
-$site-width : 85%;
+$margin: 5rem;
+$mobile-margin: 6%;
+$max-site-width: 1400px;
+$site-width : 88%;
+
+$max-text-width : 41rem;
+
+// Global Spacing
+$space-1 : .5rem;
+$space-2 : 1rem;
+$space-3 : 2rem;
+$space-4 : 4rem;
 
 // Grid Settings
 $columns: 12;
-$gutter: 1.5rem;
-$tight-gutter: .75rem;
-$wide-gutter: 6.25rem;
+$gutter: 30px;
+$gutter-tight: $space-2;
+$gutter-wide: $gutter * 2;
 $grid-gutter: $gutter;
 
 // General UI Varibales
 $base-border-radius : 0px;
 
 // Colors
-$bg-color : #f8f7f3;
-$main-color: #373232;
+$bg-color : #fff;
+$main-color: #00AEEF;
 $black : #000;
 $white : #fff;
-$alert : #ed1c24;
+$alert : #EF4F4F;
 $notify : #FFD780;
-$success : #00a651;
-$text-color : #373232;
+$success : #77B305;
+$text-color : #021946;
 $light-grey : lighten($text-color, 75%);
-$light-text-color : rgba($text-color, .4);
+$light-text-color : rgba($text-color, .5);
 $hr-color : lighten($text-color, 70%);
 $hr-styles : 1px solid $hr-color;
 
@@ -33,22 +40,69 @@ $link-color : $light-text-color;
 $link-hover-color : $main-color;
 
 // Typography
-$main-font: 'Calibre', sans-serif;
-$secondary-font: 'Romana', serif;
-$base-line-height : 1.5em;
-$base-letter-spacing : .025em;
-$short-line-height : 1.3em;
+$main-font: 'Avenir', sans-serif;
+$secondary-font: 'Didot', serif;
+$code-font: 'Roboto Mono', monospace;
+$base-line-height : 1.4em;
+$base-letter-spacing : 0;
+$short-line-height : 1.25em;
+$tight-line-height : 1.15em;
 $tracked-out : .2em;
 	// General Text Sizes
 	$base-font-size : 16px;
 	$sm-font-size : 12px;
 	$md-font-size : .875rem;
+	$tiny-font-size : 12px;
 	// Font Weights
 	$normal : normal;
-	$thin : 100;
+	$thin : 300;
 	$light : 300;
 	$medium : 700;
 	$bold : $medium;
+	// h1
+		$h1-font-family : $secondary-font;
+		$h1-text-transform : none;
+		$h1-font-size : 2.875rem;
+		$h1-font-weight : $light;
+		$h1-line-height : $tight-line-height;
+		$h1-letter-spacing : inherit;
+	// h2
+		$h2-font-family : $secondary-font;
+		$h2-text-transform : none;
+		$h2-font-size : 2.25rem;
+		$h2-font-weight : $light;
+		$h2-line-height : $short-line-height;
+		$h2-letter-spacing : inherit;
+	// h3
+		$h3-font-family : $secondary-font;
+		$h3-text-transform : none;
+		$h3-font-size : 1.625rem;
+		$h3-font-weight : $normal;
+		$h3-line-height : $base-line-height;
+		$h3-letter-spacing : inherit;
+	// h4
+		$h4-font-family : $secondary-font;
+		$h4-text-transform : none;
+		$h4-font-size : 1.375rem;
+		$h4-font-weight : $medium;
+		$h4-line-height : $short-line-height;
+		$h4-letter-spacing : inherit;
+	// h5
+		$h5-font-family : $main-font;
+		$h5-text-transform : none;
+		$h5-font-size : 1rem;
+		$h5-font-weight : $medium;
+		$h5-line-height : $short-line-height;
+		$h5-letter-spacing : inherit;
+	// h6 is tracked out all caps by default
+	// p
+		$sm-p-font-size : 15px;
+		$p-font-size : 1rem;
+		$md-p-font-size : 1.125rem;
+		$lg-p-font-size : 1.25rem;
+		$p-font-weight : $medium;
+		$p-line-height : $base-line-height;
+		$p-letter-spacing : 0;
 
 // Text Highlights
 $highlight-bg : $light-text-color;
@@ -84,7 +138,7 @@ $select-color : $light-text-color;
 
 // Button Variables
 $btn-radius: $base-border-radius;
-$btn-padding: 0 1rem 1px;
+$btn-padding: 0 1.5rem 1px;
 $btn-text-transform: none;
 $btn-letter-spacing: .02em;
 $btn-weight: $medium;
@@ -93,9 +147,9 @@ $btn-weight: $medium;
 $btn-height: 40px;
 	$btn-small-height: 30px;
 		$btn-tiny-height: 24px;
-			$btn-large-height: 60px;
-$btn-font-size: 12px;
-	$btn-small-font-size: calc(#{$btn-font-size} - 1px);
+			$btn-large-height: 3.125rem;
+$btn-font-size: 1rem;
+	$btn-small-font-size: .875rem;
 		$btn-tiny-font-size: $btn-small-font-size;
 			$btn-large-font-size: $btn-font-size;
 
@@ -109,12 +163,12 @@ $btn-font-size: 12px;
 		$btn-hover-color: $bg-color;
 	
 	// Secondary
-	$btn-secondary-bg: lighten($text-color, 10%);
+	$btn-secondary-bg: $text-color;
 	$btn-secondary-border: none;
-	$btn-secondary-color: $bg-color;
-		$btn-secondary-hover-bg: $text-color;
+	$btn-secondary-color: $white;
+		$btn-secondary-hover-bg: lighten($text-color, 10%);
 		$btn-secondary-hover-border: none;
-		$btn-secondary-hover-color: $bg-color;
+		$btn-secondary-hover-color: $white;
 
 	// Tertiary
 	$btn-tertiary-bg: lighten($text-color, 60%);

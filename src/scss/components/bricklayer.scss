@@ -18,11 +18,11 @@
   margin-right: -$gutter / 2;
   &.wide-gutter {
     @include respond($lg) {
-      margin-left: -$wide-gutter / 2;
-      margin-right: -$wide-gutter / 2;
+      margin-left: -$gutter-wide / 2;
+      margin-right: -$gutter-wide / 2;
       .bricklayer-column {
-        padding-left: $wide-gutter / 2;
-        padding-right: $wide-gutter / 2;
+        padding-left: $gutter-wide / 2;
+        padding-right: $gutter-wide / 2;
       }
     }
   }

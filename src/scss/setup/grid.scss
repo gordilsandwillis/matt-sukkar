@@ -98,8 +98,8 @@ $col: 100% / 12;
 		@include tight-gutter-grid-setup();
 		*[class^="col"],
 		.col {
-			padding-left: calc(#{$tight-gutter} / 2);
-			padding-right: calc(#{$tight-gutter} / 2);
+			padding-left: calc(#{$gutter-tight} / 2);
+			padding-right: calc(#{$gutter-tight} / 2);
 		}
 	}
 }

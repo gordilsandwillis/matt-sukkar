@@ -87,6 +87,9 @@ $table_prefix  = 'wp_';
 define('WP_DEBUG', false);
 ini_set( 'display_errors', 0 );
 
+/* Disable automatic updates */
+define( 'WP_AUTO_UPDATE_CORE', false );
+
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */

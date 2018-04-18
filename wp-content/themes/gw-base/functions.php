@@ -54,9 +54,16 @@ class GW extends TimberSite {
 	}
 
 	function add_to_context( $context ) {
-		$context['foo'] = 'bar';
-		$context['menu'] = new TimberMenu();
+		$context['header_menu'] = new TimberMenu('header-menu');
+    $context['footer_menu'] = new TimberMenu('footer-menu');
+
 		$context['site'] = $this;
+		$context['td'] = get_template_directory_uri();
+		$context['options'] = get_fields('options');
+		$context['request'] = $_REQUEST;
+		$context['globals'] = array(
+      // 'siteTitle' => 'The Site Title',
+    );
 		return $context;
 	}
 
@@ -78,6 +85,12 @@ function get_image_src( $object, $field_name, $request ) {
     $size = 'gw-sm'; // Change this to the size you want | 'medium' / 'large'
     $feat_img_array = wp_get_attachment_image_src($object['featured_media'], $size, true);
     return $feat_img_array[0];
+}
+
+// Add Options Page
+if (function_exists('acf_add_options_page')) {
+  acf_add_options_page('Options');
+  acf_add_options_page('Admin Options');
 }
 
 //Add Featured Image to Rest API
