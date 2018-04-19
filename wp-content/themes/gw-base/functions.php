@@ -1,18 +1,17 @@
 <?php
-
-if ( ! class_exists( 'Timber' ) ) {
-	add_action( 'admin_notices', function() {
-		echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php') ) . '</a></p></div>';
+// Timber
+if (!class_exists('Timber'))
+{
+	add_action( 'admin_notices', function()
+	{
+		echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . admin_url('plugins.php#timber') . '">' . admin_url('plugins.php') . '</a></p></div>';
 	});
-	
-	add_filter('template_include', function($template) {
-		return get_stylesheet_directory() . '/static/no-timber.html';
-	});
-	
 	return;
 }
 
 Timber::$dirname = array('templates', 'views');
+
+
 
 class GW extends TimberSite {
 
@@ -20,22 +19,24 @@ class GW extends TimberSite {
 		add_theme_support( 'post-formats' );
 		add_theme_support('thumbnail');
 		add_theme_support( 'post-thumbnails' );
-			// General Sizes
-			add_image_size( 'gw-sm', 750 );
-      add_image_size( 'gw-1000', 1000 );
-      add_image_size( 'gw-md', 1200 );
-      add_image_size( 'gw-lg', 1500 );
-      add_image_size( 'gw-xlg', 2000 );
-      	// 3:2 Crops
-				add_image_size( 'gw-sm-3-2', 750, 500, true );
-				add_image_size( 'gw-md-3-2', 1200, 800, true );
-				add_image_size( 'gw-lg-3-2', 1500, 1000, true );
-				add_image_size( 'gw-xlg-3-2', 2001, 1334, true );
-				// 2:3 Crops
-				add_image_size( 'gw-sm-2-3', 750, 1125, true );
-				add_image_size( 'gw-md-2-3', 1000, 1500, true );
-				add_image_size( 'gw-lg-2-3', 1200, 1800, true );
-				add_image_size( 'gw-xlg-2-3', 1334, 2001, true );
+
+		// General Sizes
+		add_image_size( 'gw-sm', 750 );
+		add_image_size( 'gw-1000', 1000 );
+		add_image_size( 'gw-md', 1200 );
+		add_image_size( 'gw-lg', 1500 );
+		add_image_size( 'gw-xlg', 2000 );
+		// 3:2 Crops
+		add_image_size( 'gw-sm-3-2', 750, 500, true );
+		add_image_size( 'gw-md-3-2', 1200, 800, true );
+		add_image_size( 'gw-lg-3-2', 1500, 1000, true );
+		add_image_size( 'gw-xlg-3-2', 2001, 1334, true );
+		// 2:3 Crops
+		add_image_size( 'gw-sm-2-3', 750, 1125, true );
+		add_image_size( 'gw-md-2-3', 1000, 1500, true );
+		add_image_size( 'gw-lg-2-3', 1200, 1800, true );
+		add_image_size( 'gw-xlg-2-3', 1334, 2001, true );
+
 		add_theme_support( 'menus' );
 		add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 		add_filter( 'timber_context', array( $this, 'add_to_context' ) );
@@ -55,15 +56,21 @@ class GW extends TimberSite {
 
 	function add_to_context( $context ) {
 		$context['header_menu'] = new TimberMenu('header-menu');
-    $context['footer_menu'] = new TimberMenu('footer-menu');
+		$context['footer_menu'] = new TimberMenu('footer-menu');
 
 		$context['site'] = $this;
 		$context['td'] = get_template_directory_uri();
-		$context['options'] = get_fields('options');
+
+		// This is crashing
+		//  PHP Fatal error:  Uncaught Error: Call to undefined function get_fields() in wp-content/themes/gw-base/functions.php:63
+
+	 	//$context['options'] = get_fields('options');
+
 		$context['request'] = $_REQUEST;
 		$context['globals'] = array(
-      // 'siteTitle' => 'The Site Title',
-    );
+			// 'siteTitle' => 'The Site Title',
+		);
+
 		return $context;
 	}
 
@@ -79,6 +86,7 @@ class GW extends TimberSite {
 		return $twig;
 	}
 }
+
 
 // Change Featured Image Crop
 function get_image_src( $object, $field_name, $request ) {
@@ -107,3 +115,6 @@ register_rest_field( 'post',
 add_action( 'rest_api_init', 'add_thumbnail_to_JSON' );
 
 new GW();
+
+?>
+
