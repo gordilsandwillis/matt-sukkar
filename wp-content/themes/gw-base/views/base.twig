@@ -9,7 +9,10 @@
 	<body class="{{body_class}}" data-template="base.twig">
 		
 		<div class="animsition">
-			{% include 'partials/header.twig' with {'menu': menu.get_items} %}
+			
+			<div class="stagger-in-1">
+				{% include 'partials/header.twig' with {'menu': menu.get_items} %}
+			</div>
 
 			<section id="content" role="main" class="content-wrapper">
 				{% if title %}<h1>{{title}}</h1>{% endif %}

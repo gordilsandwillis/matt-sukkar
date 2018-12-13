@@ -1,13 +1,25 @@
-<header class="header" >
-	header
-	{% block header %}
-		<div class="wrapper">
-			<h1 class="hdr-logo" role="banner">
-				<a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
-			</h1>
-			<nav id="nav-main" class="nav-main" role="navigation">
-				{% include "partials/menu.twig" with {'menu': menu.get_items} %}
-			</nav><!-- #nav -->
+{% block header %}
+	<header>
+		<div class="c-inner-header">
+			<div class="container">
+				<div class="grid-flex middle no-break no-gutter">
+					<div class="col">
+						<a class="logo transition-link" href="{{site.url}}" rel="home" title="{{site.name}}">
+							<div class="hide-md">
+								{% include "icons/logo.svg" %}
+							</div>
+							<div class="show-md">
+								{% include "icons/logo-sm.svg" %}
+							</div>
+						</a>
+					</div>
+					<div class="col">
+						<nav id="nav-main" class="nav-main" role="navigation">
+							{% include "partials/menu.twig" with {'menu': main_navigation.get_items} %}
+						</nav>
+					</div>
+				</div>
+			</div>
 		</div>
-	{% endblock %}
-</header>
+	</header>
+{% endblock %}

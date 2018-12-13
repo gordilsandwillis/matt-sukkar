@@ -2,8 +2,8 @@
 Contributors: webbistro
 Tags: ux, user experience, wp-admin, admin, publish, toolbar, save, button, update, post, page, settings, scrollbar, scrolling, admin bar, backend, admin menu, sticky menu
 Requires at least: 4.6
-Tested up to: 4.7.2
-Stable tag: 1.6
+Tested up to: 4.9.8
+Stable tag: 1.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,22 @@ Assistance with translating is highly appreciated! If you'd like to be a transla
 
 == Changelog ==
 
+= 1.6.2 =
+*Release Date - August 29, 2018*
+
+= Bugfixes =
+* Conflict with ACF scripts fixed
+
+
+&nbsp;
+= 1.6.1 =
+*Release Date - August 28, 2018*
+
+= Improvements =
+* Compatibility with the latest ACF versions ensured
+
+
+&nbsp;
 = 1.6 =
 *Release Date - February 2, 2017*
 

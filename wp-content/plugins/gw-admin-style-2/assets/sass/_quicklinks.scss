@@ -1,0 +1,41 @@
+ul.gw-quicklinks-widget {
+	margin: -4px -12px -5px;
+	li.gw-quicklink {
+		border-bottom: 1px solid #eee;
+		margin: 0;
+		&:last-child {
+			border-bottom: none;
+		}
+		a {
+			display: block;
+			outline: none !important;
+			padding: 10px 12px;
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 1em;
+			position: relative;
+			cursor: pointer;
+			&:hover {
+				background: #f3f3f3;
+			}
+			&:focus,
+			&:active {
+				outline: none;
+				box-shadow: none;
+			}
+			.material-icon {
+				vertical-align: middle;
+				margin-right: 10px;
+			}
+			.material-icon.right {
+				position: absolute;
+				right: 0;
+				margin-right: 8px;
+			}
+			.label {
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+	}
+}

@@ -1,0 +1,42 @@
+<section class="block-accordion {{ block.section_info.background }}-bg {% if block.section_info.background == 'dark' or block.section_info.background == 'grey' %}py-margin{% else %}my-margin{% endif %}">
+	<div class="container">
+		<div class="grid-flex top v-spaced">
+			<div class="col-6">
+				<div class="max-text-width pb-1px">
+					{% if block.section_info.headline %}
+						<h3 class="h1 pb-1">{{ block.section_info.headline }}</h3>
+						<hr class="thick small main-color mt-2 mb-3">
+					{% endif %}
+					{% if block.section_info.text %}
+						<p class="md pb-1 light-text-color">{{ block.section_info.text }}</p>
+					{% endif %}
+				</div>
+			</div>
+			<div class="col-6">
+				<ul class="accordion accordion-list">
+					{% for accordion in block.accordion %}
+						<li>
+							<div class="c-header py-2">
+								<div class="grid-flex no-break middle tight-gutter">
+									<div class="col grow ellipsis">
+										<p class="h3 py-1 ellipsis">{{ accordion.title }}</p>
+									</div>
+									<div class="col no-grow">
+										<span class="material-icons md-24">add</span>
+									</div>
+								</div>
+							</div>
+							{% if accordion.content %}
+							<div class="c-content">
+								<div class="pb-3 rich-text sm">
+									{{ accordion.content }}
+								</div>
+							</div>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

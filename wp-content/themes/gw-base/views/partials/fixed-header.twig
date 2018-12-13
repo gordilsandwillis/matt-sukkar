@@ -1,0 +1,18 @@
+<div class="fixed-header" >
+	<div class="c-inner-header">
+		<div class="container">
+			<div class="grid-flex middle no-break no-gutter">
+				<div class="col">
+					<a class="logo transition-link" href="{{site.url}}" rel="home" title="{{site.name}}">
+						{% include "icons/logo.svg" %}
+					</a>
+				</div>
+				<div class="col">
+					<nav id="nav-main" class="nav-main" role="navigation">
+						{% include "partials/menu.twig" with {'menu': main_navigation.get_items} %}
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

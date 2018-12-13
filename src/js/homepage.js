@@ -16,9 +16,5 @@ var homepage = {
   scroll: function(){
   },
 
-  staggeredGrid: function() {
-  	var bricklayer = new Bricklayer(document.querySelector('.home-grid'));
-  },
-
 };
 module.exports = homepage;

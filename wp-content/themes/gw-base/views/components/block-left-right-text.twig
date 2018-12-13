@@ -1,0 +1,48 @@
+<section class="block-image-text {{ block.background_color }}-bg {% if block.background_color == 'dark' or block.background_color == 'grey' %}py-margin{% else %}my-margin{% endif %}">
+	<div class="container pb-1px">
+		<div class="grid-flex v-spaced">
+			<div class="col-6">
+				<div class="max-text-width">
+					{% if block.left_area.headline_text %}
+						<h3 class="h1 pb-1">{{ block.left_area.headline_text }}</h3>
+						<hr class="thick small main-color mt-2 mb-3">
+					{% endif %}
+					{% if block.left_area.text %}
+						<p class="h3 pb-1">{{ block.left_area.text }}</p>
+					{% endif %}
+				</div>
+			</div>
+			<div class="col-6">
+	
+				{% if block.right_area.content_type == 'text' or block.right_area.content_type == 'both' %}
+					<div class="rich-text">
+						{{ block.right_area.text }}
+					</div>
+				{% endif %}
+
+				{% if block.right_area.content_type == 'list' or block.right_area.content_type == 'both' %}
+					<div>
+						{% for listItem in block.right_area.description_list %}
+							<h5 class="h3 mb-1 {% if loop.index != 1 %}mt-2 pt-1{% endif %}">{{ listItem.title }}</h5>
+							<p class="sm light-text-color">{{ listItem.description }}</p>
+						{% endfor %}
+					</div>
+				{% endif %}
+				
+				{% if block.right_area.buttons %}
+					<div class="pt-2">
+						<div class="grid-flex tight-gutter left no-break">
+							{% for button in block.right_area.buttons %}
+								{% if button.button_link.title %}
+									<div class="col mb-2">
+										<a href="{{ button.button_link.url }}" target="{{button.button_link.target}}" class="{{ button.color }} button large transition-link">{{ button.button_link.title }}</a>
+									</div>
+								{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>

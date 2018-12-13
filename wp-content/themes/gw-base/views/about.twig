@@ -1,0 +1,16 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+
+{% include "site-components/lw-intro-area.twig" with {
+	class : 'wide',
+	textClass : 'h2',
+	text : post.get_field('top_area_text'),
+} %}
+
+<div class="stagger-in-3">
+	{% include "components/flex-blocks.twig" %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<div class="stagger-in-2 pt-margin">
+	<div class="container">
+		<div class="grid-flex break-xlg">
+			<div class="col-3 order-2 pb-2">
+				<hr class="mt-0 mb-2">
+				<div class="contact-row">
+					<h4 class="small-caps grid-item-label">{{ post.get_field('new_business_contact').label }}</h4>
+					<p class="md"><em>{{ post.get_field('new_business_contact').text }}</em><br>
+						<a href="mailto:{{ post.get_field('new_business_contact').email }}">{{ post.get_field('new_business_contact').email }}</a>
+					</p>
+				</div>
+			</div>
+			<div class="col-6 order-3">
+				<div class="grid-flex left break-xlg">
+					{% for item in post.get_field('contact_items') %}
+						<div class="col-6 pb-2">
+							<hr class="mt-0 mb-2">
+							<div class="contact-row">
+								<h4 class="small-caps grid-item-label">{{ item.label }}</h4>
+								<p class="md"><a href="mailto:{{ item.email }}">{{ item.email }}</a></p>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-3 order-1">
+				<hr class="mt-0 mb-2">
+				<div class="contact-row">
+					<h4 class="small-caps grid-item-label">Location</h4>
+					<p class="md mb-2">
+						{% if options.contact.google_maps_link %}
+						<a href="{{ options.contact.google_maps_link }}" target="_blank">
+						{% endif %}
+							{{ options.contact.street_address }}<br/>
+							{{ options.contact.city_state_zip }}
+						{% if options.contact.google_maps_link %}
+						</a>
+						{% endif %}
+					</p>
+				</div>
+				<hr class="mt-0 mb-2 phone-hr">
+				<div class="contact-row phone">
+					<h4 class="small-caps grid-item-label phone-label">Phone</h4>
+					<p class="md"><span class="small-caps inline-label">T </span><a href="tel:{{ options.contact.phone }}">{{ options.contact.phone }}</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="stagger-in-3">
+		{% include "components/block-wide-media.twig" with { 
+			blockImage : post.contact_image,
+			mediaType : post.contact_image
+		} %}
+</div>
+
+{% endblock %}

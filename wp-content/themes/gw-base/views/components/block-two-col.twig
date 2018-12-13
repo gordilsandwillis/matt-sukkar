@@ -1,0 +1,38 @@
+<section class="block-three-col {{ block.background_color }}-bg {% if block.background_color == 'dark' or block.background_color == 'grey' %}py-margin{% else %}my-margin{% endif %}">
+	<div class="container pb-1px">
+		<div class="grid-flex v-spaced">
+			<div class="col-6">
+				{% if block.col_1.media_type == 'image' %}
+					<div class="lazy-wrap lazyload color-bg">
+						<img class="lazyload" src="{{ TimberImage(block.col_1.image).src('gw-sm') }}">
+					</div>
+				{% elseif block.col_1.media_type == 'video' %}
+					<video class="cover" data-object-fit="cover" autoplay loop muted playsinline>
+			      <source src="{{ block.col_1.video }}" type="video/mp4">
+			    </video>
+				{% endif %}
+				{% if block.col_1.caption %}
+					<div class="max-text-width">
+						<p class="pt-1 mt-1 light-text-color">{{ block.col_1.caption }}</p>
+					</div>
+				{% endif %}
+			</div>
+			<div class="col-6">
+				{% if block.col_2.media_type == 'image' %}
+					<div class="lazy-wrap lazyload color-bg">
+						<img class="lazyload" src="{{ TimberImage(block.col_2.image).src('gw-sm') }}">
+					</div>
+				{% elseif block.col_2.media_type == 'video' %}
+					<video class="cover" data-object-fit="cover" autoplay loop muted playsinline>
+			      <source src="{{ block.col_2.video }}" type="video/mp4">
+			    </video>
+				{% endif %}
+				{% if block.col_2.caption %}
+					<div class="max-text-width">
+						<p class="pt-1 mt-1 light-text-color">{{ block.col_2.caption }}</p>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>

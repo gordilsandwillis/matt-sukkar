@@ -5,6 +5,7 @@ window.jQuery = window.$ = require("jquery");
 var animsition = require('animsition');
 var lazyload = require('jquery-lazyload/jquery.lazyload.js');
 var lazysizes = require('lazysizes');
+var slick = require('slick-carousel');
 
 var global = {
   init: function(){
@@ -12,9 +13,17 @@ var global = {
 
   ready: function(){
     this.pageTransitions();
-    this.menuToggle();
-    this.mailchimpSignup.init(this.mailchimpSignup);
+    // this.menuToggle();
+    // this.mailchimpSignup.init(this.mailchimpSignup);
     lazySizes.init();
+    this.topArea();
+    this.scroll();
+    this.slideshowBlock();
+    this.splitSlideshowBlock();
+    this.accordion();
+    this.getInstalink();
+    this.modals();
+    this.mailchimpFooter();
     window.lazySizesConfig = {
       addClasses: true
     };
@@ -24,7 +33,7 @@ var global = {
   },
   
   scroll: function(){
-    this.mobileHeader();
+    this.headerScroll();
     this.parallaxTop();
   },
 
@@ -32,9 +41,9 @@ var global = {
     $(".animsition").animsition({
       inClass: 'fade-in',
       outClass: 'fade-out',
-      inDuration: 1500,
-      outDuration: 800,
-      linkElement: '.transition-link',
+      inDuration: 500,
+      outDuration: 500,
+      linkElement: '.transition-link:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not(.trigger)',
       // linkElement: 'a:not([target="_blank"]):not([href^="#"]):not([href^="deadlink"])',
       // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
       loading: true,
@@ -58,13 +67,56 @@ var global = {
     });
   },
 
-  mobileHeader: function () {
-    var scrollTop = $('body').scrollTop();
-    if (scrollTop > 100) {
-      $('header').addClass('solid');
+  headerScroll: function () {
+    var scrollTop = $('body').scrollTop() || $('html').scrollTop();
+    if (scrollTop > 150) {
+      $('body').addClass('scrolled');
     } else {
-      $('header').removeClass('solid');
+      $('body').removeClass('scrolled');
     }
+  },
+
+  accordion : function () {
+    $.fn.slideFadeToggle  = function(speed, easing, callback) {
+      return this.animate({opacity: 'toggle', height: 'toggle'}, 200, easing, callback);
+    };
+    $(".accordion .c-content").hide();
+    var tglHandle = $(".accordion .c-header");
+    tglHandle.click(function() {
+      $(this).next(".accordion .c-content").slideFadeToggle();
+      $(this).toggleClass("open");
+    });
+  },
+
+  modals : function () {
+    var modalTrigger = $(".modal-trigger");
+    modalTrigger.click(function(event) {
+      event.preventDefault();
+      var modalId = $(this).attr('data-modal-id');
+      var modal = $('.modal#' + modalId);
+      $(modal).closest('.modal-wrap').addClass('open');
+      $(modal).addClass('visible');
+    });
+
+    var closeModal = function() {
+      $('.modal-wrap.open').removeClass('open');
+      setTimeout(function(){ 
+        $('.modal.visible').removeClass('visible');
+      }, 200);
+    }
+
+    $('.overlay').click(function() {
+      closeModal();
+    });
+
+    $('.close-modal').click(function() {
+      closeModal();
+    });
+  },
+
+  topArea : function () {
+    var topTitle = $('.top-area .c-title > p');
+    topTitle.replaceWith('<h1>' + topTitle.html() + '</h1>');
   },
 
   menuToggle: function () {
@@ -79,6 +131,16 @@ var global = {
     });
   },
 
+  getInstalink: function () {
+    // console.log($('.sbi_follow_btn > a').attr('href'));
+
+    $('.sbi_follow_btn > a').on('data-attribute-changed', function() {
+      var instalink = $('.sbi_follow_btn > a').attr('href');
+      // console.log(instalink);
+    });
+
+  },
+
   parallaxTop: function () {
     var scrollTop = $('body').scrollTop();
     var topArea = $('.top-area:not(.slide).parallax .cover-area');
@@ -88,6 +150,59 @@ var global = {
     } else {
       topArea.css({'transform': 'translate3d(0, 0, 0)'});
     }
+  },
+
+  slideshowBlock: function() {
+    $('.block-slideshow .slideshow').slick({
+      slidesToShow: 3,
+      centerMode: true,
+      slidesToScroll: 1,
+      arrows: true,
+      infinite: true,
+      fade: false,
+      speed: 750,
+      autoplay: false,
+      swipeToSlide: true,
+      accessibility: false,
+      pauseOnHover: false,
+      responsive: [
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true,
+            centerMode: false,
+            arrows: true,
+          }
+        }
+      ]
+    });
+  },
+
+  mailchimpFooter : function () {
+    $('footer .mc_form_inside #mc_mv_EMAIL').attr("placeholder","Enter Email")
+  },
+
+  splitSlideshowBlock: function() {
+    $('.block-split-slideshow .slideshow').slick({
+      slidesToShow: 1,
+      centerMode: false,
+      slidesToScroll: 1,
+      // arrows: true,
+      prevArrow: $('.block-split-slideshow .slideshow .prev-arrow'),
+      nextArrow: $('.block-split-slideshow .slideshow .next-arrow'),
+      appendDots: $('.block-split-slideshow .slideshow .c-slide-nav'),
+      dots : true,
+      infinite: true,
+      fade: true,
+      speed: 750,
+      autoplay: false,
+      swipeToSlide: true,
+      accessibility: false,
+      pauseOnHover: false,
+    });
   },
 
   mailchimpSignup :{

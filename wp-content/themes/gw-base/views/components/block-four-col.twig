@@ -1,0 +1,38 @@
+<section class="block-four-col {{ block.background_color }}-bg {% if block.background_color == 'dark' or block.background_color == 'grey' %}py-margin{% else %}my-margin{% endif %}">
+	<div class="container pb-1px">
+		{% if block.headline %}
+			<h3 class="h1">{{ block.headline }}</h3>
+			<hr class="short thick main-color mb-3">
+		{% endif %}
+		<div class="grid-flex collapse-4-2-1 v-spaced break-sm">
+			<div class="col">
+				<div class="lazy-wrap lazyload mb-2">
+					<img class="lazyload" src="{{ TimberImage(block.columns.left_area.image).src('gw-sm-sq') }}" alt="{{ block.columns.left_area.title }}">
+				</div>
+				<h4>{{ block.columns.left_area.title }}</h4>
+				<p class="sm light-text-color pt-1">{{ block.columns.left_area.text }}</p>
+			</div>
+			<div class="col">
+				<div class="lazy-wrap lazyload mb-2">
+					<img class="lazyload" src="{{ TimberImage(block.columns.center_left.image).src('gw-sm-sq') }}" alt="{{ block.columns.center_left.title }}">
+				</div>
+				<h4>{{ block.columns.center_left.title }}</h4>
+				<p class="sm light-text-color pt-1">{{ block.columns.center_left.text }}</p>
+			</div>
+			<div class="col">
+				<div class="lazy-wrap lazyload mb-2">
+					<img class="lazyload" src="{{ TimberImage(block.columns.center_right.image).src('gw-sm-sq') }}" alt="{{ block.columns.center_right.title }}">
+				</div>
+				<h4>{{ block.columns.center_right.title }}</h4>
+				<p class="sm light-text-color pt-1">{{ block.columns.center_right.text }}</p>
+			</div>
+			<div class="col">
+				<div class="lazy-wrap lazyload mb-2">
+					<img class="lazyload" src="{{ TimberImage(block.columns.right_area.image).src('gw-sm-sq') }}" alt="{{ block.columns.right_area.title }}">
+				</div>
+				<h4>{{ block.columns.right_area.title }}</h4>
+				<p class="sm light-text-color pt-1">{{ block.columns.right_area.text }}</p>
+			</div>
+		</div>
+	</div>
+</section>

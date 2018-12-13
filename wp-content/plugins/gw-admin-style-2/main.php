@@ -150,14 +150,15 @@ add_action( 'wp_dashboard_setup', 'add_dashboard_widgets' );
 * Create the function to output the contents of our Dashboard Widget.
 */
 function dashboard_widget_function() {
-echo '<ul>';
-$links = get_option('widget_links');
-foreach ($links as $link):
-  if ($link['title']):
-  //print_r($link);
-echo '<li><a href="'.$link["url"].'"><span><img src="'.$link["img"].'"/></span>'. $link["title"].'</a></li>';
+echo '<ul class="gw-quicklinks-widget">';
+$links = get_field('gw_admin_quicklinks', 'option');
+if ($links):
+  foreach ($links as $link):
+    if ($link['link_title']):
+    echo '<li class="gw-quicklink"><a href="/wp-admin/'.$link['link'].'"><div class="material-icon md-24">' . $link["icon"] . '</div><span class="label">' . $link["link_title"] . '</span><div class="material-icon md-24 right">keyboard_arrow_right</div></a></li>';
+    endif;
+  endforeach;
 endif;
-endforeach;
 echo '</ul>';
 }
 // Disable Admin Bar for everyone

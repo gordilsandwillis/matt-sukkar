@@ -1,0 +1,68 @@
+<section class="block-team-grid {{ block.background_color }}-bg {% if block.background_color == 'dark' or block.background_color == 'grey' %}py-margin{% else %}my-margin{% endif %}">
+	<div class="container pb-1px">
+		{% if block.headline %}
+			<h3 class="h1">{{ block.headline }}</h3>
+			<hr class="short thick main-color mb-3">
+		{% endif %}
+		<div class="grid-flex collapse-4-3-2-1 pt-1 left v-spaced break-sm">
+			{% for teamMember in block.team_member %}
+				<div class="col">
+					{% if block.show_popups == true %}<a href="#" class="trigger thumb modal-trigger" data-modal-id="{{teamMember.info.general_info.name|replace(' ', '-') ~ '-' ~ loop.index}}">{% endif %}
+						<div class="{% if teamMember.headshot %}has-headshot{% endif %}">
+							{% if teamMember.headshot %}
+								<img class="mb-2 member-headshot" src="{{ TimberImage(teamMember.headshot).src('gw-sm-sq') }}" alt="{{ teamMember.info.general_info.name }}">
+							{% endif %}
+							<div class="member-thumb-info">
+								<p class="h4">{{ teamMember.info.general_info.name }}</p>
+								<p class="sm medium-weight light-text-color">{{ teamMember.info.general_info.title }}</p>
+							</div>
+						</div>
+					{% if block.show_popups == true %}</a>{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+{% if block.show_popups == true %}
+	<div class="modal-wrap">
+		<div class="overlay"></div>
+		{% for teamMember in block.team_member %}
+			<div class="modal team-modal" id="{{teamMember.info.general_info.name|replace(' ', '-') ~ '-' ~ loop.index}}">
+				<div class="close-modal"><span class="material-icons md-24">close</span></div>
+				<div>
+					<div class="grid-float">
+						<div class="col right">
+							<p class="h2 mtn-1">{{ teamMember.info.general_info.name }}</p>
+							<p class="mb-gutter medium-weight light-text-color">{{ teamMember.info.general_info.title }}</p>
+						</div>
+						<div class="col left">
+							<img class="mb-gutter" src="{{ TimberImage(teamMember.headshot).src('gw-lg-sq') }}" alt="{{ teamMember.info.general_info.name }}">
+							<div class="p sm">
+								{% if teamMember.info.general_info.email %}
+									<div class="grid-flex no-break slim-gutter">
+										<div class="col label light-text-color medium-weight">Email</div>
+										<div class="col grow">
+											<a href="mailto:{{ teamMember.info.general_info.email }}">{{ teamMember.info.general_info.email }}</a>
+										</div>
+									</div>
+								{% endif %}
+								{% if teamMember.info.general_info.phone %}
+									<div class="grid-flex no-break slim-gutter">
+										<div class="col label light-text-color medium-weight">Tel.</div>
+										<div class="col grow">
+											<a href="tel:{{ teamMember.info.general_info.phone }}">{{ teamMember.info.general_info.phone }}</a>
+										</div>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="col right">
+							<div class="rich-text">{{ teamMember.info.bio }}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endif %}

@@ -1,0 +1,60 @@
+<div class="top-area {{ post.ta_background_style }}-bg">
+	<div>
+		<div class="container">
+			<div class="c-title highlight">
+				{% if ta_title %}
+					<h1>{{ ta_title }}</h1>
+					<h1>{{ ta_secondary_title }}</h1>
+				{% else %}
+					{{ post.ta_large_text }}
+				{% endif %}
+			</div>
+			{% if post.ta_paragraph_text %}
+				<div class="max-text-width mt-2">
+					<p class="h3">{{ post.ta_paragraph_text }}</p>
+				</div>
+			{% endif %}
+			{% if post.ta_buttons %}
+				<div class="mt-3">
+					<div class="grid-flex no-break left mbn-2">
+						{% for button in post.get_field('ta_buttons') %}
+							{% if button.button_link.title %}
+								<div class="col mb-2">
+									<a href="{{ button.button_link.url }}" target="{{ button.button_link.target }}" class="{% if post.ta_background_style == 'photo' or post.ta_background_style == 'video' %}white {% else %}{{ button.color }} {% endif %}button large transition-link">{{ button.button_link.title }}</a>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			{% elseif is_school_page %}
+				<div class="mt-3">
+					<div class="grid-flex no-break left">
+						<div class="col mb-2">
+							<a href="/careers" class="{% if post.ta_background_style == 'photo' or post.ta_background_style == 'video' %}white {% else %}primary {% endif %}button large transition-link">Teach here</a>
+						</div>
+						<div class="col mb-2">
+							<a href="/enroll" class="{% if post.ta_background_style == 'photo' or post.ta_background_style == 'video' %}white {% else %}secondary {% endif %}button large transition-link">{{ options.global_ctas.students_button_text }}</a>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	{% if post.ta_background_style == 'photo' %}
+		<div class="c-bg">
+			<img
+				src="{{ TimberImage(post.ta_background_image).src('gw-sm-3-2') }}"
+				srcset="{{ TimberImage(post.ta_background_image).src('gw-sm-3-2') }} 750w,
+					{{ TimberImage(post.ta_background_image).src('gw-md-3-2') }} 1200w,
+					{{ TimberImage(post.ta_background_image).src('gw-lg-3-2') }} 1500w,
+					{{ TimberImage(post.ta_background_image).src('gw-xlg-3-2') }} 2001w"
+			>
+		</div>
+	{% elseif post.ta_background_style == 'video' %}
+		<div class="c-bg">
+			<video class="cover" data-object-fit="cover" autoplay loop muted playsinline>
+	      <source src="{{ TimberImage(post.video_background) }}" type="video/mp4">
+	    </video>
+		</div>
+	{% endif %}
+</div>

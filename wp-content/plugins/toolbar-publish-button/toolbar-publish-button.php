@@ -4,14 +4,14 @@
  * Plugin Name: Toolbar Publish Button
  * Plugin URI: https://wpUXsolutions.com
  * Description: Save a lot of your time by scrolling less in WP admin! A small UX improvement that keeps Publish button within reach and retains the scrollbar position after saving in WordPress admin.
- * Version: 1.6
+ * Version: 1.6.2
  * Author: wpUXsolutions
  * Author URI: https://wpUXsolutions.com
  * License: GPL2+ - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Text Domain: toolbar-publish-button
  * Domain Path: /languages/
  *
- * Copyright 2013-2016  wpUXsolutions  (email : wpUXsolutions@gmail.com)
+ * Copyright 2013-2018  wpUXsolutions  (email : wpUXsolutions@gmail.com)
  */
 
 
@@ -31,7 +31,7 @@ class tpb {
      *
      * @var string
      */
-    public $version = '1.6';
+    public $version = '1.6.2';
 
 
 
@@ -272,6 +272,7 @@ class tpb {
         wp_register_script( 'tpb-jquery-cookie', $dir . 'js/jquery.cookie.js', array( 'jquery', 'tpb-admin' ), $version, true );
         wp_register_script( 'tpb-scrollbar', $dir . 'js/tpb-scrollbar.js', array( 'jquery', 'tpb-admin' ), $version, true );
         wp_register_script( 'tpb-color-picker', $dir . 'js/tpb-color-picker.js', array( 'wp-color-picker' ), $version, true );
+        wp_register_script( 'tpb-acf', $dir . 'js/tpb-acf.js', array( 'acf-field-group' ), $version, true );
 
 
         // styles
@@ -288,16 +289,16 @@ class tpb {
      *  @date   07/10/16
      */
 
-    function enqueue_admin_assets() {
+    function enqueue_admin_assets( $hook ) {
 
         global $hook_suffix;
-
 
         if ( 'index.php' == $hook_suffix ) {
             return;
         }
 
 
+        $screen = get_current_screen();
         $settings = $this->get_option( 'settings' );
 
 
@@ -313,6 +314,10 @@ class tpb {
 
             wp_enqueue_script( 'tpb-jquery-cookie' );
             wp_enqueue_script( 'tpb-scrollbar' );
+
+            if ( 'acf-field-group' === $screen->post_type || 'acf' === $screen->post_type && class_exists( 'ACF' ) ) {
+                wp_enqueue_script( 'tpb-acf' );
+            }
         }
 
 

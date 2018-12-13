@@ -1,3 +1,50 @@
-<footer>
-	footer Copyright {{"now"|date('Y')}}
+<footer class="dark-bg py-margin">
+	<div class="container pb-1px">
+		<div class="grid-flex v-spaced break-lg">
+			<div class="col-2 logo-col">
+				{% include "icons/logo-sm.svg" %}
+			</div>
+			<div class="col-7">
+				<div class="pb-1px">
+					<div class="grid-flex break-sm v-spaced">
+						<div class="col-5">
+							<h6 class="p mb-1 footer-title">Follow</h6>
+							<hr class="short mt-2 mb-2 hide-sm">
+							{% for link in options.social_links %}
+								<p><a href="{{ link.url }}" target="_blank">{{ link.title }}</a></p>
+							{% endfor %}
+						</div>
+						<div class="col-7">
+							<h6 class="p mb-1 footer-title">Contact</h6>
+							<hr class="short mt-2 mb-2 hide-sm">
+							<p class="mb-2">
+								{% if options.contact.google_maps_link %}
+								<a href="{{ options.contact.google_maps_link }}" target="_blank">
+								{% endif %}
+									{{ options.contact.street_address }}<br/>
+									{{ options.contact.city_state_zip }}
+								{% if options.contact.google_maps_link %}
+								</a>
+								{% endif %}
+							</p>
+							<p><span class="tiny-caps">E</span> <a href="mailto:{{ options.contact.email }}">{{ options.contact.email }}</a></p>
+							<p><span class="tiny-caps">T</span> <a href="tel:{{ options.contact.phone }}">{{ options.contact.phone }}</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<h6 class="p mb-1 footer-title">Updates</h6>
+				<hr class="short mt-2 mb-2 hide-sm">
+				{{ function('mailchimpSF_signup_form') }}
+			</div>
+		</div>
+	</div>
+	<div class="container pt-margin">
+		<div class="grid-flex v-spaced right break-lg">
+			<div class="col-10">
+				<p class="sm light-text-color">© Love & War Associates, LLC. {{ 'now'|date('Y') }}</p>
+			</div>
+		</div>
+	</div>
 </footer>

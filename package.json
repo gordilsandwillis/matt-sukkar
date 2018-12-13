@@ -33,6 +33,7 @@
   "dependencies": {
     "animsition": "^4.0.2",
     "bricklayer": "^0.4.3",
+    "compression-webpack-plugin": "^1.1.11",
     "jquery-lazyload": "^1.9.7",
     "lazysizes": "^4.0.0-rc3",
     "object-fit-polyfill": "^0.1.0",

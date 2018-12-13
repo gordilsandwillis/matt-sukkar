@@ -1,0 +1,38 @@
+{# NOT HOOkED UP #}
+
+<section class="block-programs {{ block.background_color }}-bg {% if block.background_color == 'dark' or block.background_color == 'grey' %}py-margin{% else %}my-margin{% endif %}">
+	<div class="container">
+		<div class="pb-3">
+			<h3 class="h1 pb-2">Our programs</h3>
+		</div>
+		<div class="grid-flex v-spaced">
+			<div class="col-4">
+				<a href="/lower-schools" class="thumb transition-link">
+					{% if lower_schools.thumbnail %}
+						<img src="{{ lower_schools.thumbnail.src('gw-sm-sq') }}" alt="Lower Schools">
+					{% endif %}
+					<h4 class="h3 pt-2">Lower Schools</h4>
+					<span class="mt-1 underlined-link">Learn more</span>
+				</a>
+			</div>
+			<div class="col-4">
+				<a href="/middle-schools" class="thumb transition-link">
+					{% if middle_schools.thumbnail %}
+						<img src="{{ middle_schools.thumbnail.src('gw-sm-sq') }}" alt="Lower Schools">
+					{% endif %}
+					<h4 class="h3 pt-2">Middle Schools</h4>
+					<span class="mt-1 underlined-link">Learn more</span>
+				</a>
+			</div>
+			<div class="col-4">
+				<a href="/high-schools" class="thumb transition-link">
+					{% if high_schools.thumbnail %}
+						<img src="{{ high_schools.thumbnail.src('gw-sm-sq') }}" alt="Lower Schools">
+					{% endif %}
+					<h4 class="h3 pt-2">High Schools</h4>
+					<span class="mt-1 underlined-link">Learn more</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

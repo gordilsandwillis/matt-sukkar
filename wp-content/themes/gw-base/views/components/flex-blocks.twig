@@ -1,0 +1,40 @@
+{% for block in post.get_field('blocks') %}
+
+	{# General Page Blocks #}
+	{% if block.acf_fc_layout == 'wide_media' %}
+		{% include "components/block-wide-media.twig" %}
+
+	{% elseif block.acf_fc_layout == 'text_section' %}
+		{% include "site-components/text-section.twig" %}
+
+	{% elseif block.acf_fc_layout == 'intro_text' %}
+		{% include "site-components/block-intro-text.twig" %}
+
+	{% elseif block.acf_fc_layout == 'image_caption' %}
+		{% include "site-components/block-image-caption.twig" %}
+
+	{% elseif block.acf_fc_layout == 'two_col' %}
+		{% include "components/block-two-col.twig" %}
+
+	{% elseif block.acf_fc_layout == 'one_third_two_third' %}
+		{% include "components/block-one-two-col.twig" %}
+
+	{% elseif block.acf_fc_layout == 'three_col' %}
+		{% include "components/block-three-col.twig" %}
+
+	{% elseif block.acf_fc_layout == 'blockquote' %}
+		{% include "site-components/block-blockquote.twig" %}
+
+	{# About Page Blocks #}
+	{% elseif block.acf_fc_layout == 'leadership' %}
+		{% include "site-components/about-leadership.twig" %}
+
+	{% elseif block.acf_fc_layout == 'beliefs_list' %}
+		{% include "site-components/about-beliefs.twig" %}
+
+	{% elseif block.acf_fc_layout == 'client_list' %}
+		{% include "site-components/about-clients.twig" %}		
+
+	{% endif %}
+
+{% endfor %}

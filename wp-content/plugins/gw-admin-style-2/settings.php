@@ -27,7 +27,7 @@
     <ul>
     <li>
       <label>Test</label>
-      <input type="text" value="<?php= get_option('test'); ?>" name="test" />
+      <input type="text" value="<?php echo get_option('test'); ?>" name="test" />
     </li>
     <li>
       <label>Primary Color</label>
@@ -43,8 +43,8 @@
       <li>
         <label>Logo</label>
         <img id="image" src="<?php echo get_option('login_logo'); ?>" width="auto" height="60"/>
-        <input type="hidden" id="image_field" name="login_logo" value="<?php= get_option('login_logo') ?>"/>
-        <button upload_button="class"><?php= ((string)get_option('login_logo') != '') ? 'Replace Image' : 'Upload Image'; ?></button>
+        <input type="hidden" id="image_field" name="login_logo" value="<?php echo get_option('login_logo') ?>"/>
+        <button upload_button="class"><?php echo ((string)get_option('login_logo') != '') ? 'Replace Image' : 'Upload Image'; ?></button>
       </li>
     </ul>
     <h3>Widget List</h3>
@@ -52,23 +52,23 @@
     <?php $link = $links[$i]; ?>
     <ul>   
       <li>
-        <label>Title <?php= $i; ?></label>
-        <input type="text" name="widget_links[<?php=$i;?>][title]" value="<?php echo $link['title']; ?>"/>
+        <label>Title <?php echo $i; ?></label>
+        <input type="text" name="widget_links[<?php echo$i;?>][title]" value="<?php echo $link['title']; ?>"/>
       </li>
       <li>
-        <label>URL <?php= $i; ?></label>
-        <input type="text" name="widget_links[<?php=$i;?>][url]" value="<?php echo $link['url']; ?>"/>
+        <label>URL <?php echo $i; ?></label>
+        <input type="text" name="widget_links[<?php echo$i;?>][url]" value="<?php echo $link['url']; ?>"/>
       </li>
       <li>
-        <label>Icon <?php= $i; ?></label>
+        <label>Icon <?php echo $i; ?></label>
         <img class="image" src="<?php echo $links[$i]['img']; ?>" width="auto" height="60"/>
-        <input type="hidden" class="image_field" name="widget_links[<?php=$i;?>][img]" value="<?php echo $link['img']; ?>"/>
-        <button class="upload_button"><?php= ((string)$link['img'] != '') ? 'Replace Image' : 'Upload Image'; ?></button>
+        <input type="hidden" class="image_field" name="widget_links[<?php echo$i;?>][img]" value="<?php echo $link['img']; ?>"/>
+        <button class="upload_button"><?php echo ((string)$link['img'] != '') ? 'Replace Image' : 'Upload Image'; ?></button>
       </li>
     </ul>
     <?php endfor; ?>
 
 
-    <?php= submit_button(); ?>
+    <?php echo submit_button(); ?>
   </form>
 </div>

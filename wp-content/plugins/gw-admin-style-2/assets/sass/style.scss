@@ -1,10 +1,48 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@mixin font-smooth() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin material-icons-style() {
+  color: currentcolor;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;  /* Preferred icon size */
+  line-height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  @include font-smooth();
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga';
+}
+
+.material-icon {
+  @include material-icons-style();
+  &.md-24 {
+    font-size: 24px;  /* Preferred icon size */
+    line-height: 24px;
+  }
+}
+
 @import "mixins";
 @import "php-variables";
 @import "variables";
 @import "hacks";
 @import "buttons";
 @import "field_customizations";
+@import "ui-tweaks";
+@import "gw-admin-messages";
 @import "login";
+@import "quicklinks";
 
 .column-post_thumb {
   width: 75px;

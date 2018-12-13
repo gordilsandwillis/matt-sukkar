@@ -1,0 +1,72 @@
+{% set Image = block.image_area.image %}
+
+<section class="block-image-text {{ block.background_color }}-bg {% if block.background_color == 'dark' or block.background_color == 'grey' %}py-margin{% else %}my-margin{% endif %}">
+	<div class="container pb-1px">
+		<div class="grid-flex v-spaced break-lg">
+			<div class="col-6 {% if block.image_area.position == 'right' %}order-2{% endif %}">
+
+				{% if block.image_area.image_ratio == 'wide' %}
+					<img
+						src="{{ TimberImage(Image).src('gw-sm-3-2') }}"
+						srcset="{{ TimberImage(Image).src('gw-sm-3-2') }} 750w,
+							{{ TimberImage(Image).src('gw-md-3-2') }} 1200w,
+							{{ TimberImage(Image).src('gw-lg-3-2') }} 1500w"
+					>
+				{% elseif block.image_area.image_ratio == 'square' %}
+					<img
+						src="{{ TimberImage(Image).src('gw-sm-sq') }}"
+						srcset="{{ TimberImage(Image).src('gw-sm-sq') }} 750w,
+							{{ TimberImage(Image).src('gw-md-sq') }} 1000w,
+							{{ TimberImage(Image).src('gw-lg-sq') }} 1200w"
+					>
+				{% elseif block.image_area.image_ratio == 'tall' %}
+					<img
+						src="{{ TimberImage(Image).src('gw-sm-2-3') }}"
+						srcset="{{ TimberImage(Image).src('gw-sm-2-3') }} 750w,
+							{{ TimberImage(Image).src('gw-md-2-3') }} 1000w,
+							{{ TimberImage(Image).src('gw-lg-2-3') }} 1200w"
+					>
+				{% endif %}
+
+				{% if block.image_area.image_caption %}
+					<p class="sm medium-weight light-text-color pt-2">{{ block.image_area.image_caption }}</p>
+				{% endif %}
+			</div>
+			<div class="col-6 {% if block.image_area.position == 'right' %}order-1{% endif %}">
+				{% if block.text_area.headline_text %}
+					<h3 class="h1 pb-1">{{ block.text_area.headline_text }}</h3>
+					<hr class="thick small main-color mt-2 mb-3">
+				{% endif %}
+
+				{% if block.text_area.content_type == 'text' or block.text_area.content_type == 'both' %}
+					<div class="rich-text">
+						{{ block.text_area.text }}
+					</div>
+				{% endif %}
+				
+				{% if block.text_area.content_type == 'list' or block.text_area.content_type == 'both' %}
+					<div class="mb-2">
+						{% for listItem in block.text_area.description_list %}
+							<h5 class="h3 mb-1 {% if loop.index != 1 %}mt-2 pt-1{% endif %}">{{ listItem.title }}</h5>
+							<p class="sm light-text-color">{{ listItem.description }}</p>
+						{% endfor %}
+					</div>
+				{% endif %}
+
+				{% if block.text_area.buttons %}
+					<div>
+						<div class="grid-flex left no-break">
+							{% for button in block.text_area.buttons %}
+								{% if button.button_link.title %}
+									<div class="col mt-2">
+										<a href="{{ button.button_link.url }}" target="{{button.button_link.target}}" class="{{ button.color }} button large transition-link">{{ button.button_link.title }}</a>
+									</div>
+								{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>

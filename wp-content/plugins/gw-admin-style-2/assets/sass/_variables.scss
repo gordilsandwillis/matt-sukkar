@@ -1,4 +1,11 @@
 $md-speed : .3s;
 $ease : ease-in-out;
-$main-color : #1e8cbe;
-$base-border-radius : 4px;
+$main-color : #32312F;
+$bg-color : #FBF6EF;
+$text-color : #32312F;
+$light-grey : darken($bg-color, 5%);
+$base-border-radius : 0px;
+$light-text-color : rgba($text-color, .5);
+$gutter : 1.25rem;
+$sm-p-font-size : .75rem;
+$ui-main-color : #309cf3;

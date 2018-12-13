@@ -1,0 +1,27 @@
+{% if block.text_lg_text %}
+	<section class="block-text-md {{ block.text_lg_background }}-bg {% if block.text_lg_background == 'dark' or block.text_lg_background == 'grey' %}py-margin{% else %}my-margin{% endif %}">
+		<div class="container">
+			<div class="max-text-width align-{{ block.text_lg_align }} {% if block.text_lg_align == "center" %}mx-auto{% endif %}">
+				<div class="h3 highlight">{{ block.text_lg_text }}</div>
+				{% if block.subtext %}
+					<div class="pt-2 mt-1	">
+						<p>{{ block.subtext }}</p>
+					</div>
+				{% endif %}
+				{% if block.text_lg_buttons %}
+					<div class="pt-3">
+						<div class="grid-flex no-break {{ block.text_lg_align }}">
+							{% for button in block.text_lg_buttons %}
+								{% if button.button_link.title %}
+									<div class="col mb-2">
+										<a href="{{ button.button_link.url }}" target="{{button.button_link.target}}" class="{{ button.color }} button large transition-link">{{ button.button_link.title }}</a>
+									</div>
+								{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</section>
+{% endif %}

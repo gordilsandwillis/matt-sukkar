@@ -1,0 +1,25 @@
+{% set instagrams = get_instagrams() %}
+
+<section class="block-instagram grey-bg py-margin">
+	<div class="container">
+		<div class="pb-3">
+			<div class="grid-flex pb-2 baseline no-break">
+				<div class="col grow"><h3 class="h1">Instagram</h3></div>
+			</div>
+		</div>
+		{% filter shortcodes %}
+			<div class="grid-flex v-spaced no-break">
+				[instagram-feed]
+			</div>
+		{% endfilter %}
+		{#<div class="grid-flex v-spaced no-break break-4-2">
+			{% for gram in instagrams %}
+				<div class="col">
+					<a href="{{ gram.link }}" class="thumb" target="_blank">
+						<img src="{{ gram.images.standard_resolution.url }}">
+					</a>
+				</div>
+			{% endfor %}
+		</div>#}
+	</div>
+</section>

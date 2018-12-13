@@ -1,0 +1,23 @@
+<div class="school-item">
+	<a href="{{ school.link }}" class="transition-link">
+		<div class="grid-flex no-break middle tight-gutter">
+			{% if school.thumbnail %}
+				<div class="col no-grow hide-md">
+					<div class="school-thumb">
+						<div class="lazy-wrap lazyload">
+							<img class="lazy" src="{{ school.thumbnail.src('gw-sm-3-2') }}" alt="{{ school.title }}">
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<div class="col grow">
+				<h4 class="school-title">{{ school.title }}</h4>
+				<p class="sm light-text-color medium-weight">{{ school.street_address }}</p>
+				{% if school.starting_grade and school.ending_grade %}
+					<p class="sm light-text-color medium-weight">Grades {{ school.starting_grade }} — {{ school.ending_grade }}</p>
+				{% endif %}
+				<p class="p sm underlined-link">Learn more</p>
+			</div>
+		</div>
+	</a>
+</div>

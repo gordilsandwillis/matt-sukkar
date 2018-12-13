@@ -1,0 +1,47 @@
+<section class="block-split-slideshow my-margin">
+	<div class="slick-slider slideshow">
+		{% if block.slides %}
+			{% for slide in block.slides %}
+				
+				{% if slide.image %}
+					<div class="slide grey-bg">
+						<div class="grid-flex no-gutter">
+							<div class="col-6">
+								<div class="set-ratio-sq">
+									<div class="c-bg">
+										<img
+											src="{{ TimberImage(slide.image).src('gw-sm-sq') }}"
+											srcset="{{ TimberImage(slide.image).src('gw-sm-sq') }} 750w,
+												{{ TimberImage(slide.image).src('gw-md-sq') }} 1000w,
+												{{ TimberImage(slide.image).src('gw-lg-sq') }} 1200w"
+											sizes="(max-width: 600px) 100%, 50%"
+										>
+									</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div>
+									<p class="lg light-text-color medium-weight">{{ block.title }}</p>
+								</div>
+								<div>
+									<p class="h2">{{ slide.text }}</p>
+									<p class="pt-2 medium-weight">{{ slide.name }}</p>
+									<p class="medium-weight main-color">{{ slide.title }}</p>
+								</div>
+								<div class="c-slide-nav">
+									<a class="prev-arrow">
+										<span class="material-icons md-24">arrow_back</span>
+									</a>
+									<a class="next-arrow">
+										<span class="material-icons md-24">arrow_forward</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+			{% endfor %}
+		{% endif %}
+	</div>
+</section>

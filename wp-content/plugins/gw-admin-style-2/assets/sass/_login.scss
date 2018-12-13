@@ -1,13 +1,13 @@
-$login-bg : #f8f7f3;
+$login-bg : #fff;
 $login-logo-width : 100%;
-$login-logo-height : 50px;
-$base-border-radius : 0px;
-$main-color : #373232;
-$text-color: #373232;
-$light-text-color: rgba($text-color, .3);
-$light-color: darken(#f8f7f3, 5%);
-$animataion-speed: .75s;
-$delay: .1s;
+$login-logo-height : 40px;
+$text-color : #000;
+$light-text-color : rgba($text-color, .4);
+$light-color : darken($login-bg, 10%);
+$animataion-speed : .75s;
+$delay : .1s;
+$login-btn-bg : $text-color;
+$login-btn-color : $login-bg;
 
 @keyframes transition-in {
 	100% {
@@ -34,6 +34,7 @@ body {
 				transform: translate3d(0, 30px, 0);
 				animation: transition-in $animataion-speed ($delay * 0) $ease-in-out forwards;
 				a {
+					outline: none;
 					background-image: url('../../images/logo.svg');
 					background-size: contain;
 					background-position: center;
@@ -72,7 +73,7 @@ body {
 						animation: transition-in $animataion-speed ($delay * 3) $ease-in-out forwards;
 		    		label {
 		    			text-indent: 0;
-		    			overflow: auto;
+		    			overflow: hidden;
 		    		}
 		    	}
 		    	&:nth-child(2) {
@@ -102,15 +103,15 @@ body {
 					    text-shadow: none;
 					    margin: 0;
 					    border-radius: $base-border-radius;
-					    color: $login-bg;
-					    background: $main-color;
+					    color: $login-btn-color;
+					    background: $login-btn-bg;
 					    font-weight: 500;
 					    transition: background $md-speed $ease, border $md-speed $ease, color $md-speed $ease, opacity $md-speed $ease;
 					    &:hover {
 					    	border: none;
 					    	outline: none;
 					    	text-shadow: none;
-					    	background: darken($main-color, 10%);
+					    	background: darken($login-btn-bg, 20%);
 					    }
 		    		}
 		    	}
@@ -176,11 +177,10 @@ body {
 		    	border: none;
 		    	border-radius: $base-border-radius;
 		    	outline: none;
-		    	box-shadow: none !important;
+		    	box-shadow: none;
 		    	&:active,
 		    	&:focus {
 		    		outline: none;
-		    		box-shadow: none !important;
 		    	}
 		    	&:before {
 		    		color: $main-color;

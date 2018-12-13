@@ -1,0 +1,338 @@
+#poststuff .gw-cms-tips,
+.gw-cms-tips {
+	background: #00a0d2;
+	color: #fff;
+	padding: 1rem 1rem 1.2rem;
+	border-radius: 4px;
+	> * {
+		max-width: 30rem;
+	}
+
+	p {
+		padding: 0;
+		margin: 0;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 600;
+		padding: 0;
+		margin: 0;
+		color: inherit;
+	}
+
+	h1 {
+		font-size: 1.5rem;
+		line-height: 1.4em;
+	}
+
+	h2 {
+		font-size: 1.3rem;
+		line-height: 1.4em;
+	}
+
+	h3 {
+		font-size: 1.2rem;
+		line-height: 1.4em;
+	}
+
+	h4 {
+		font-size: 1.1rem;
+		line-height: 1.4em;
+	}
+
+	h5 {
+		font-size: 1rem;
+		line-height: 1.5em;
+	}
+	
+	h1,
+	.h1 {
+		& ~ p:not(:first-child),
+		& ~ .p:not(:first-child) {
+			padding-top: 1.25rem;
+		}
+	}
+
+	h2,
+	.h2 {
+		&:not(:first-child) {
+			// margin-top: -1.25rem;
+			padding-top: 1.25rem;
+		}
+		& ~ p:not(:first-child),
+		& ~ .p:not(:first-child) {
+			padding-top: .75rem;
+		}
+	}
+
+	h2,
+	.h2,
+	h3,
+	.h3 {
+	}
+
+	h3,
+	.h3 {
+		&:not(:first-child) {
+			margin-top: -1rem;
+			padding-top: 1rem;
+		}
+		& ~ p:not(:first-child),
+		& ~ .p:not(:first-child) {
+			padding-top: 7px;
+		}
+	}
+
+	h4, 
+	.h4, 
+	h5, 
+	.h5, 
+	h6,
+	.h6, {
+		&:not(:first-child) {
+			margin-top: -.625rem;
+			padding-top: .625rem;
+		}
+		& ~ p:not(:first-child),
+		& ~ .p:not(:first-child) {
+			padding-top: .4rem;
+		}
+	}
+
+	// blockquote,
+	// dl,
+	// ol,
+	// p,
+	// table tbody,
+	// ul {
+	// }
+
+	p,
+	.p {
+		font-size: 13px;
+		line-height: 1.4em;
+		&:not(:first-child) {
+			padding-top: 1em;
+		}
+	}
+
+	// blockquote:not(:first-child),
+	// > div:not(:first-child):not(.p) {
+	// 	margin-top: 1rem;
+	// }
+
+	// .image:first-child + p,
+	// aside:first-child + p {
+	// 	padding-top: 0;
+	// }
+
+	// h2:not(:first-child),
+	// .h2:not(:first-child),
+	// li h2,
+	// li .h2 {
+	// 	margin-top: 1.125rem;
+	// 	padding-top: 1.25rem;
+	// }
+
+	// h3:not(:first-child),
+	// .h3:not(:first-child),
+	// li h3,
+	// li .h3 {
+	// 	margin-top: 1.125rem;
+	// 	padding-top: 1rem;
+	// }
+
+	// li h3,
+	// li .h3,
+	// li h4,
+	// li .h4, {
+	// 	padding-top: 0;
+	// }
+
+	// h4:not(:first-child)
+	// .h4:not(:first-child),
+	// h5:not(:first-child)
+	// .h5:not(:first-child),
+	// h6:not(:first-child)
+	// .h6:not(:first-child),
+	// li h4
+	// li .h4,
+	// li h5
+	// li .h5,
+	// li h6,
+	// li .h6 {
+	// 	margin-top: 1em;
+	// 	padding-top: .5rem;
+	// }
+
+	// ol {
+	// 	li {
+	// 		h1,
+	// 		h3,
+	// 		h4,
+	// 		h5,
+	// 		h6,
+	// 		.h1,
+	// 		.h3,
+	// 		.h4,
+	// 		.h5,
+	// 		.h6 {
+	// 			margin-top: 0;
+	// 			padding-top: 0;
+	// 		}
+	// 	}
+	// 	& > li:before {
+	// 		counter-increment: a;
+	// 		content: counter(a);
+	// 		text-align: right;
+	// 		width: 2rem;
+	// 		border-radius: .625rem;
+	// 		position: absolute;
+	// 		left: 0;
+	// 		top: 0;
+	// 		padding-right: .5rem;
+	//     box-sizing: border-box;
+	//     color: $light-text-color;
+	// 	}
+
+	// 	&.list-decimal > li:before {
+	// 		counter-increment: a;
+	// 		content: counter(a, decimal);
+	// 	}
+
+	// 	&.list-lower-roman > li:before {
+	// 		counter-increment: a;
+	// 		content: counter(a, lower-roman);
+	// 	}
+
+	// 	&.list-lower-alpha > li:before {
+	// 		counter-increment: a;
+	// 		content: counter(a, lower-alpha);
+	// 	}
+
+	// 	&.list-upper-alpha > li:before {
+	// 		counter-increment: a;
+	// 		content: counter(a, upper-alpha);
+	// 	}
+	// }
+
+	// aside {
+	// 	float: right;
+	// 	border-left: 2px solid $light-grey;
+	// 	width: 14rem;
+	// 	padding-left: 1rem;
+	// 	margin: 1rem 0 1rem $gutter;
+	// 	position: relative;
+	// 	z-index: 2;
+
+	// 	:first-child {
+	// 		margin-top: 0;
+	// 		padding-top: 0;
+	// 	}
+
+	// 	h3,
+	// 	.h3 {
+	// 		font-size: 1rem;
+	// 	}
+
+	// 	p:not(:first-child),
+	// 	.p:not(:first-child) {
+	// 		padding-top: .625rem;
+	// 	}
+
+	// 	p,
+	// 	ul,
+	// 	.p {
+	// 		font-size: $sm-p-font-size;
+	// 	}
+
+	// 	ul li {
+	// 		padding-left: 1.5rem;
+	// 	}
+
+	// 	ul li:before {
+	// 		top: 7px;
+	// 		width: .25rem;
+	// 		height: .25rem;
+	// 	}
+	// }
+
+	// a,
+	// a code {
+	// 	text-decoration: underline
+	// 	&:active,
+	// 	&:active code {
+	// 	}
+	// }
+
+	// code,
+	// strong {
+	// 	font-size: inherit;
+	// }
+
+	// li > code,
+	// p code,
+	// .p code {
+	// 	background: $light-grey;
+	// 	border-radius: $base-border-radius;
+	// 	padding: 3px 6px;
+	// }
+
+	// ol,
+	// ul {
+	// 	counter-reset: a;
+	// 	list-style: none;
+	// }
+
+	// ol:not(:first-child),
+	// ul:not(:first-child) {
+	// 	margin-top: .625rem;
+	// }
+
+	// li > ol,
+	// li > ul {
+	// 	margin-top: 0!important;
+	// }
+
+	// ol > li,
+	// ul > li {
+	// 	position: relative;
+	// 	margin: .4rem 0;
+	// 	padding-left: 2rem;
+	// }
+
+	// ul > li:before {
+	// 	content: "";
+	// 	position: absolute;
+	// 	width: 6px;
+	// 	height: 6px;
+	// 	left: 1rem;
+	// 	top: 9px;
+	// 	border-radius: 50%;
+	// 	background: $light-text-color;
+	// }
+
+	// .code:not(:first-child) {
+	// 	margin-top: 1.125rem;
+	// }
+
+	// pre:not(:first-child) {
+	// 	margin-top: 1.125rem;
+	// }
+
+	// pre:not(:last-child) {
+	// 	margin-bottom: .5rem;
+	// }
+
+	// pre {
+	// 	background: $light-grey;
+	// 	border-radius: $base-border-radius;
+	// 	position: relative;
+	// }
+
+	// pre {
+	// 	padding: .75rem .875rem;
+	// 	overflow-x: auto;
+	// }
+
+}

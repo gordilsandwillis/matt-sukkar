@@ -1,0 +1,57 @@
+{% set teacherImage = block.splitter_teachers.splitter_teachers_image %}
+{% set studentImage = block.splitter_students.splitter_students_image %}
+
+<section class="block-home-splitter my-margin">
+	<div class="container my-gutter">
+		<div class="grid-flex middle wide-gutter">
+			<div class="col-7 order-1">
+				<img
+				src="{{ TimberImage(teacherImage).src('gw-sm-3-2') }}"
+				srcset="{{ TimberImage(teacherImage).src('gw-sm-3-2') }} 750w,
+					{{ TimberImage(teacherImage).src('gw-md-3-2') }} 1200w,
+					{{ TimberImage(teacherImage).src('gw-lg-3-2') }} 1500w"
+				/>
+			</div>
+			<div class="col-5 order-2">
+				<div class="max-text-width">
+					<h2 class="h1">{{ block.splitter_teachers.splitter_teachers_headline }}</h2>
+					<p class="py-1 md medium-weight light-text-color">{{ options.global_ctas.teachers_cta_text }}</p>
+					<div class="grid-flex no-break left mt-2">
+						<div class="col mb-2">
+							<a class="button large trasition-link" href="/careers">{{ options.global_ctas.teachers_button_text }}</a>
+						</div>
+						<div class="col mb-2">
+							<a class="button large trasition-link secondary" href="/approach">Learn More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container my-gutter">
+		<div class="grid-flex middle wide-gutter">
+			<div class="col-7 order-2">
+				<img
+				src="{{ TimberImage(studentImage).src('gw-sm-3-2') }}"
+				srcset="{{ TimberImage(studentImage).src('gw-sm-3-2') }} 750w,
+					{{ TimberImage(studentImage).src('gw-md-3-2') }} 1200w,
+					{{ TimberImage(studentImage).src('gw-lg-3-2') }} 1500w"
+				/>
+			</div>
+			<div class="col-5 order-1">
+				<div class="max-text-width">
+					<h2 class="h1">{{ block.splitter_students.splitter_students_headline }}</h2>
+					<p class="py-1 md medium-weight light-text-color">{{ options.global_ctas.students_cta_text }}</p>
+					<div class="grid-flex no-breakk left mt-2">
+						<div class="col mb-2">
+							<a class="button large trasition-link" href="/enroll">{{ options.global_ctas.students_button_text }}</a>
+						</div>
+						<div class="col mb-2">
+							<a class="button large trasition-link secondary" href="/schools">Learn More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

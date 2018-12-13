@@ -1,0 +1,34 @@
+{% if blockImage %}
+	{% set blockImage = blockImage %}
+{% else %}
+	{% set blockImage = block.image %}
+{% endif %}
+
+{% if blockVideo %}
+	{% set blockVideo = blockVideo %}
+{% else %}
+	{% set blockVideo = block.video %}
+{% endif %}
+{% if blockImage or blockVideo %}
+	<section class="block-wide-media my-margin">
+		<div class="{% if block.full_width %}full-width{% else %}container{% endif %}">
+			<div class="lazy-wrap lazyload color-bg" data-expand="-100">
+				{% if block.media_type == 'image' or blockImage %}
+					<img
+						class="lazyload"
+						src="{{ TimberImage(blockImage).src('gw-sm') }}"
+						srcset="{{ TimberImage(blockImage).src('gw-sm') }} 750w,
+							{{ TimberImage(blockImage).src('gw-1000') }} 1000w,
+							{{ TimberImage(blockImage).src('gw-md') }} 1200w,
+							{{ TimberImage(blockImage).src('gw-lg') }} 1500w,
+							{{ TimberImage(blockImage).src('gw-xlg') }} 2000w"
+					>
+				{% elseif block.media_type == 'video' or blockVideo %}
+					<video class="cover" data-object-fit="cover" autoplay loop muted playsinline>
+			      <source src="{{ blockVideo }}" type="video/mp4">
+			    </video>
+				{% endif %}
+			</div>
+		</div>
+	</section>
+{% endif %}

@@ -1,17 +1,18 @@
 <?php
-// Timber
-if (!class_exists('Timber'))
-{
-	add_action( 'admin_notices', function()
-	{
-		echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . admin_url('plugins.php#timber') . '">' . admin_url('plugins.php') . '</a></p></div>';
+
+if ( ! class_exists( 'Timber' ) ) {
+	add_action( 'admin_notices', function() {
+		echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php') ) . '</a></p></div>';
 	});
+	
+	add_filter('template_include', function($template) {
+		return get_stylesheet_directory() . '/static/no-timber.html';
+	});
+	
 	return;
 }
 
 Timber::$dirname = array('templates', 'views');
-
-
 
 class GW extends TimberSite {
 
@@ -19,58 +20,46 @@ class GW extends TimberSite {
 		add_theme_support( 'post-formats' );
 		add_theme_support('thumbnail');
 		add_theme_support( 'post-thumbnails' );
-
-		// General Sizes
-		add_image_size( 'gw-sm', 750 );
-		add_image_size( 'gw-1000', 1000 );
-		add_image_size( 'gw-md', 1200 );
-		add_image_size( 'gw-lg', 1500 );
-		add_image_size( 'gw-xlg', 2000 );
-		// 3:2 Crops
-		add_image_size( 'gw-sm-3-2', 750, 500, true );
-		add_image_size( 'gw-md-3-2', 1200, 800, true );
-		add_image_size( 'gw-lg-3-2', 1500, 1000, true );
-		add_image_size( 'gw-xlg-3-2', 2001, 1334, true );
-		// 2:3 Crops
-		add_image_size( 'gw-sm-2-3', 750, 1125, true );
-		add_image_size( 'gw-md-2-3', 1000, 1500, true );
-		add_image_size( 'gw-lg-2-3', 1200, 1800, true );
-		add_image_size( 'gw-xlg-2-3', 1334, 2001, true );
-
+			// General Sizes
+			add_image_size( 'gw-sm', 750 );
+      add_image_size( 'gw-1000', 1000 );
+      add_image_size( 'gw-md', 1200 );
+      add_image_size( 'gw-lg', 1500 );
+      add_image_size( 'gw-xlg', 2000 );
+      	// 3:2 Crops
+				add_image_size( 'gw-sm-3-2', 750, 500, true );
+				add_image_size( 'gw-md-3-2', 1200, 800, true );
+				add_image_size( 'gw-lg-3-2', 1500, 1000, true );
+				add_image_size( 'gw-xlg-3-2', 2001, 1334, true );
+				// 2:3 Crops
+				add_image_size( 'gw-sm-2-3', 750, 1125, true );
+				add_image_size( 'gw-md-2-3', 1000, 1500, true );
+				add_image_size( 'gw-lg-2-3', 1200, 1800, true );
+				add_image_size( 'gw-xlg-2-3', 1334, 2001, true );
+				// Square Crops
+				add_image_size( 'gw-sm-sq', 750, 750, true );
+				add_image_size( 'gw-md-sq', 1000, 1000, true );
+				add_image_size( 'gw-lg-sq', 1200, 1200, true );
+				add_image_size( 'gw-xlg-sq', 1500, 1500, true );
 		add_theme_support( 'menus' );
 		add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 		add_filter( 'timber_context', array( $this, 'add_to_context' ) );
 		add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
-		add_action( 'init', array( $this, 'register_post_types' ) );
-		add_action( 'init', array( $this, 'register_taxonomies' ) );
 		parent::__construct();
 	}
 
-	function register_post_types() {
-		//this is where you can register custom post types
-	}
-
-	function register_taxonomies() {
-		//this is where you can register custom taxonomies
-	}
-
 	function add_to_context( $context ) {
+		$context['main_navigation'] = new TimberMenu('main-navigation');
 		$context['header_menu'] = new TimberMenu('header-menu');
-		$context['footer_menu'] = new TimberMenu('footer-menu');
+    $context['footer_menu'] = new TimberMenu('footer-menu');
 
 		$context['site'] = $this;
 		$context['td'] = get_template_directory_uri();
-
-		// This is crashing
-		//  PHP Fatal error:  Uncaught Error: Call to undefined function get_fields() in wp-content/themes/gw-base/functions.php:63
-
-	 	//$context['options'] = get_fields('options');
-
+		$context['options'] = get_fields('options');
 		$context['request'] = $_REQUEST;
 		$context['globals'] = array(
-			// 'siteTitle' => 'The Site Title',
-		);
-
+      // 'siteTitle' => 'The Site Title',
+    );
 		return $context;
 	}
 
@@ -83,10 +72,29 @@ class GW extends TimberSite {
 		/* this is where you can add your own functions to twig */
 		$twig->addExtension( new Twig_Extension_StringLoader() );
 		$twig->addFilter('myfoo', new Twig_SimpleFilter('myfoo', array($this, 'myfoo')));
+
+		$get_instagrams = new Twig_SimpleFunction('get_instagrams', function () {
+      $access_token = '516151050.2a52133.7181358f4ab44e4790c70cef53bb12ad';
+      $user_id = '516151050';
+      $count = 8;
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, "https://api.instagram.com/v1/users/$user_id/media/recent?access_token=$access_token&count=$count");
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+      $data = curl_exec($ch);
+      curl_close($ch);
+      return json_decode($data)->data;
+      // Getting Access Token
+      // instagram.com/developer. Manage Clients > Register a New Client
+      // OAuth redirect_uri : http://localhost
+      // uncheck Disable implicit OAuth
+      // go to: https://instagram.com/oauth/authorize/?client_id=[CLIENT_ID_HERE]&redirect_uri=http://localhost&response_type=token
+		});
+    $twig->addFunction($get_instagrams);
+
 		return $twig;
 	}
 }
-
 
 // Change Featured Image Crop
 function get_image_src( $object, $field_name, $request ) {
@@ -115,6 +123,3 @@ register_rest_field( 'post',
 add_action( 'rest_api_init', 'add_thumbnail_to_JSON' );
 
 new GW();
-
-?>
-

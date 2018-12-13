@@ -1,9 +1,10 @@
-$margin: 5rem;
-$mobile-margin: 6%;
-$max-site-width: 1400px;
-$site-width : 88%;
+$margin: 7.5rem;
+$mobile-margin: 6.5%;
+$min-site-width : 800px;
+$max-site-width: 1500px;
+$site-width : 87%;
 
-$max-text-width : 41rem;
+$max-text-width : 34rem;
 
 // Global Spacing
 $space-1 : .5rem;
@@ -13,25 +14,26 @@ $space-4 : 4rem;
 
 // Grid Settings
 $columns: 12;
-$gutter: 30px;
-$gutter-tight: $space-2;
+$gutter: 1.75rem;
+$gutter-tight: $gutter / 2;
 $gutter-wide: $gutter * 2;
-$grid-gutter: $gutter;
 
 // General UI Varibales
-$base-border-radius : 0px;
+$base-border-radius : 2px;
 
 // Colors
 $bg-color : #fff;
-$main-color: #00AEEF;
+$main-color: #1D74F5;
 $black : #000;
 $white : #fff;
-$alert : #EF4F4F;
-$notify : #FFD780;
-$success : #77B305;
-$text-color : #021946;
-$light-grey : lighten($text-color, 75%);
-$light-text-color : rgba($text-color, .5);
+$alert : #DF693D;
+$notify :  #F7C24E;
+$success : #37DCAF;
+$text-color : #2F374C;
+$light-grey : lighten($text-color, 73%);
+$light-text-color : lighten($text-color, 40%);
+
+// Hr
 $hr-color : lighten($text-color, 70%);
 $hr-styles : 1px solid $hr-color;
 
@@ -39,96 +41,191 @@ $hr-styles : 1px solid $hr-color;
 $link-color : $light-text-color;
 $link-hover-color : $main-color;
 
+// Weirdness
+$tight-horizontal-cell-padding : 4px;
+$tight-vertical-cell-padding : 4px;
+$rich-text-max-width : 300px;
+$scrollbar-width : 6px;
+$sidebar-width : 100rem;
+$header-height : 40px;
+
 // Typography
-$main-font: 'Avenir', sans-serif;
-$secondary-font: 'Didot', serif;
+$system-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+$main-font: $system-font;
+$secondary-font: $system-font;
 $code-font: 'Roboto Mono', monospace;
-$base-line-height : 1.4em;
+$general-font-smoothing : false;
+$code-font-smoothing : false;
+$base-line-height : 1.5em;
 $base-letter-spacing : 0;
 $short-line-height : 1.25em;
-$tight-line-height : 1.15em;
-$tracked-out : .2em;
+$tight-line-height : 1.1em;
+$tracked-out : .125em;
 	// General Text Sizes
 	$base-font-size : 16px;
-	$sm-font-size : 12px;
+	$sm-font-size : 11px;
 	$md-font-size : .875rem;
-	$tiny-font-size : 12px;
+	$tiny-font-size : 10px;
 	// Font Weights
 	$normal : normal;
 	$thin : 300;
 	$light : 300;
 	$medium : 700;
-	$bold : $medium;
+	$bold : 700;
 	// h1
-		$h1-font-family : $secondary-font;
+		$h1-font-family : inherit;
 		$h1-text-transform : none;
-		$h1-font-size : 2.875rem;
-		$h1-font-weight : $light;
-		$h1-line-height : $tight-line-height;
+		$h1-font-size : 2.5rem;
+		$h1-font-weight : $medium;
+		$h1-line-height : $short-line-height;
 		$h1-letter-spacing : inherit;
+		$h1-font-smoothing : true;
 	// h2
-		$h2-font-family : $secondary-font;
+		$h2-font-family : inherit;
 		$h2-text-transform : none;
 		$h2-font-size : 2.25rem;
-		$h2-font-weight : $light;
+		$h2-font-weight : $medium;
 		$h2-line-height : $short-line-height;
 		$h2-letter-spacing : inherit;
+		$h2-font-smoothing : true;
 	// h3
-		$h3-font-family : $secondary-font;
+		$h3-font-family : inherit;
 		$h3-text-transform : none;
-		$h3-font-size : 1.625rem;
-		$h3-font-weight : $normal;
-		$h3-line-height : $base-line-height;
+		$h3-font-size : 1.75rem;
+		$h3-font-weight : $medium;
+		$h3-line-height : $short-line-height;
 		$h3-letter-spacing : inherit;
+		$h3-font-smoothing : true;
 	// h4
-		$h4-font-family : $secondary-font;
+		$h4-font-family : inherit;
 		$h4-text-transform : none;
-		$h4-font-size : 1.375rem;
+		$h4-font-size : 1.25rem;
 		$h4-font-weight : $medium;
-		$h4-line-height : $short-line-height;
+		$h4-line-height : $base-line-height;
 		$h4-letter-spacing : inherit;
+		$h4-font-smoothing : true;
 	// h5
-		$h5-font-family : $main-font;
+		$h5-font-family : inherit;
 		$h5-text-transform : none;
 		$h5-font-size : 1rem;
-		$h5-font-weight : $medium;
-		$h5-line-height : $short-line-height;
+		$h5-font-weight : $bold;
+		$h5-line-height : $base-line-height;
 		$h5-letter-spacing : inherit;
+		$h5-font-smoothing : true;
 	// h6 is tracked out all caps by default
-	// p
-		$sm-p-font-size : 15px;
-		$p-font-size : 1rem;
-		$md-p-font-size : 1.125rem;
-		$lg-p-font-size : 1.25rem;
-		$p-font-weight : $medium;
-		$p-line-height : $base-line-height;
-		$p-letter-spacing : 0;
+		$h6-font-family : $main-font;
+	// p.sm
+		$sm-p-font-size : .875rem; //13px;
+		$sm-p-font-family : inherit;
+		$sm-p-font-weight : $normal;
+		$sm-p-line-height : $base-line-height;
+		$sm-p-letter-spacing : inherit;
+		// p
+			$p-font-size : 1rem;
+			$p-font-family : inherit;
+			$p-font-weight : $normal;
+			$p-line-height : $base-line-height;
+			$p-letter-spacing : inherit;
+		// p.md
+			$md-p-font-size : 1.125rem;
+			$md-p-font-family : inherit;
+			$md-p-font-weight : $normal;
+			$md-p-line-height : $base-line-height;
+			$md-p-letter-spacing : inherit;
+		// p.lg
+			$lg-p-font-size : 1.25rem;
+			$lg-p-font-family : inherit;
+			$lg-p-font-weight : $normal;
+			$lg-p-line-height : $base-line-height;
+			$lg-p-letter-spacing : inherit;
 
 // Text Highlights
-$highlight-bg : $light-text-color;
-$highlight-color : $bg-color;
+$highlight-bg : rgba($main-color, .1);
+$highlight-color : $main-color;
+
+// Button Variables
+$btn-radius: $base-border-radius;
+$btn-padding: 0 2em 0;
+$btn-text-transform: none;
+$btn-letter-spacing: 0;
+$btn-weight: $bold;
+$btn-font-style: normal;
+$btn-vertical-offset: 1px;
+$btn-font-smoothing: true;
+
+// Button Sizes
+$btn-height: 50px;
+	$btn-small-height: 30px;
+		$btn-tiny-height: 24px;
+			$btn-large-height: 60px;
+				$btn-micro-height: 20px;
+$btn-font-size: $sm-p-font-size;
+	$btn-small-font-size: $btn-font-size;
+		$btn-tiny-font-size: 9px;
+			$btn-large-font-size: $btn-font-size;
+
+	// Default
+	$btn-font: $main-font;
+	$btn-bg: $main-color;
+	$btn-border-weight: 1px;
+	$btn-border-color: $main-color;
+	$btn-color: $white;
+	$btn-shadow: none;
+		$btn-hover-bg: darken($btn-bg, 7%);
+		$btn-hover-border-color: $btn-hover-bg;
+		$btn-hover-color: $white;
+		$btn-hover-shadow: none;
+
+	// Secondary
+	$btn-secondary-bg: $text-color;
+	$btn-secondary-border-color: $btn-secondary-bg;
+	$btn-secondary-color: $bg-color;
+		$btn-secondary-hover-bg: darken($btn-secondary-bg, 10%);
+		$btn-secondary-hover-border-color: $btn-secondary-hover-bg;
+		$btn-secondary-hover-color: $white;
+
+	// Tertiary
+	$btn-tertiary-bg: $black;
+	$btn-tertiary-border-color: $btn-tertiary-bg;
+	$btn-tertiary-color: $main-color;
+		$btn-tertiary-hover-bg: $text-color;
+		$btn-tertiary-hover-border-color: $btn-tertiary-hover-bg;
+		$btn-tertiary-hover-color: $white;
+
+	// Alert
+	$btn-alert-color: $bg-color;
+	// Notify
+	$btn-notify-color: $text-color;
+	// success
+	$btn-success-color: $white;
 
 // Text Inputs
-$input-font: $main-font;
-$input-bg : $white;
+$input-font : $main-font;
+$input-font-size : $p-font-size;
+$input-letter-spaceing : $p-letter-spacing;
+$input-label-weight : $normal;
+$input-font-weight : $normal;
+$input-bg : transparent;
 $input-color : $text-color;
-$input-border : none;
-$input-border-radius : $base-border-radius;
-$input-hover-bg : $input-bg;
+$input-border : 1px solid darken($hr-color, 10%);
+$input-border-radius : $btn-radius;
+$input-hover-bg : transparent;
 $input-hover-color : $text-color;
-$input-hover-border : none;
-$input-focus-bg : $input-bg;
+$input-hover-border : 1px solid darken($main-color, 10%);
+$input-focus-bg : transparent;
 $input-focus-color : $text-color;
-$input-focus-border : none;
-$placeholder-color : rgba($text-color, .4);
-$placeholder-focus-color : transparent;
-$input-padding: .35em 14px 0px;
-$input-line-height: 30px; // $btn-medium-height
-$input-large-height: 60px;
-$input-large-font-size: 1.25rem;
-$input-small-height: 30px;
-$input-small-font-size: .875rem;
-$input-tiny-height: 24px;
+$input-focus-border : 1px solid darken($main-color, 5%);
+$placeholder-color : rgba($text-color, .3);
+$placeholder-hover-color : rgba($text-color, .4);
+$placeholder-focus-color : rgba($text-color, .4);
+$input-padding: 0px 1.25em 1px;
+$input-text-offset: 3px;
+$input-height: $btn-height;
+$input-large-height: $btn-large-height;
+$input-large-font-size: $p-font-size;
+$input-small-height: $btn-small-height;
+$input-small-font-size: .75rem;
+$input-tiny-height: $btn-tiny-height;
 $input-tiny-font-size: $input-small-font-size;
 
 // Select Fields
@@ -136,58 +233,23 @@ $select-border : $input-border;
 $select-bg : transparent;
 $select-color : $light-text-color;
 
-// Button Variables
-$btn-radius: $base-border-radius;
-$btn-padding: 0 1.5rem 1px;
-$btn-text-transform: none;
-$btn-letter-spacing: .02em;
-$btn-weight: $medium;
-
-// Button Sizes
-$btn-height: 40px;
-	$btn-small-height: 30px;
-		$btn-tiny-height: 24px;
-			$btn-large-height: 3.125rem;
-$btn-font-size: 1rem;
-	$btn-small-font-size: .875rem;
-		$btn-tiny-font-size: $btn-small-font-size;
-			$btn-large-font-size: $btn-font-size;
-
-	// Default
-	$btn-font: $main-font;
-	$btn-bg: $main-color;
-	$btn-border: none;
-	$btn-color: $bg-color;
-		$btn-hover-bg: darken($main-color, 7%);
-		$btn-hover-border: none;
-		$btn-hover-color: $bg-color;
-	
-	// Secondary
-	$btn-secondary-bg: $text-color;
-	$btn-secondary-border: none;
-	$btn-secondary-color: $white;
-		$btn-secondary-hover-bg: lighten($text-color, 10%);
-		$btn-secondary-hover-border: none;
-		$btn-secondary-hover-color: $white;
-
-	// Tertiary
-	$btn-tertiary-bg: lighten($text-color, 60%);
-	$btn-tertiary-border: none;
-	$btn-tertiary-color: lighten($text-color, 10%);
-		$btn-tertiary-hover-bg: lighten($text-color, 65%);
-		$btn-tertiary-hover-border: none;
-		$btn-tertiary-hover-color: $text-color;
-
-	// Alert
-	$btn-alert-color: $bg-color;
-	// Notify
-	$btn-notify-color: $text-color;
-	// success
-	$btn-success-color: $bg-color;
+// Toggles
+$toggle-height-tiny : 10px;
+$toggle-height-sm : 14px;
+$toggle-height-md : 18px;
+$toggle-height-lg : 22px;
+$toggle-height-xlg : 24px;
 
 // Tables
 $vertical-cell-padding: .75rem;
 $horizontal-cell-padding: .75rem;
+
+// Modals
+$modal-padding: $gutter;
+$modal-header-font-size: .875rem;
+$modal-full-width-actions: false;
+$modal-overlay-color: rgba($text-color, 0.15);
+$modal-shadow: 0 20px 40px rgba($text-color, .1);
 
 // Tooltips
 $nipple-size: 4px;

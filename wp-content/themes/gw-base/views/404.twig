@@ -1,5 +1,8 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	Sorry, we couldn't find what you're looking for.
+	{% include "site-components/lw-intro-area.twig" with {
+		smallText : "Oh No",
+		text : "Sorry, we couldn't find what you're looking for."
+	} %}
 {% endblock %}

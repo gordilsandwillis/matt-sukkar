@@ -92,14 +92,11 @@
 
                 // ACF PRO
                 if ( typeof window.acf.field_group !== 'undefined' ) {
-                    window.acf.field_group.open_field( $( '.acf-field-object[data-key=' + field_key + ']' ) );
+                    $( '.acf-field-object[data-key=' + field_key + '] .edit-field' ).first().click();
                 }
                 // if not, then ACF free
                 else {
-                    var $field = $( '.field[data-id=' + field_key + ']' );
-                    $field.addClass('form_open');
-                    $(document).trigger('acf/field_form-open', [ $field ]);
-                    $field.children('.field_form_mask').animate({'height':'toggle'}, 250);
+                    $( '.field[data-id=' + field_key + '] .acf_edit_field' ).first().click();
                 }
             });
         }

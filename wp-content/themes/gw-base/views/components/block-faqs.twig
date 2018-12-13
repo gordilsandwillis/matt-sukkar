@@ -1,0 +1,31 @@
+<section class="block-faqs {{ block.background }}-bg {% if block.background == 'dark' or block.background == 'grey' %}py-margin{% else %}my-margin{% endif %}">
+	<div class="container">
+		<div class="grid-flex top v-spaced">
+			<div class="col-6">
+				<div class="max-text-width">
+					<h3 class="h1 pb-1">Fequently Asked Questions</h3>
+					<hr class="thick small main-color mt-2 mb-3">
+				</div>
+			</div>
+			<div class="col-6">
+				<ul class="faq-list accordion">
+					{% for faq in block.faq %}
+						<li>
+							<div class="c-header">
+								<span class="material-icons md-24">add</span>
+								<p>{{ faq.question }}</p>
+							</div>
+							{% if faq.answer %}
+							<div class="c-content">
+								<div class="py-1 rich-text sm">
+									{{ faq.answer }}
+								</div>
+							</div>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

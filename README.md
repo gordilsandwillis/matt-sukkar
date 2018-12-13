@@ -1,18 +1,17 @@
-# Wordpress Boilerplate
+#Notes for a new WP site
 
-### Run Local
+##Build
+webpack --watch
 
-TODO : configure nginx server
+##General
+*Hook up AWS bucket
+*Change wp-admin login screen
 
-```
-cp nginx.local.conf.example /usr/local/etc/nginx/servers/wordpress.conf
-```
-
-```
-sudo nginx
-php-cgi -b 9000
-mysql.server start
-```
-
-
-http://localhost:8090/
+##Necessary Env Vars
+*DB_NAME
+*DB_USER
+*DB_PASSWORD
+*DB_HOST
+*DB_PORT
+*DBI_AWS_ACCESS_KEY_ID
+*DBI_AWS_SECRET_ACCESS_KEY

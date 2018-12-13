@@ -1,6 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-// const webpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
 
 const extractSass = new ExtractTextPlugin({
   filename: "wp-content/themes/gw-base/assets/css/[name].css",
@@ -21,8 +21,15 @@ const config = {
 	},
 	plugins: [
 		extractSass,
-    // new UglifyJSPlugin({
-    //   extractComments: true
+    new UglifyJSPlugin({
+      extractComments: true
+    }),
+    // new CompressionPlugin({
+    //   asset: "[path].gz[query]",
+    //   algorithm: "gzip",
+    //   test: /\.(css)$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
     // })
 	],
 	module: {
@@ -43,11 +50,13 @@ const config = {
             loader: "css-loader", options: {
             	// sourceMap: true,
               minimize: true
-            }
+            },
+        }, {
+            loader: "postcss-loader"
         }, {
             loader: "sass-loader", options: {
             	sourceMap: true
-            }
+            },
         }],
         // use style-loader in development
         fallback: "style-loader"

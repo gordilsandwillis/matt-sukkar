@@ -1,0 +1,41 @@
+<section class="block-slideshow my-gutter">
+	<div class="slick-slider slideshow">
+		{% if block.slides %}
+			{% for slide in block.slides %}
+				{% if slide.image %}
+					<div class="slide">
+						<div class="set-ratio-3-2">
+							<div class="c-bg">
+								<img
+									src="{{ TimberImage(slide.image).src('gw-sm-3-2') }}"
+									srcset="{{ TimberImage(slide.image).src('gw-sm-3-2') }} 750w,
+										{{ TimberImage(slide.image).src('gw-md-3-2') }} 1200w"
+								>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			{# Repeat slides so slideshow doesnt break when there are less than 4 images #}
+			{% if block.slides|length < 4 %}
+				{% for slide in block.slides %}
+					{% if slide.image %}
+						<div class="slide">
+							<div class="set-ratio-3-2">
+								<div class="c-bg">
+									<img
+										src="{{ TimberImage(slide.image).src('gw-sm-3-2') }}"
+										srcset="{{ TimberImage(slide.image).src('gw-sm-3-2') }} 750w,
+											{{ TimberImage(slide.image).src('gw-md-3-2') }} 1200w"
+									>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+
+		{% endif %}
+	</div>
+</section>

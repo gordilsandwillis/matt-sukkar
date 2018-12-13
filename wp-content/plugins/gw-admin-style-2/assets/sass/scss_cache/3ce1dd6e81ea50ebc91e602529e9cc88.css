@@ -1,6 +1,31 @@
-/* compiled by scssphp v0.0.12 on Tue, 26 Sep 2017 21:05:35 -0400 (0.1207s) */
+/* compiled by scssphp v0.0.12 on Thu, 28 Sep 2017 11:02:24 -0400 (0.2749s) */
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+.material-icon {
+  color: currentcolor;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  /* Preferred icon size */
+  font-size: 18px;
+  line-height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga'; }
+  .material-icon.md-24 {
+    /* Preferred icon size */
+    font-size: 24px;
+    line-height: 24px; }
+
 @keyframes fadein {
   from {
     opacity: 0; }
@@ -308,7 +333,7 @@ body.login {
     animation: transition-in 0.75s 0.3s  forwards; }
   body.login #login form p.forgetmenot label {
     text-indent: 0;
-    overflow: auto; }
+    overflow: hidden; }
   body.login #login form p:nth-child(2) {
     margin-bottom: 8px; }
   body.login #login form p.submit {
@@ -490,6 +515,38 @@ body.login {
     color: rgba(30, 35, 45, .4); }
   body.login #login #backtoblog a:hover {
     color: #a56b3d; }
+
+ul.gw-quicklinks-widget {
+  margin: -4px -12px -5px; }
+  ul.gw-quicklinks-widget li.gw-quicklink {
+    border-bottom: 1px solid #eee;
+    margin: 0; }
+  ul.gw-quicklinks-widget li.gw-quicklink:last-child {
+    border-bottom: none; }
+  ul.gw-quicklinks-widget li.gw-quicklink a {
+    display: block;
+    outline: none !important;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1em;
+    position: relative;
+    cursor: pointer; }
+  ul.gw-quicklinks-widget li.gw-quicklink a:hover {
+    background: #f3f3f3; }
+  ul.gw-quicklinks-widget li.gw-quicklink a:focus, ul.gw-quicklinks-widget li.gw-quicklink a:active {
+    outline: none;
+    box-shadow: none; }
+  ul.gw-quicklinks-widget li.gw-quicklink a .material-icon {
+    vertical-align: middle;
+    margin-right: 10px; }
+  ul.gw-quicklinks-widget li.gw-quicklink a .material-icon.right {
+    position: absolute;
+    right: 0;
+    margin-right: 8px; }
+  ul.gw-quicklinks-widget li.gw-quicklink a .label {
+    display: inline-block;
+    vertical-align: middle; }
 
 .column-post_thumb {
   width: 75px; }

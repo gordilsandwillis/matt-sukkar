@@ -1,3 +1,8 @@
 .DS_Store
-build/
-node_modules/
+Thumbs.db
+npm-debug.log
+/node_modules
+/wp-content/uploads
+/wp-content/ai1wm-backups
+/wp-content/cache
+/composer
