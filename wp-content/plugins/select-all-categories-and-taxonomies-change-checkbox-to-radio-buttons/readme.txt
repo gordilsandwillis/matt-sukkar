@@ -1,10 +1,10 @@
 === Select All Categories and Taxonomies, Change Checkbox to Radio Buttons ===
 Contributors: MooveAgency
-Donate link: https://www.mooveagency.com/wordpress-plugins/
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=84Z843VMHAFTE
 Stable tag: trunk
-Tags: radio select, taxonomy radio select
+Tags: radio select, taxonomy radio select, taxonomy, radio, checkbox, taxonomy meta box, meta box, meta, meta boxes, taxonomies
 Requires at least: 4.3
-Tested up to: 5.0
+Tested up to: 5.1
 License: GPLv2
 
 Allows you to change the taxonomy metabox checkboxes to Radio buttons, Checkbox or Checkboxes with Select All possibility.
@@ -27,6 +27,13 @@ The "select all" functionality can be enabled only if the taxonomy display type 
 2. Output example (changed metaboxes)
 
 == Changelog ==
+= 1.3.1 =
+* Fixed WP 5.1 compatibility
+
+= 1.3.0 =
+* Improved metabox, added ability to add new term
+* Added option to select default taxonomy term
+* Bugfixes
 
 = 1.2.1. =
 * WP5 compatibility

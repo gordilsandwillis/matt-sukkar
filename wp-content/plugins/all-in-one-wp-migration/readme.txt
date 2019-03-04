@@ -2,9 +2,9 @@
 Contributors: yani.iliev, bangelov, pimjitsawang
 Tags: move, transfer, copy, migrate, backup, clone, restore, db migration, wordpress migration, website migration, database export, database import, apoyo, sauvegarde, di riserva, バックアップ
 Requires at least: 3.3
-Tested up to: 5.0
+Tested up to: 5.1
 Requires PHP: 5.2.17
-Stable tag: 6.81
+Stable tag: 6.86
 License: GPLv2 or later
 
 Move, transfer, copy, migrate, and backup a site with 1-click. Quick, easy, and reliable.
@@ -108,6 +108,45 @@ Alternatively you can download the plugin using the download button on this page
 All-in-One WP Migration **asks for your consent** to collect **requester's email address** when filling plugin's contact form. [GDPR Compliant Privacy Policy](https://www.iubenda.com/privacy-policy/946881)
 
 == Changelog ==
+= 6.86 =
+**Added**
+
+* Support for MySQL BIT field type
+
+**Fixed**
+
+* WP CLI issue on export/import
+
+= 6.85 =
+**Changed**
+
+* Tested up to WordPress 5.1
+
+= 6.84 =
+**Fixed**
+
+* Set the type of backup file during download via HTML attribute
+* Removed Math_BigInteger class which was causing issues with other plugins
+
+= 6.83 =
+**Added**
+
+* Check for minimum required extension version on import
+* Disable Join My Multisite, MultiSite Clone Duplicator and WordPress MU Domain Mapping plugins after restoring a backup
+
+**Fixed**
+
+* Support for WordPress 3.3
+
+= 6.82 =
+**Added**
+
+* Support for PHP 7.3
+
+**Fixed**
+
+* Feedback form on settings page
+
 = 6.81 =
 **Added**
 

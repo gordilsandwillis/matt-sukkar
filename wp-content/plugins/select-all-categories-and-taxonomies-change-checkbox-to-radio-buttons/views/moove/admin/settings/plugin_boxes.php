@@ -72,14 +72,14 @@
 
 	<div class="m-plugin-box">
 		<div class="box-header">
-			<h4>Need Support?</h4>
+			<h4>Need Support or New Feature?</h4>
 		</div>
 		<!--  .box-header -->
 		<div class="box-content">
 			<?php 			
 				$forum_link = apply_filters( 'radioselect_forum_section_link', 'https://wordpress.org/support/plugin/select-all-categories-and-taxonomies-change-checkbox-to-radio-buttons/' );
 			?>
-			<p>Read the <a href="<?php echo $forum_link; ?>" target="_blank">Support Forum</a>.</p>
+			<p>Submit your request to our <a href="<?php echo $forum_link; ?>" target="_blank">Support Forum</a>.</p>
 		</div>
 		<!--  .box-content -->
 	</div>

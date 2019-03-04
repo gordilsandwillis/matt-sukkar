@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2018 ServMask Inc.
+ * Copyright (C) 2014-2019 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,10 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
+}
+
 class Ai1wm_Export_Controller {
 
 	public static function index() {
@@ -40,9 +44,8 @@ class Ai1wm_Export_Controller {
 		}
 
 		// Set priority
-		$priority = 5;
-		if ( isset( $params['priority'] ) ) {
-			$priority = (int) $params['priority'];
+		if ( ! isset( $params['priority'] ) ) {
+			$params['priority'] = 5;
 		}
 
 		// Set secret key
@@ -70,7 +73,7 @@ class Ai1wm_Export_Controller {
 
 			// Loop over filters
 			while ( $hooks = current( $filters ) ) {
-				if ( $priority === key( $filters ) ) {
+				if ( intval( $params['priority'] ) === key( $filters ) ) {
 					foreach ( $hooks as $hook ) {
 						try {
 
@@ -81,8 +84,12 @@ class Ai1wm_Export_Controller {
 							Ai1wm_Log::export( $params );
 
 						} catch ( Exception $e ) {
-							Ai1wm_Status::error( __( 'Unable to export', AI1WM_PLUGIN_NAME ), $e->getMessage() );
-							Ai1wm_Notification::error( __( 'Unable to export', AI1WM_PLUGIN_NAME ), $e->getMessage() );
+							if ( defined( 'WP_CLI' ) ) {
+								WP_CLI::error( sprintf( __( 'Unable to export: %s', AI1WM_PLUGIN_NAME ), $e->getMessage() ) );
+							} else {
+								Ai1wm_Status::error( __( 'Unable to export', AI1WM_PLUGIN_NAME ), $e->getMessage() );
+								Ai1wm_Notification::error( __( 'Unable to export', AI1WM_PLUGIN_NAME ), $e->getMessage() );
+							}
 							Ai1wm_Directory::delete( ai1wm_storage_path( $params ) );
 							exit;
 						}
@@ -96,6 +103,10 @@ class Ai1wm_Export_Controller {
 
 					// Do request
 					if ( $completed === false || ( $next = next( $filters ) ) && ( $params['priority'] = key( $filters ) ) ) {
+						if ( defined( 'WP_CLI' ) ) {
+							continue;
+						}
+
 						if ( isset( $params['ai1wm_manual_export'] ) ) {
 							echo json_encode( $params );
 							exit;
@@ -115,6 +126,7 @@ class Ai1wm_Export_Controller {
 				next( $filters );
 			}
 		}
+		return $params;
 	}
 
 	public static function buttons() {

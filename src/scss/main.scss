@@ -19,8 +19,8 @@
 @import '../../node_modules/gw-ui/dist/Input';
 
 // Site Specific
-@import 'setup/global';
-@import 'setup/typography';
+@import 'setup/site-globals';
+@import 'setup/site-typography';
 
 // Site Components
 @import 'components/header';

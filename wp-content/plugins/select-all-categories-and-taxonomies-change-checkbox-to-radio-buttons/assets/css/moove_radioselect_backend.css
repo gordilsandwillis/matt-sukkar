@@ -6,7 +6,9 @@
   padding-right: 40%;
 }
 
-
+.hidden-tb-row {
+  display: none;
+}
 .moove-donation-box{
   position: relative;
   width: calc(100% - 20px);
@@ -22,7 +24,9 @@
   float: left;
   margin:0 4px -2px 0;
 }
-
+.edit-post-meta-boxes-area .moove-add-taxonomies {
+  display: none;
+}
 .moove-taxonomy-settings-plugin-wrap .moove-form-container,
 .moove-taxonomy-settings-plugin-wrap  {
   position: relative;

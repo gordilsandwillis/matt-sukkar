@@ -205,18 +205,16 @@ function emr_normalize_file_urls( $old, $new ) {
 // Get old guid and filetype from DB
 $sql = "SELECT post_mime_type FROM $table_name WHERE ID = '" . (int) $_POST["ID"] . "'";
 list($current_filetype) = $wpdb->get_row($sql, ARRAY_N);
-$current_filename = wp_get_attachment_url($_POST['ID']);
 
 // Massage a bunch of vars
-$current_guid = $current_filename;
-$current_filename = substr($current_filename, (strrpos($current_filename, "/") + 1));
+$current_guid =wp_get_attachment_url($_POST['ID']);
 
 $ID = (int) $_POST["ID"];
 
 $current_file = get_attached_file($ID, apply_filters( 'emr_unfiltered_get_attached_file', true ));
 $current_path = substr($current_file, 0, (strrpos($current_file, "/")));
 $current_file = preg_replace("|(?<!:)/{2,}|", "/", $current_file);
-$current_filename = basename($current_file);
+$current_filename = wp_basename($current_file);
 $current_metadata = wp_get_attachment_metadata( $_POST["ID"] );
 
 $replace_type = $_POST["replace_type"];
@@ -360,11 +358,11 @@ if (is_uploaded_file($_FILES["userfile"]["tmp_name"])) {
 
 				// replace old URLs with new URLs.
 				$post_content = $rows["post_content"];
-				$post_content = addslashes( str_replace( $search_urls, $replace_urls, $post_content ) );
+				$post_content = str_replace( $search_urls, $replace_urls, $post_content );
 
 				$sql = $wpdb->prepare(
-					"UPDATE $table_name SET post_content = '$post_content' WHERE ID = %d;",
-					$rows["ID"]
+					"UPDATE $table_name SET post_content = %s WHERE ID = %d;",
+					array($post_content, $rows["ID"])
 				);
 
 				$wpdb->query( $sql );
@@ -385,7 +383,7 @@ if (is_uploaded_file($_FILES["userfile"]["tmp_name"])) {
 } else {
 	//TODO Better error handling when no file is selected.
 	//For now just go back to media management
-	$returnurl = admin_url("/wp-admin/upload.php");
+	$returnurl = admin_url("upload.php");
 }
 
 if (FORCE_SSL_ADMIN) {

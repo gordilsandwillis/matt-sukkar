@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2018 ServMask Inc.
+ * Copyright (C) 2014-2019 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,14 +23,11 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
-abstract class Ai1wm_Database {
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
+}
 
-	/**
-	 * Number of queries per transaction
-	 *
-	 * @var integer
-	 */
-	const QUERIES_PER_TRANSACTION = 1000;
+abstract class Ai1wm_Database {
 
 	/**
 	 * WordPress database handler
@@ -644,7 +641,7 @@ abstract class Ai1wm_Database {
 					$table_where = implode( ' AND ', $table_where );
 
 					// Set query with offset and rows count
-					$query = sprintf( 'SELECT t1.* FROM `%s` AS t1 JOIN (SELECT %s FROM `%s` WHERE %s ORDER BY %s LIMIT %d, %d) AS t2 USING (%s)', $table_name, $table_keys, $table_name, $table_where, $table_keys, $table_offset, 1000, $table_keys );
+					$query = sprintf( 'SELECT t1.* FROM `%s` AS t1 JOIN (SELECT %s FROM `%s` WHERE %s ORDER BY %s LIMIT %d, %d) AS t2 USING (%s)', $table_name, $table_keys, $table_name, $table_where, $table_keys, $table_offset, AI1WM_MAX_SELECT_RECORDS, $table_keys );
 
 				} else {
 
@@ -660,7 +657,7 @@ abstract class Ai1wm_Database {
 					$table_where = implode( ' AND ', $table_where );
 
 					// Set query with offset and rows count
-					$query = sprintf( 'SELECT * FROM `%s` WHERE %s ORDER BY %s LIMIT %d, %d', $table_name, $table_where, $table_keys, $table_offset, 1000 );
+					$query = sprintf( 'SELECT * FROM `%s` WHERE %s ORDER BY %s LIMIT %d, %d', $table_name, $table_where, $table_keys, $table_offset, AI1WM_MAX_SELECT_RECORDS );
 				}
 
 				// Apply additional table prefix columns
@@ -686,7 +683,7 @@ abstract class Ai1wm_Database {
 					while ( $row = $this->fetch_assoc( $result ) ) {
 
 						// Write start transaction
-						if ( $table_offset % Ai1wm_Database::QUERIES_PER_TRANSACTION === 0 ) {
+						if ( $table_offset % AI1WM_MAX_TRANSACTION_QUERIES === 0 ) {
 							ai1wm_write( $file_handler, "START TRANSACTION;\n" );
 						}
 
@@ -697,8 +694,7 @@ abstract class Ai1wm_Database {
 								$value = $this->replace_column_prefixes( $value, 0 );
 							}
 
-							// Replace table values
-							$items[] = is_null( $value ) ? 'NULL' : "'" . $this->escape( $value ) . "'";
+							$items[] = $this->prepare_table_values( $value );
 						}
 
 						// Set table values
@@ -717,14 +713,14 @@ abstract class Ai1wm_Database {
 						$table_rows++;
 
 						// Write end of transaction
-						if ( $table_offset % Ai1wm_Database::QUERIES_PER_TRANSACTION === 0 ) {
+						if ( $table_offset % AI1WM_MAX_TRANSACTION_QUERIES === 0 ) {
 							ai1wm_write( $file_handler, "COMMIT;\n" );
 						}
 					}
 				} else {
 
 					// Write end of transaction
-					if ( $table_offset % Ai1wm_Database::QUERIES_PER_TRANSACTION !== 0 ) {
+					if ( $table_offset % AI1WM_MAX_TRANSACTION_QUERIES !== 0 ) {
 						ai1wm_write( $file_handler, "COMMIT;\n" );
 					}
 
@@ -1344,6 +1340,22 @@ abstract class Ai1wm_Database {
 		);
 
 		return $header;
+	}
+
+	/**
+	 * Prepare table values
+	 *
+	 * @param  mixed $input Table value
+	 * @return mixed
+	 */
+	protected function prepare_table_values( $input ) {
+		if ( is_null( $input ) ) {
+			return 'NULL';
+		} elseif ( is_numeric( $input ) ) {
+			return $input;
+		}
+
+		return "'" . $this->escape( $input ) . "'";
 	}
 
 	/**

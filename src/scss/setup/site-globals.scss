@@ -1,0 +1,73 @@
+.lazy-wrap {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	background: $light-grey;
+	width: 100%;
+	img,
+	video {
+		position: relative;
+		opacity: 0;
+		transition: opacity .5s $ease;
+		z-index: 1;
+		display: block;
+		width: 100%;
+	}
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -12px 0 0 -1px;
+		width: 2px;
+		height: 24px;
+		background: $light-text-color;
+		animation: rotate 1s $ease infinite;
+		z-index: 0;
+		transition: opacity 0s 1s $ease;
+	}
+	&.lazyload {
+	}
+	&.lazyloaded {
+		img, video {
+			opacity: 1;
+		}
+		&:after {
+			opacity: 0;
+		}
+	}
+}
+
+.set-ratio {
+	position: relative;
+	overflow: hidden;
+}
+
+.set-ratio-3-2 {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 66.666%;
+}
+
+.set-ratio-2-1 {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 50%;
+}
+
+.set-ratio-sq {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 100%;
+}
+
+.object-cover,
+.lazy-wrap.object-cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
