@@ -1,47 +1,24 @@
 @font-face {
-  font-family: 'Portrait';
-  src:  url('/assets/fonts/portrait/Portrait-Text-Web-Regular.woff') format('woff'),
-        url('/assets/fonts/portrait/Portrait-Text-Web-Regular.woff2') format('woff2');
+  font-family: 'MS-Akzidenz';
+  src:  url('/assets/fonts/akzidenz/AkzidenzGroteskBE.woff') format('woff'),
+        url('/assets/fonts/akzidenz/AkzidenzGroteskBE.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Portrait';
-  src:  url('/assets/fonts/portrait/portrait-regular-italic.woff') format('woff'),
-        url('/assets/fonts/portrait/portrait-regular-italic.woff2') format('woff2');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Portrait';
-  src:  url('/assets/fonts/portrait/portrait-bold.woff') format('woff'),
-        url('/assets/fonts/portrait/portrait-bold.woff2') format('woff2');
+  font-family: 'MS-Akzidenz';
+  src:  url('/assets/fonts/akzidenz/AkzidenzGroteskBEMd.woff') format('woff'),
+        url('/assets/fonts/akzidenz/AkzidenzGroteskBEMd.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Portrait';
-  src:  url('/assets/fonts/portrait/portrait-italic.woff') format('woff'),
-        url('/assets/fonts/portrait/portrait-italic.woff2') format('woff2');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Circular';
-  src:  url('/assets/fonts/circular/circular-std-regular.woff') format('woff'),
-        url('/assets/fonts/circular/circular-std-regular.woff2') format('woff2');
-  font-weight: normal;
+  font-family: 'MS-Akzidenz';
+  src:  url('/assets/fonts/akzidenz/AkzidenzGroteskBESuper.woff') format('woff'),
+        url('/assets/fonts/akzidenz/AkzidenzGroteskBESuper.woff2') format('woff2');
+  font-weight: 900;
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Circular';
-  src:  url('/assets/fonts/circular/circular-std-bold.woff') format('woff'),
-        url('/assets/fonts/circular/circular-std-bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-}

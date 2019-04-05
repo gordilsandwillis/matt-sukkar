@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<div class="container">
+	{% set images = [0,0,0,0,0,0,0,0,0,0,0,0] %}
+	<div class="grid-flex">
+		{% for i in images %}
+			<div class="col-6">
+				<div class="film-thumb pb-3">
+					<img src="http://unsplash.it/1600/900">
+					<div class="thumb-info align-center">
+						<p class="medium-weight">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+						<p>El Fuste, Texas USA</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

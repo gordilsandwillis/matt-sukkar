@@ -8,15 +8,13 @@
 
 	<body class="{{body_class}}" data-template="base.twig">
 		
+		{% include 'partials/header.twig' with {'menu': menu.get_items} %}
+
 		<div class="animsition">
-			
-			<div class="stagger-in-1">
-				{% include 'partials/header.twig' with {'menu': menu.get_items} %}
-			</div>
 
 			<section id="content" role="main" class="content-wrapper">
 				{% if title %}<h1>{{title}}</h1>{% endif %}
-				<div class="wrapper {{sidebar_class}}">
+				<div class="wrapper">
 					{% block content %}
 						Sorry, no content
 					{% endblock %}
@@ -28,10 +26,10 @@
 				{% endif %}
 			</section>
 
-			{% block footer %}
+			{#% block footer %}
 				{% include 'partials/footer.twig' %}
 				{{ function('wp_footer') }}
-			{% endblock %}
+			{% endblock %#}
 		</div>
 		
 		{% include 'partials/foot.twig' %}

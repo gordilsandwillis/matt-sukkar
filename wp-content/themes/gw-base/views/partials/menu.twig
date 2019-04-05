@@ -1,11 +1,11 @@
 {% set menu = menu %}
 {% if menu %}
-	<ul class="grid-flex no-break no-gutter">
-	{% for item in menu %}
-		<li class="col {{ item.classes | join(' ') }}">
-			<a class="transition-link display-block" target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
-			{#% include "menu.twig" with {'menu': item.get_children} %#}
-		</li>
-	{% endfor %}
+	<ul>
+		{% for item in menu %}
+			<li class="col {{ item.classes | join(' ') }}">
+				<a class="transition-link" target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+				{#% include "menu.twig" with {'menu': item.get_children} %#}
+			</li>
+		{% endfor %}
 	</ul>
 {% endif %}

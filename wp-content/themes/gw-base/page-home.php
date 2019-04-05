@@ -13,4 +13,4 @@ $high = array(
 	'post__not_in' => array($post_id)
 );
 $context['projects'] = Timber::get_posts($high);
-Timber::render( 'index.twig' , $context );
+Timber::render( 'home.twig' , $context );

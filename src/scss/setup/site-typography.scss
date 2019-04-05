@@ -1,0 +1,24 @@
+.p a,
+p a,
+a.p,
+a {
+	&.light-text-color {
+		border: none;
+		&:hover {
+			color: $text-color !important;
+		}
+	}
+}
+
+p, .p {
+	&.xlg {
+		font-size: $h1-font-size;
+		font-weight: $h1-font-weight;
+		line-height: $short-line-height;
+		p {
+			font-size: $h1-font-size;
+			font-weight: $h1-font-weight;
+			line-height: $short-line-height;
+		}
+	}
+}

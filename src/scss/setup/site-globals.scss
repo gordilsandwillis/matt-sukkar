@@ -1,3 +1,14 @@
+body {
+	transition: background $slow-speed $ease, color $slow-speed $ease;
+}
+
+a {
+	color: $text-color; 
+	&:hover {
+		color: $black;
+	}
+}
+
 .lazy-wrap {
 	position: relative;
 	display: inline-block;

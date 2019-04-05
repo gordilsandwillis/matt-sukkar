@@ -1,0 +1,24 @@
+body.photography-page {
+	.staggered-grid {
+		margin-left: -$gutter/2;
+		margin-right: -$gutter/2;
+		column-count: 2;
+		column-gap: 0;
+		@include respond($md) {
+			column-count: 3;
+		}
+		@include respond($lg) {
+			column-count: 4;
+		}
+		@include respond($huge) {
+			column-count: 5;
+		}
+		.item {
+			break-inside: avoid;
+			padding: 0 $gutter/2 $gutter $gutter/2;
+			img {
+				display: block;
+			}
+		}
+	}
+}
