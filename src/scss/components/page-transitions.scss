@@ -1,0 +1,26 @@
+#main {
+  // header {
+  //   animation-duration: 1s;
+  //   transition-timing-function: ease-in;
+  //   animation-fill-mode: both;
+		// animation-name: fade-in;
+  // }
+
+	.page-content {
+		animation-duration: 1s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+		animation-name: fade-in;
+	}
+
+  /** Reverse "exit" animations */
+  &.is-exiting {
+  	&.home {
+
+  	}
+    .page-content {
+      animation-name: fade-out;
+      // animation-direction: alternate-reverse;
+    }
+  }
+}

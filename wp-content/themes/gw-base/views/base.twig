@@ -6,13 +6,15 @@
 	</head>
 {% endblock %}
 
-	<body class="{{body_class}}" data-template="base.twig">
-		
-		{% include 'partials/header.twig' with {'menu': menu.get_items} %}
+	<body data-template="base.twig">
 
-		<div class="animsition">
+		<div id="main">
 
-			<section id="content" role="main" class="content-wrapper">
+			<div class="{{body_class}}">
+				{% include 'partials/header.twig' with { 'menu': menu.get_items } %}
+			</div>
+
+			<section id="content" role="main" class="page-content">
 				{% if title %}<h1>{{title}}</h1>{% endif %}
 				<div class="wrapper">
 					{% block content %}

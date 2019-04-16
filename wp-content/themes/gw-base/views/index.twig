@@ -2,28 +2,30 @@
 
 {% block content %}
 
-<section class="mt-margin mb-4 pb-margin">
-	<div class="container pb-1px">
-		<div class="grid-flex v-spaced break-lg">
-			<div class="col-4">
-				<h4 class="h3 bold">
-					{{ post.get_field('about').title }}
-				</h4>
-			</div>
-			<div class="col-8">
-				<div class="rich-text max-text-width">
-					<p class="h3">{{ post.get_field('about').text }}</p>
-					{% if (post.get_field('about').link.url) and (post.get_field('about').link.title) %}
-						<p class="h3">
-							<a href="{{ post.get_field('about').link.url }}" target="{{ post.get_field('about').link.target }}" class="transition-link arrow-link hover-right">{{ post.get_field('about').link.title }} <span class="material-icons md-24">arrow_forward</span>
-							</a>
-						</p>
-					{% endif %}
+<div class="home-page">
+	<section class="mt-margin mb-4 pb-margin">
+		<div class="container pb-1px">
+			<div class="grid-flex v-spaced break-lg">
+				<div class="col-4">
+					<h4 class="h3 bold">
+						{{ post.get_field('about').title }}
+					</h4>
+				</div>
+				<div class="col-8">
+					<div class="rich-text max-text-width">
+						<p class="h3">{{ post.get_field('about').text }}</p>
+						{% if (post.get_field('about').link.url) and (post.get_field('about').link.title) %}
+							<p class="h3">
+								<a href="{{ post.get_field('about').link.url }}" target="{{ post.get_field('about').link.target }}" class="transition-link arrow-link hover-right">{{ post.get_field('about').link.title }} <span class="material-icons md-24">arrow_forward</span>
+								</a>
+							</p>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 
 {% endblock %}

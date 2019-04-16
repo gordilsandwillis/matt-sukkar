@@ -2,17 +2,19 @@
 
 {% block content %}
 
-<div class="container">
-	{% set images = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] %}
-	<div class="staggered-grid">
-		{% for i in images %}
-			<div class="item"><img src="http://unsplash.it/600"></div>
-			<div class="item"><img src="http://unsplash.it/600/400"></div>
-			<div class="item"><img src="http://unsplash.it/800/1200"></div>
-			<div class="item"><img src="http://unsplash.it/600/400"></div>
-			<div class="item"><img src="http://unsplash.it/600/800"></div>
-			<div class="item"><img src="http://unsplash.it/600/400"></div>
-		{% endfor %}
+<div class="photography-page">
+	<div class="container">
+		{% set images = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] %}
+		<div class="staggered-grid">
+			{% for i in images %}
+				<div class="item"><img src="http://unsplash.it/600"></div>
+				<div class="item"><img src="http://unsplash.it/600/400"></div>
+				<div class="item"><img src="http://unsplash.it/800/1200"></div>
+				<div class="item"><img src="http://unsplash.it/600/400"></div>
+				<div class="item"><img src="http://unsplash.it/600/800"></div>
+				<div class="item"><img src="http://unsplash.it/600/400"></div>
+			{% endfor %}
+		</div>
 	</div>
 </div>
 

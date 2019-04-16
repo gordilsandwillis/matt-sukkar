@@ -2,6 +2,10 @@ body {
 	transition: background $slow-speed $ease, color $slow-speed $ease;
 }
 
+#main {
+	padding-top: 200px;
+}
+
 a {
 	color: $text-color; 
 	&:hover {
