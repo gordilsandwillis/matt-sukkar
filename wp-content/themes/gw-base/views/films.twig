@@ -3,18 +3,23 @@
 {% block content %}
 
 <div class="container">
-	{% set images = [0,0,0,0,0,0,0,0,0,0,0,0] %}
 	<div class="grid-flex">
-		{% for i in images %}
-			<div class="col-6">
-				<div class="film-thumb pb-3">
-					<img src="http://unsplash.it/1600/900">
-					<div class="thumb-info align-center">
-						<p class="medium-weight">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-						<p>El Fuste, Texas USA</p>
+		{% for video in post.get_field('videos') %}
+			{% if video.cover_image and video.vimeo_id %}
+				<div class="col-6">
+					<div class="film-thumb pb-3">
+						<div class="set-ratio-16-9">
+							<div class="lazy-wrap lazyload object-cover">
+								<img src="{{ TimberImage(video.cover_image).src('gw-lg-16-9') }}">
+							</div>
+						</div>
+						<div class="pt-gutter thumb-info align-center">
+							<p class="medium-weight">{{ video.caption.primary_caption }}</p>
+							<p>{{ video.caption.secondary_caption }}</p>
+						</div>
 					</div>
 				</div>
-			</div>
+			{% endif %}
 		{% endfor %}
 	</div>
 </div>

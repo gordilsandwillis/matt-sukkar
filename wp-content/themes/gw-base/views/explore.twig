@@ -4,11 +4,13 @@
 	
 	<div class="explore-page">
 		<div class="explore-slideshow">
-			<div class="slide">
-				<div class="slide-cover">
-					<img src="http://unsplash.it/2000/1500">
+			{% for i in post.get_field('image_gallery') %}
+				<div class="slide">
+					<div class="{% if i.width / i.height > 1 %}landscape slide-cover{% else %}portrait slide-contain{% endif %}">
+						<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
+					</div>
 				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
 

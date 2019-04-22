@@ -65,6 +65,12 @@ a {
 	padding-bottom: 66.666%;
 }
 
+.set-ratio-16-9 {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+}
+
 .set-ratio-2-1 {
 	position: relative;
 	overflow: hidden;
@@ -78,7 +84,8 @@ a {
 }
 
 .object-cover,
-.lazy-wrap.object-cover {
+.lazy-wrap.object-cover img,
+.lazy-wrap.object-cover video {
 	position: absolute;
 	top: 0;
 	left: 0;

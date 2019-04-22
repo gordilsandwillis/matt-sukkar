@@ -36,6 +36,11 @@ class GW extends TimberSite {
 				add_image_size( 'gw-md-2-3', 1000, 1500, true );
 				add_image_size( 'gw-lg-2-3', 1200, 1800, true );
 				add_image_size( 'gw-xlg-2-3', 1334, 2001, true );
+				// 16:9 Crops
+				add_image_size( 'gw-sm-16-9', 400, 225, true );
+				add_image_size( 'gw-md-16-9', 800, 450, true );
+				add_image_size( 'gw-lg-16-9', 1200, 675, true );
+				add_image_size( 'gw-xlg-16-9', 1600, 900, true );
 				// Square Crops
 				add_image_size( 'gw-sm-sq', 750, 750, true );
 				add_image_size( 'gw-md-sq', 1000, 1000, true );

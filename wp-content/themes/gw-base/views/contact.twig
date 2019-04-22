@@ -6,26 +6,24 @@
 	<div class="container">
 		<div class="grid-flex break-lg right">
 			<div class="col-6 stagger-in-items">
+				
 				<div class="p xlg rich-text mb-4 pb-4">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed eleifend diam, at vestibulum leo. Suspendisse eu sem consequat, tempor tortor sed, vulputate neque.</p>
+					{{ post.content }}
 				</div>
-				<div class="mb-4">
-					<h6>General</h6>
-					<p class="xlg"><a href="" class="light-text-color">info@msukkar.com</a></p>
-				</div>
-				<div class="mb-4">
-					<h6>Representation</h6>
-					<p class="xlg"><a href="" class="light-text-color">info@msukkar.com</a></p>
-				</div>
+				
+				{% for link in post.get_field('contact_links') %}
+					{% if link.email %}
+						{% if link.link_header %}
+							<h6 class="mt-4">{{ link.link_header }}</h6>
+						{% endif %}
+						<p class="xlg">
+							<a href="mailto:{{ link.email }}" class="light-text-color">{{ link.email }}</a>
+						</p>
+					{% endif %}
+				{% endfor %}
+
 			</div>
 		</div>
-	</div>
-
-	<div class="stagger-in-3">
-			{% include "components/block-wide-media.twig" with { 
-				blockImage : post.contact_image,
-				mediaType : post.contact_image
-			} %}
 	</div>
 </div>
 
