@@ -3,19 +3,35 @@
 {% block content %}
 
 <div class="photography-page">
-	<div class="container">
-		<div class="staggered-grid">
-			{% for i in post.get_field('image_gallery') %}
-				<div class="item">
-					<div class="lazy-wrap lazyload">
-						<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
-					</div>
-					<div class="item-caption pt-gutter align-center">
-						<p class="medium-weight">{{ i.title }}</p>
-						<p>{{ i.caption }}</p>
-					</div>
+	<div class="toggle-view">
+		<div class="grid-flex no-break right gutter-none">
+			<div class="col">
+				<div class="toggle-item toggle-grid active">
+					{% include 'icons/grid.svg' %}
 				</div>
-			{% endfor %}
+			</div>
+			<div class="col">
+				<div class="toggle-item toggle-full">
+					{% include 'icons/full-view.svg' %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="photography-content">
+		<div class="container">
+			<div class="staggered-photo-grid grid-view" data-columns>
+				{% for i in post.get_field('image_gallery') %}
+					<div class="item mb-gutter">
+						<div class="lazy-wrap lazyload">
+							<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
+						</div>
+						<div class="item-caption pt-gutter align-center">
+							<p class="medium-weight">{{ i.title }}</p>
+							<p>{{ i.caption }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 </div>

@@ -1,5 +1,11 @@
+html {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
 body {
 	transition: background $slow-speed $ease, color $slow-speed $ease;
+	min-height: 100%;
 }
 
 #main {
@@ -11,6 +17,13 @@ a {
 	&:hover {
 		color: $black;
 	}
+	&.thumb {
+		display: block;
+	}
+}
+
+.trigger {
+	cursor: pointer;
 }
 
 .lazy-wrap {
@@ -20,13 +33,17 @@ a {
 	background: $light-grey;
 	width: 100%;
 	img,
-	video {
+	video,
+	iframe {
 		position: relative;
 		opacity: 0;
 		transition: opacity .5s $ease;
 		z-index: 1;
 		display: block;
 		width: 100%;
+	}
+	iframe {
+		transition-delay: .3s;
 	}
 	&:after {
 		content: '';
@@ -45,7 +62,7 @@ a {
 	&.lazyload {
 	}
 	&.lazyloaded {
-		img, video {
+		img, video, iframe {
 			opacity: 1;
 		}
 		&:after {
@@ -65,10 +82,21 @@ a {
 	padding-bottom: 66.666%;
 }
 
-.set-ratio-16-9 {
+.set-ratio-16-9,
+.video-wrap {
 	position: relative;
 	overflow: hidden;
 	padding-bottom: 56.25%;
+	iframe {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+	}
 }
 
 .set-ratio-2-1 {

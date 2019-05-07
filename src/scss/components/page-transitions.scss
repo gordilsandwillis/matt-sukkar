@@ -11,6 +11,8 @@
     transition-timing-function: ease-in;
     animation-fill-mode: both;
 		animation-name: fade-in;
+    position: relative;
+    z-index: 3;
 	}
 
   /** Reverse "exit" animations */

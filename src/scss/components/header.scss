@@ -15,6 +15,10 @@ header {
 	.c-inner-header {
 		width: 100%;
 	}
+	.current_page_item {
+		pointer-events: none;
+		cursor: pointer;
+	}
 	.title,
 	nav ul {
 		line-height: 1em;

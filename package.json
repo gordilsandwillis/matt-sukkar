@@ -38,6 +38,7 @@
     "jquery-lazyload": "^1.9.7",
     "lazysizes": "^4.1.7",
     "object-fit-polyfill": "^0.1.0",
+    "salvattore": "^1.0.9",
     "slick-carousel": "^1.8.1",
     "smoothstate": "^0.7.2",
     "uglifyjs-webpack-plugin": "^0.4.6"

@@ -33,6 +33,7 @@ var hyper = {
 
 hyper.modules.push( require('./global') );
 hyper.modules.push( require('./homepage') );
+// hyper.modules.push( require('./photography') );
  
 hyper.init(hyper);
 document.addEventListener('DOMContentLoaded', hyper.ready.bind(hyper));

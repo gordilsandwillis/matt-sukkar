@@ -7,6 +7,7 @@ var smoothState = require('./smoothState.js');
 var lazyload = require('jquery-lazyload/jquery.lazyload.js');
 var lazysizes = require('lazysizes');
 var slick = require('slick-carousel');
+var salvattore = require("salvattore");
 
 var global = {
   init: function(){
@@ -19,12 +20,14 @@ var global = {
     lazySizes.init();
     this.topArea();
     this.scroll();
-    this.slideshowBlock();
+    this.exploreSlideshow();
     this.splitSlideshowBlock();
     this.accordion();
     this.getInstalink();
     this.modals();
     this.mailchimpFooter();
+    this.togglePhotoView();
+    this.modals();
     window.lazySizesConfig = {
       addClasses: true
     };
@@ -37,36 +40,6 @@ var global = {
     this.headerScroll();
     this.parallaxTop();
   },
-
-  // pageTransitions: function () {
-  //   $(".animsition").animsition({
-  //     inClass: 'fade-in',
-  //     outClass: 'fade-out',
-  //     inDuration: 500,
-  //     outDuration: 500,
-  //     linkElement: '.transition-link:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not(.trigger)',
-  //     // linkElement: 'a:not([target="_blank"]):not([href^="#"]):not([href^="deadlink"])',
-  //     // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
-  //     loading: true,
-  //     loadingParentElement: 'body', //animsition wrapper element
-  //     loadingClass: 'page-loading',
-  //     loadingInner: '', // e.g '<img src="loading.svg" />'
-  //     timeout: true,
-  //     timeoutCountdown: 50000,
-  //     onLoadEvent: true,
-  //     browser: [ 'animation-duration', '-webkit-animation-duration'],
-  //     // "browser" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
-  //     // The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
-  //     overlay : false,
-  //     overlayClass : 'animsition-overlay-slide',
-  //     overlayParentElement : 'body',
-  //     transition: function(url){ window.location.href = url; }
-  //   });
-
-  //   $('.animsition').on('animsition.inStart', function(){
-  //     $('.page-loader').addClass('loaded');
-  //   });
-  // },
 
   pageTransitions: function () {
     'use strict';
@@ -99,10 +72,109 @@ var global = {
 
           // Inject the new content
           $container.html($newContent);
+          // global.togglePhotoView();
+          global.ready();
         }
       }
     },
     smoothState = $('#main').smoothState(options).data('smoothState');
+  },
+
+  togglePhotoView: () => {
+    if ($('.staggered-photo-grid').length) {
+      salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
+      $('.photography-page .toggle-view .toggle-full').click(() => {
+        console.log('toggle full')
+        if ($('.staggered-photo-grid').hasClass('grid-view')) {
+          $('.staggered-photo-grid').addClass('animate-out');
+          setTimeout(() => {
+            $('.photography-page .toggle-view .toggle-full').addClass('active');
+            $('.photography-page .toggle-view .toggle-grid').removeClass('active');
+            $('.staggered-photo-grid').removeClass('animate-out');
+            $('.staggered-photo-grid').addClass('full-width');
+            $('.staggered-photo-grid').removeClass('grid-view');
+            salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
+          }, 250)
+        } else {
+          console.log('already full')
+        }
+      })
+      $('.photography-page .toggle-view .toggle-grid').click(() => {
+        console.log('toggle grid')
+        if ($('.staggered-photo-grid').hasClass('full-width')) {
+          $('.staggered-photo-grid').addClass('animate-out');
+          setTimeout(() => {
+            $('.photography-page .toggle-view .toggle-full').removeClass('active');
+            $('.photography-page .toggle-view .toggle-grid').addClass('active');
+            $('.staggered-photo-grid').removeClass('animate-out');
+            $('.staggered-photo-grid').addClass('grid-view');
+            $('.staggered-photo-grid').removeClass('full-width');
+            salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
+          }, 250)
+        } else {
+          console.log('already full')
+        }
+      })
+    }
+  },
+
+  modals : function () {
+    var modalTrigger = $(".modal-trigger");
+
+    var playVideo = function(modalId) {
+      // Get iFrame and player by Modal Id
+      var iframe = $('.modal#'+modalId+ ' iframe');
+      var player = new Vimeo.Player(iframe);
+      player.play();
+      var onEnd = function(data) {
+        $(iframe).closest('.modal-wrap.open').removeClass('open');
+        $(iframe).closest('.modal.visible').removeClass('visible');
+      };
+      player.on('ended', onEnd);
+    };
+
+    var stopVideo = function (modalId) {
+      //Get iFrame and player by Modal Id
+      var iframe = $('.modal#'+modalId+ ' iframe');
+      var player = new Vimeo.Player(iframe);
+      player.unload();
+    };
+
+    modalTrigger.click(function(event) {
+      event.preventDefault();
+      var modalId = $(this).attr('data-modal-id');
+      var modal = $('.modal#' + modalId);
+      $(modal).closest('.modal-wrap').addClass('open');
+      $(modal).addClass('visible');
+
+      //Is there is a video?
+      if (modalId.includes('vimeo')) {
+        playVideo(modalId);
+      }
+
+    });
+
+    var closeModal = function(modalId) {
+      // Need to stop a video when the modal is closed
+      $('.modal-wrap.open').removeClass('open');
+      setTimeout(function(){
+        $('.modal.visible').removeClass('visible');
+        // Is there a video in the modal? Stop it
+      }, 200);
+      if (modalId.includes('vimeo')) {
+        stopVideo(modalId);
+      }
+    };
+
+    $('.overlay').click(function() {
+      var modalId = $(this).siblings('.modal.visible').attr('id');
+      closeModal(modalId);
+    });
+
+    $('.close-modal').click(function() {
+      var modalId = $(this).parent('.modal').attr('id');
+      closeModal(modalId);
+    });
   },
 
   headerScroll: function () {
@@ -190,10 +262,10 @@ var global = {
     }
   },
 
-  slideshowBlock: function() {
-    $('.block-slideshow .slideshow').slick({
-      slidesToShow: 3,
-      centerMode: true,
+  exploreSlideshow: function() {
+    $('.slideshow.explore-slideshow').slick({
+      slidesToShow: 1,
+      centerMode: false,
       slidesToScroll: 1,
       arrows: true,
       infinite: true,
@@ -203,19 +275,21 @@ var global = {
       swipeToSlide: true,
       accessibility: false,
       pauseOnHover: false,
-      responsive: [
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: true,
-            centerMode: false,
-            arrows: true,
-          }
-        }
-      ]
+      prevArrow: $('.explore-page .prev'),
+      nextArrow: $('.explore-page .next'),
+      // responsive: [
+      //   {
+      //     breakpoint: 600,
+      //     settings: {
+      //       slidesToShow: 1,
+      //       slidesToScroll: 1,
+      //       infinite: true,
+      //       dots: true,
+      //       centerMode: false,
+      //       arrows: true,
+      //     }
+      //   }
+      // ]
     });
   },
 

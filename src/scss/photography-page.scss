@@ -1,23 +1,62 @@
 .photography-page {
-	.staggered-grid {
+
+	.staggered-photo-grid {
 		margin-left: -$gutter/2;
 		margin-right: -$gutter/2;
-		column-count: 2;
-		column-gap: 0;
-		@include respond($md) {
-			column-count: 3;
+		display: flex;
+		transition: opacity $md-speed $ease, transform $md-speed $ease;
+		.col { padding-left: $gutter/2; padding-right: $gutter/2; flex: 1; }
+		.col3 { width: 25%; }
+		.col4 { width: 33.333%; }
+		.col6 { width: 50%; }
+		.col12 { width: 100%; }
+		.item-caption {
+			display: none;
 		}
-		@include respond($lg) {
-			column-count: 4;
+		&[data-columns]::before {
+			@media screen and (min-width: 0) and (max-width: $md + px) {
+				content: '2 .col.col6';
+			}
+			@media screen and (min-width: $md + px) and (max-width: $lg + px) {
+				content: '3 .col.col4';
+			}
+			@media screen and (min-width: $lg + px) and (max-width: 20000 + px) {
+				content: '4 .col.col3';
+			}
 		}
-		@include respond($huge) {
-			column-count: 5;
-		}
-		.item {
-			break-inside: avoid;
-			padding: 0 $gutter/2 $gutter $gutter/2;
-			img {
+		&.full-width {
+			opacity: 1;
+			transform: none;
+			.item-caption {
 				display: block;
+			}
+			&[data-columns]:before {
+				content: '1 .col.col12';
+			}
+		}
+		&.grid-view {
+			opacity: 1;
+			transform: none;
+		}
+		&.animate-out {
+			opacity: 0;
+			transform: translate3d(0, 2.1rem, 0);
+		}
+	}
+	
+	.toggle-item {
+		cursor: pointer;
+		padding: 0 ($gutter/2);
+		color: $light-text-color;
+		transition: color $md-speed $ease;
+		&:hover,
+		&.active {
+			color: $text-color;
+		}
+		svg {
+			display: block;
+			* {
+				fill: currentColor;
 			}
 		}
 	}

@@ -1,0 +1,162 @@
+.modal-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity $md-speed $ease, visibility $md-speed $ease;
+	@include respond($md) {
+		padding-top: $gutter;
+		padding-bottom: $gutter;
+	}
+	&.modal-signup {
+		visibility: hidden;
+		opacity: 1;
+		align-items: flex-end;
+		justify-content: flex-end;
+		padding: 20px;
+		transition: none;
+		overflow: hidden;
+		padding-bottom: 0;
+		@include respond($md) {
+			padding: $gutter-tight;
+		}
+		.modal {
+			margin: 0;
+			min-width: 20rem;
+			transition: transform $slow-speed $ease;
+			transform: translate3d(0, 100%, 0);
+		}
+	}
+	&.video-modal {
+		.modal {
+			padding: 0;
+			background: transparent;
+			width: $site-width;
+		  max-width: $max-site-width;
+		  @include respond($lg) {
+		    width: calc(100% - #{$margin} * 2);
+		  }
+			.close-modal {
+				@include respond($md) {
+					position: fixed;
+					right: 1rem;
+					top: 1rem;
+					color: $text-color;
+					&:hover {
+						color: $light-text-color;
+					}
+				}
+			}
+		}
+		.lazy-wrap {
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		.overlay {
+			background: $bg-color;
+		}
+	}
+	.overlay {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+		background: $bg-color;
+		opacity: 1;
+	}
+	&.open {
+		opacity: 1;
+		visibility: visible;
+		&.modal-signup {
+			.modal {
+				transform: none;
+
+			}
+		}
+	}
+	.modal {
+		position: relative;
+		z-index: 2;
+		background: $bg-color;
+		max-width: 55rem;
+		padding: $mobile-margin;
+		margin: auto;
+		display: none;
+		opacity: 0;
+		transition: opacity $md-speed $ease, transform $md-speed $ease;
+		&.visible {
+			opacity: 1;
+			display: block;
+		}
+		@include respond($md) {
+			width: calc(100% - #{$mobile-margin} * 2);
+			padding: $gutter;
+		}
+		@include respond($lg) {
+			padding: $gutter * 1.5;
+		}
+		.close-modal {
+			transition: color $md-speed $ease, background $md-speed $ease;
+			cursor: pointer;
+			z-index: 1;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: auto;
+			height: auto;
+			left: auto;
+			bottom: auto;
+			box-shadow: none;
+			padding: 10px;
+			background: transparent;
+			border-radius: 0;
+			color: $text-color;
+			&:hover {
+				color: $light-text-color;
+				background: transparent;
+			}
+			.material-icons {
+				font-size: 24px;
+			}
+		}
+		&.team-modal {
+			.col {
+				&.label {
+					width: 80px;
+				}
+				&.right {
+					// @include respond($md) {
+					// 	width: 66.666%;
+					// }
+					@include respond($lg) {
+						width: 50%;
+					}
+				}
+				&.left {
+					img {
+						width: 100%;
+					}
+					// @include respond($md) {
+					// 	width: 33.333%;
+					// }
+					@include respond($lg) {
+						width: 50%;
+					}
+				}
+			}
+		}
+	}
+}

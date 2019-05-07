@@ -3,10 +3,12 @@
 {% block content %}
 	
 	<div class="explore-page">
-		<div class="explore-slideshow">
+		<div class="prev">Prev</div>
+		<div class="next">Next</div>
+		<div class="slideshow explore-slideshow">
 			{% for i in post.get_field('image_gallery') %}
 				<div class="slide">
-					<div class="{% if i.width / i.height > 1 %}landscape slide-cover{% else %}portrait slide-contain{% endif %}">
+					<div class="{% if i.width / i.height > 1 %}slide-landscape{% else %}slide-portrait{% endif %}">
 						<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
 					</div>
 				</div>
