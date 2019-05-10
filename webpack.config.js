@@ -1,6 +1,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 const extractSass = new ExtractTextPlugin({
   filename: "wp-content/themes/gw-base/assets/css/[name].css",
@@ -21,9 +22,16 @@ const config = {
 	},
 	plugins: [
 		extractSass,
-    new UglifyJSPlugin({
-      extractComments: true
-    }),
+    // new UglifyJSPlugin({
+    //   extractComments: true
+    // }),
+
+    new WebpackBuildNotifierPlugin({
+      title: "Webpack Build",
+      logo: path.resolve("./img/favicon.png"),
+      suppressSuccess: false,
+      sound: false
+    })
     // new CompressionPlugin({
     //   asset: "[path].gz[query]",
     //   algorithm: "gzip",
