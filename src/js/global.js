@@ -85,9 +85,9 @@ var global = {
   },
 
   togglePhotoView: () => {
-    console.log('togglePhotoView RAN')
     if ($('.staggered-photo-grid').length) {
       salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
+
       $('.photography-page .toggle-view .toggle-full').click(() => {
         console.log('toggle full')
         if ($('.staggered-photo-grid').hasClass('grid-view')) {
@@ -205,13 +205,16 @@ var global = {
   },
 
   photoModal : function() {
-    var modalTrigger = $(".photo-modal-trigger");
+    var modalTrigger = $('.photo-modal-trigger');
     modalTrigger.click(function(event) {
-      console.log('photo modal trigger clicked')
-      event.preventDefault();
-      var modal = $('.modal#photo-modal-slide');
-      $(modal).closest('.modal-wrap').addClass('open');
-      $(modal).addClass('visible');
+      if ( $(this).parent().parent().parent().parent().hasClass('grid-view') ) {
+        event.preventDefault();
+        var modal = $('.modal#photo-modal-slide');
+        $(modal).closest('.modal-wrap').addClass('open');
+        $(modal).addClass('visible');
+      } else {
+        console.log('full-view, no modal');
+      }
     });
 
     var closeModal = function() {
