@@ -2,6 +2,32 @@
 	color: $white;
 	background: $black;
 	height: 100%;
+	.explore-overlay {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		pointer-events: none;
+		background: rgba(0, 0, 0, .5);
+		color: $white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 10;
+		.h6 {
+			@include respond($xlg) {
+				font-size: 1rem;
+			}
+			.material-icons {
+				margin-top: -3px;
+				@include respond($xlg) {
+					margin-top: -6px;
+				}
+			}
+		}
+		animation: fade-out 1s 3s $ease forwards;
+	}
 	header {
 		z-index: 4;
 	}
@@ -17,6 +43,9 @@
 		top: 0;
 		bottom: 0;
 		opacity: .3;
+		@include respond-smaller-than($lg) {
+			display: none !important;
+		}
 	}
 	.next {
 		right: 0;
