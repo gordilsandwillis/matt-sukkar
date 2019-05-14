@@ -7,6 +7,7 @@
 			{% for category in all_categories %}
 				<p class="h6 film-category" data-category-id={{category.id}}>{{category.name}}</p>
 			{% endfor %}
+				<p class="h6 film-category" data-category-id="all">View All</p>
 		</div>
 		<div class="grid-flex">
 			{% for video in post.get_field('videos') %}

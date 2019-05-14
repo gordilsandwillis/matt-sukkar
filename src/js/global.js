@@ -8,6 +8,7 @@ var lazyload = require('jquery-lazyload/jquery.lazyload.js');
 var lazysizes = require('lazysizes');
 var slick = require('slick-carousel');
 var salvattore = require("salvattore");
+var $slickCache;
 
 var global = {
   init: function(){
@@ -274,7 +275,7 @@ var global = {
       centerMode: false,
       slidesToScroll: 1,
       arrows: true,
-      infinite: true,
+      infinite: false,
       fade: false,
       speed: 750,
       autoplay: false,
@@ -478,38 +479,72 @@ var global = {
 
   filterFilmsByCategory: function() {
     $('.film-category').click(function(event) {
+
       var categoryID = $(this).attr('data-category-id');
-      console.log('categoryID::::', categoryID);
 
-      $('.film-thumb-wrapper').each(function( index ) {
-        var catArray = $( this ).attr('data-category-id').split(',');
-        if ( catArray.includes(categoryID) ){
-          $(this).show();
-        } else {
-          $(this).hide();
-        }
-      });
+      if ( categoryID === 'all'){
+        $('.film-thumb-wrapper').each(function( index ) {
+            $(this).show();
+        });
 
-      // filter slick slides
-      $('.film-slideshow').slick('slickUnfilter');
-      $('.film-slideshow')[0].slick.refresh()
-      // $('.film-slideshow').slickUnfilter();
-      $('.film-slideshow .slick-slide').each(function(){
-        $(this).removeClass('slide-visible');
-      });
+      } else {
 
-      $('.film-slideshow .slide').each(function(){
-        if( $(this).attr('data-category-id').split(',').includes(categoryID) ){
-          console.log('found target cat only :: ', $(this).attr('data-video-id'));
-          $(this).parent().parent().addClass('slide-visible');
-        }
-      });
-
-      $('.film-slideshow').slick('slickFilter', '.slide-visible');
-      var $afterSlides = $('.film-slideshow').slick('getSlick').$slides;
-      console.log('AFTER SLICK FILTER slick slides: ', $afterSlides);
+        $('.film-thumb-wrapper').each(function( index ) {
+          var catArray = $( this ).attr('data-category-id').split(',');
+          if ( catArray.includes(categoryID) ){
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+        global.filterHandler(categoryID);
+      }
     });
   },
+
+  filterHandler: function(categoryID) {
+
+      var previousFilter = '';
+      var currentFilter = 'all';
+      var filtered = 'false';
+      var slick = $('.film-slideshow')[0].slick;
+      var query;
+
+      // Removes filter state if cache is active ( indicates a filter is applied).
+      if (slick.$slidesCache !== null) {
+        slick.unload();
+        slick.$slideTrack.children(slick.options.slide).remove();
+        $slickCache.appendTo(slick.$slideTrack);
+        slick.reinit();
+        slick.goTo(0);
+      }
+      query = '[data-category-id*="' + categoryID + '"]'
+
+      // Store a deep copy of the original carousel
+      $slickCache = slick.$slides.clone(true, true);
+
+      // Store the previous filter for reference
+      previousFilter = currentFilter;
+
+      if (categoryID === 'all') {
+        filtered = false;
+        currentFilter = '';
+      } else {
+         // Pass custom function to slick to query UI for our target
+        slick.filterSlides(function(index, element) {
+            return $(element).find(query).length > 0;
+        });
+
+        // Reset slider position
+        slick.goTo(0);
+
+        // Store useful properties.
+        filtered = true;
+        currentFilter = categoryID;
+      }
+
+      return currentFilter;
+    },
 
   mailchimpFooter : function () {
     $('footer .mc_form_inside #mc_mv_EMAIL').attr("placeholder","Enter Email")
