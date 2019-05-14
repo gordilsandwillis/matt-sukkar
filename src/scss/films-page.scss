@@ -1,0 +1,23 @@
+.films-page {
+	.categories {
+		max-width: 75%;
+		margin: 0 auto $space-4;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		// justify-content: space-evenly;
+		p {
+			display: inline-block;
+			margin-left: $space-2;
+			cursor: pointer;
+			color: $light-text-color;
+			transition: color $slow-speed $ease;
+			&:hover {
+				color: $text-color;
+			}
+		}
+		p:first-of-type {
+			margin-left: 0;
+		}
+	}
+}

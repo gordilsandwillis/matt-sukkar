@@ -7,9 +7,13 @@
 		<div class="next">Next</div>
 		<div class="slideshow explore-slideshow">
 			{% for i in post.get_field('image_gallery') %}
-				<div class="slide">
+				<div class="slide" data-imageID="{{i.id}}">
 					<div class="{% if i.width / i.height > 1 %}slide-landscape{% else %}slide-portrait{% endif %}">
-						<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
+						<div class="explore-wrap" data-image-id="{{i.id}}" data-image-src="{{i.url}}" data-image-alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
+							{% if loop.index == 1 %}
+								<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
+							{% endif %}
+						</div>
 					</div>
 				</div>
 			{% endfor %}

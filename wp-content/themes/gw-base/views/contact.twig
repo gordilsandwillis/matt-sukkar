@@ -2,26 +2,28 @@
 
 {% block content %}
 
-<div class="contact-page">
+<div class="contact-page pt-4">
 	<div class="container">
 		<div class="grid-flex break-lg right">
-			<div class="col-6 stagger-in-items">
-				
-				<div class="p xlg rich-text mb-4 pb-4">
-					{{ post.content }}
-				</div>
-				
-				{% for link in post.get_field('contact_links') %}
-					{% if link.email %}
-						{% if link.link_header %}
-							<h6 class="mt-4">{{ link.link_header }}</h6>
+			<div class="col-7 stagger-in-items">
+				<div class="contact-wrapper">
+					<div class="p xlg rich-text">
+						{{ post.content }}
+					</div>
+					
+					<div class="links">
+					{% for link in post.get_field('contact_links') %}
+						{% if link.email %}
+							{% if link.link_header %}
+								<h6 class="mt-4">{{ link.link_header }}</h6>
+							{% endif %}
+							<p class="xlg">
+								<a href="mailto:{{ link.email }}" class="light-text-color">{{ link.email }}</a>
+							</p>
 						{% endif %}
-						<p class="xlg">
-							<a href="mailto:{{ link.email }}" class="light-text-color">{{ link.email }}</a>
-						</p>
-					{% endif %}
-				{% endfor %}
-
+					{% endfor %}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
