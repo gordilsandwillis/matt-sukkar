@@ -32,6 +32,8 @@
 		&.full-width {
 			opacity: 1;
 			transform: none;
+			margin-left: 0;
+			margin-right: 0;
 			.item-caption {
 				display: block;
 			}

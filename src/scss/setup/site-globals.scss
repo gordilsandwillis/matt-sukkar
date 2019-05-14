@@ -7,7 +7,8 @@ body {
 	transition: background $slow-speed $ease, color $slow-speed $ease;
 	min-height: 100%;
 	height: 100%;
-	overflow: inherit;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 #main {
@@ -17,6 +18,13 @@ body {
 		min-height: 100vh;
 		.wrapper {
 			min-height: 100vh;
+			padding-top: $header-height;
+			transition: transform $md-speed $ease, padding $md-speed $ease;
+		}
+	}
+	&.contact {
+		.page-content .wrapper {
+			padding-top: 0;
 		}
 	}
 }

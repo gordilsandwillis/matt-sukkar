@@ -15,7 +15,7 @@ var global = {
 
   ready: function(){
     this.pageTransitions();
-    // this.menuToggle();
+    this.menuToggle();
     // this.mailchimpSignup.init(this.mailchimpSignup);
     lazySizes.init();
     this.topArea();
@@ -47,6 +47,20 @@ var global = {
 
   pageTransitions: function () {
     'use strict';
+
+    let path = location.pathname;
+    if (path === '/') {
+      path = 'home'
+    } else if (path === '/contact/') {
+      path = 'contact'
+    } else if (path === '/photography/') {
+      path = 'photography'
+    } else if (path === '/explore/') {
+      path = 'explore'
+    }
+
+    $('#main').addClass(path)
+
     var options = {
       prefetch: true,
       cacheLength: 2,
@@ -69,6 +83,12 @@ var global = {
           let path = location.pathname;
           if (path === '/') {
             path = 'home'
+          } else if (path === '/contact/') {
+            path = 'contact'
+          } else if (path === '/photography/') {
+            path = 'photography'
+          } else if (path === '/explore/') {
+            path = 'explore'
           }
           $container.removeClass();
           // $container.removeClass('is-exiting');
@@ -236,15 +256,31 @@ var global = {
   },
 
   menuToggle: function () {
-    $('.menu-toggle').click(function(){
-      $('body').addClass('menu-open');
+    var headerHeight = $('header').innerHeight();
+    var navHeight = $('header .nav-main ul').innerHeight();
+
+    $('.toggle-menu').click(function(){
+      $('body').toggleClass('menu-open');
+      if ($('body').hasClass('menu-open')) {
+        // $('body #main .page-content .wrapper').css({'transform': 'translate3d(0, ' + navHeight + 'px, 0)'});
+        // $('body #main .page-content .wrapper').css({'padding-top': headerHeight + navHeight + 'px'});
+        $('header .nav-main').height(navHeight)
+      } else {
+        // $('body #main .page-content .wrapper').css({'transform': 'none'});
+        // $('body #main .page-content .wrapper').css({'padding-top': headerHeight + 'px'});
+        $('header .nav-main').height(0)
+      }
     });
     $('.close-menu').click(function(){
       $('body').removeClass('menu-open');
+      // $('body #main .page-content .wrapper').css({'transform': 'none'});
+      // $('body #main .page-content .wrapper').css({'padding-top': headerHeight + 'px'});
+      $('header .nav-main').height(0)
     });
-    $('.menu-wrap').click(function(){
-      $('body').removeClass('menu-open');
-    });
+
+    // $('.menu-wrap').click(function(){
+    //   $('body').removeClass('menu-open');
+    // });
   },
 
   getInstalink: function () {
