@@ -18,7 +18,7 @@
 		padding-top: $gutter;
 		padding-bottom: $gutter;
 	}
-	&.film-modal {
+	&.video-modal {
 		.modal {
 			padding: 0;
 			background: transparent;
@@ -48,7 +48,7 @@
 			background: $bg-color;
 		}
 	}
-	// &.film-modal,
+	&.film-modal,
 	&.photo-modal {
 		.modal {
 			padding: 0;
@@ -177,6 +177,7 @@
 .film-modal,
 .photo-modal {
 	.modal {
+		.film-slideshow,
 		.photo-slideshow {
 			height: 100%;
 			.slick-list {
@@ -222,51 +223,59 @@
 					}
 				}
 			}
-
 		}
-	}
-}
-
-.photo-modal {
-	.modal {
 		.arrow-nav {
 			.prev-arrow {
 				cursor: pointer;
 				position: absolute;
 				top: 50%;
-				left: 5%;
+				left: 2%;
 				z-index: 6;
 			}
 			.next-arrow {
 				cursor: pointer;
 				position: absolute;
 				top: 50%;
-				right: 5%;
+				right: 2%;
 				z-index: 6;
 			}
 		}
 	}
 }
 
-.film-modal {
-	.modal {
-		.arrow-nav {
-			.prev-arrow {
-				cursor: pointer;
-				position: absolute;
-				bottom: 5%;
-				left: 5%;
-				// left: calc(50% - 36px);
-				z-index: 6;
-			}
-			.next-arrow {
-				cursor: pointer;
-				position: absolute;
-				bottom: 5%;
-				right: 5%;
-				// right: calc(50% - 36px);
-				z-index: 6;
-			}
+.film-slideshow {
+	.slide {
+
+		.lazy-wrap {
+			background: transparent;
 		}
 	}
 }
+
+// .photo-modal {
+// 	.modal {
+// 	}
+// }
+
+// .film-modal {
+// 	.modal {
+// 		.arrow-nav {
+// 			.prev-arrow {
+// 				cursor: pointer;
+// 				position: absolute;
+// 				bottom: 5%;
+// 				left: 5%;
+// 				// left: calc(50% - 36px);
+// 				z-index: 6;
+// 			}
+// 			.next-arrow {
+// 				cursor: pointer;
+// 				position: absolute;
+// 				bottom: 5%;
+// 				right: 5%;
+// 				// right: calc(50% - 36px);
+// 				z-index: 6;
+// 			}
+// 		}
+// 	}
+// }
