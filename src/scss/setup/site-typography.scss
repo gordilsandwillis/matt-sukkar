@@ -11,14 +11,13 @@ a {
 }
 
 p, .p {
-	&.xlg {
-		font-size: $h1-font-size;
+	&.xlg,
+	&.xlg p {
+		font-size: 20px;
 		font-weight: $h1-font-weight;
 		line-height: $short-line-height;
-		p {
+		@include respond($md) {
 			font-size: $h1-font-size;
-			font-weight: $h1-font-weight;
-			line-height: $short-line-height;
 		}
 	}
 }
