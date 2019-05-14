@@ -2,17 +2,19 @@
 
 {% block content %}
 
-<div class="photography-page">
-	<div class="toggle-view">
-		<div class="grid-flex no-break right gutter-none">
-			<div class="col">
-				<div class="toggle-item toggle-grid active">
-					{% include 'icons/grid.svg' %}
+<div class="photography-page pt-4">
+	<div class="container">
+		<div class="toggle-view mb-2">
+			<div class="grid-flex no-break right gutter-none">
+				<div class="col">
+					<div class="toggle-item toggle-grid active">
+						{% include 'icons/grid.svg' %}
+					</div>
 				</div>
-			</div>
-			<div class="col">
-				<div class="toggle-item toggle-full">
-					{% include 'icons/full-view.svg' %}
+				<div class="col">
+					<div class="toggle-item toggle-full">
+						{% include 'icons/full-view.svg' %}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -21,18 +23,53 @@
 		<div class="container">
 			<div class="staggered-photo-grid grid-view" data-columns>
 				{% for i in post.get_field('image_gallery') %}
+					<div>
 					<div class="item mb-gutter">
-						<div class="lazy-wrap lazyload">
-							<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
+						<div class="lazy-wrap lazyload photo-thumb photo-modal-trigger" data-modal-id="photo-modal-{{ i.id }}">
+							<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}" data-imageID="{{i.id}}">
 						</div>
 						<div class="item-caption pt-gutter align-center">
 							<p class="medium-weight">{{ i.title }}</p>
 							<p>{{ i.caption }}</p>
 						</div>
 					</div>
+					</div>
 				{% endfor %}
 			</div>
 		</div>
+	</div>
+
+	<div class="modal-wrap photo-modal">
+		<div class="overlay"></div>
+			<div class="modal" id="photo-modal-slide">
+				<div class="close-modal"><span class="material-icons md-24">close</span></div>
+				<div class="arrow-nav">
+					<p class="prev-arrow">
+						<span class="material-icons md-36">keyboard_arrow_left</span>
+					</p>
+					<p class="next-arrow">
+						<span class="material-icons md-36">keyboard_arrow_right</span>
+					</p>
+				</div>
+				<div class="photo-slideshow">
+					{% for i in post.get_field('image_gallery') %}
+						{% if i.url %}
+							<div class="slide" data-imageID="{{i.id}}">
+								<div class="pt-margin slide-content">
+									{# <div class="lazyload lazy-wrap"> #}
+										<div class="image-wrap" data-image-id="{{i.id}}" data-image-src="{{i.url}}">
+										</div>
+									{# </div> #}
+									<div class="py-margin align-center caption">
+										<p class="medium-weight">{{ i.title }}</p>
+										<p>{{ i.caption }}</p>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
 	</div>
 </div>
 

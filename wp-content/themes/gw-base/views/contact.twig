@@ -2,26 +2,38 @@
 
 {% block content %}
 
-<div class="contact-page">
+<div class="contact-page-wrapper">
 	<div class="container">
-		<div class="grid-flex break-xlg right">
-			<div class="col-6 stagger-in-items">
-				
-				<div class="p xlg rich-text mb-4 pb-4">
-					{{ post.content }}
+		<div class="grid-flex break-xlg right py-4">
+			<div class="col-6 order-2">
+				<div class="right-content stagger-in-items">
+					<div class="about-text">
+						<div class="p xlg rich-text">
+							{{ post.content }}
+						</div>
+					</div>
+					
+					<div class="links">
+						{% for link in post.get_field('contact_links') %}
+							{% if link.email %}
+								{% if link.link_header %}
+									<h6 class="mt-4">{{ link.link_header }}</h6>
+								{% endif %}
+								<p class="xlg">
+									<a href="mailto:{{ link.email }}" class="light-text-color">{{ link.email }}</a>
+								</p>
+							{% endif %}
+						{% endfor %}
+					</div>
 				</div>
-				
-				{% for link in post.get_field('contact_links') %}
-					{% if link.email %}
-						{% if link.link_header %}
-							<h6 class="mt-4">{{ link.link_header }}</h6>
-						{% endif %}
-						<p class="xlg">
-							<a href="mailto:{{ link.email }}" class="light-text-color">{{ link.email }}</a>
-						</p>
+			</div>
+
+			<div class="social-links pt-4">
+				{% for link in post.get_field('social_media_links') %}
+					{% if link.link_title and link.url %}
+						<a class="h6 bold" href="{{ link.url }}" target="_blank">{{ link.link_title }}</a><br>
 					{% endif %}
 				{% endfor %}
-
 			</div>
 		</div>
 	</div>

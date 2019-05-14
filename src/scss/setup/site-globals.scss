@@ -1,15 +1,24 @@
 html {
-	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-x: inherit;
+	overflow-y: inherit;
 }
 
 body {
 	transition: background $slow-speed $ease, color $slow-speed $ease;
 	min-height: 100%;
+	height: 100%;
+	overflow: inherit;
 }
 
 #main {
-	padding-top: 200px;
+	// padding-top: 200px;
+	min-height: 100%;
+	.page-content {
+		min-height: 100vh;
+		.wrapper {
+			min-height: 100vh;
+		}
+	}
 }
 
 a {
