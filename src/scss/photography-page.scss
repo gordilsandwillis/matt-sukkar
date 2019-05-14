@@ -1,4 +1,34 @@
+.toggle-view {
+	display: none;
+	position: fixed;
+	top: $margin;
+	right: $margin;
+	z-index: 5;
+	.toggle-item {
+		cursor: pointer;
+		padding: 0 ($gutter/2);
+		color: $light-text-color;
+		transition: color $md-speed $ease;
+		&:hover,
+		&.active {
+			color: $text-color;
+		}
+		svg {
+			display: block;
+			* {
+				fill: currentColor;
+			}
+		}
+		&.toggle-full {
+			padding-right: 0;
+		}
+	}
+}
+
 .photography-page {
+	.toggle-view {
+		display: block;
+	}
 
 	.staggered-photo-grid {
 		margin-left: -$gutter/2;
@@ -48,26 +78,6 @@
 		&.animate-out {
 			opacity: 0;
 			transform: translate3d(0, 2.1rem, 0);
-		}
-	}
-	
-	.toggle-item {
-		cursor: pointer;
-		padding: 0 ($gutter/2);
-		color: $light-text-color;
-		transition: color $md-speed $ease;
-		&:hover,
-		&.active {
-			color: $text-color;
-		}
-		svg {
-			display: block;
-			* {
-				fill: currentColor;
-			}
-		}
-		&.toggle-full {
-			padding-right: 0;
 		}
 	}
 

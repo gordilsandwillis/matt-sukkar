@@ -49,18 +49,7 @@ var global = {
   pageTransitions: function () {
     'use strict';
 
-    let path = location.pathname;
-    if (path === '/') {
-      path = 'home'
-    } else if (path === '/contact/') {
-      path = 'contact'
-    } else if (path === '/photography/') {
-      path = 'photography'
-    } else if (path === '/explore/') {
-      path = 'explore'
-    }
-
-    $('#main').addClass(path)
+    // $('#main').addClass(path)
 
     var options = {
       prefetch: true,
@@ -81,19 +70,24 @@ var global = {
         duration: 0,
         render: function ($container, $newContent, url) {
           // Remove your CSS animation reversing class
-          let path = location.pathname;
-          if (path === '/') {
-            path = 'home'
-          } else if (path === '/contact/') {
-            path = 'contact'
-          } else if (path === '/photography/') {
-            path = 'photography'
-          } else if (path === '/explore/') {
-            path = 'explore'
-          }
+          // let path = location.pathname;
+          // if (path === '/') {
+          //   path = 'home'
+          // } else if (path === '/contact/') {
+          //   path = 'contact'
+          // } else if (path === '/photography/') {
+          //   path = 'photography'
+          // } else if (path === '/explore/') {
+          //   path = 'explore'
+          // } else if (path === '/films/') {
+          //   path = 'films'
+          // } else {
+          //   path = 'nothing'
+          // }
+
           $container.removeClass();
           // $container.removeClass('is-exiting');
-          $container.addClass(path);
+          // $container.addClass(path);
 
           // Inject the new content
           $container.html($newContent);
@@ -228,7 +222,7 @@ var global = {
   photoModal : function() {
     var modalTrigger = $('.photo-modal-trigger');
     modalTrigger.click(function(event) {
-      if ( $(this).parent().parent().parent().parent().hasClass('grid-view') ) {
+      if ( $('.staggered-photo-grid').hasClass('grid-view') ) {
         event.preventDefault();
         var modal = $('.modal#photo-modal-slide');
         $(modal).closest('.modal-wrap').addClass('open');

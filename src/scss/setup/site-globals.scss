@@ -29,6 +29,10 @@ body {
 	}
 }
 
+.container {
+	position: static;
+}
+
 a {
 	color: $text-color; 
 	&:hover {
