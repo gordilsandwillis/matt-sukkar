@@ -29,6 +29,8 @@ var global = {
     this.modals();
     this.photoModal();
     this.photographySlideshow();
+    this.filmSlideshowModal();
+    this.filmSlideshow();
     this.filterFilmsByCategory();
     window.lazySizesConfig = {
       addClasses: true
@@ -123,7 +125,7 @@ var global = {
 
   modals : function () {
     var modalTrigger = $(".modal-trigger");
-
+    
     var playVideo = function(modalId) {
       // Get iFrame and player by Modal Id
       var iframe = $('.modal#'+modalId+ ' iframe');
@@ -144,9 +146,10 @@ var global = {
     };
 
     modalTrigger.click(function(event) {
+    console.log('modal-trigger clicked')
       event.preventDefault();
       var modalId = $(this).attr('data-modal-id');
-      var modal = $('.modal#' + modalId);
+      var modal = $('.modal#vimeo-modal-' + modalId);
       $(modal).closest('.modal-wrap').addClass('open');
       $(modal).addClass('visible');
 
@@ -201,33 +204,6 @@ var global = {
     });
   },
 
-  modals : function () {
-    var modalTrigger = $(".modal-trigger");
-    modalTrigger.click(function(event) {
-      console.log('modal trigger clicked')
-      event.preventDefault();
-      var modalId = $(this).attr('data-modal-id');
-      var modal = $('.modal#' + modalId);
-      $(modal).closest('.modal-wrap').addClass('open');
-      $(modal).addClass('visible');
-    });
-
-    var closeModal = function() {
-      $('.modal-wrap.open').removeClass('open');
-      setTimeout(function(){ 
-        $('.modal.visible').removeClass('visible');
-      }, 200);
-    }
-
-    // $('.overlay').click(function() {
-    //   closeModal();
-    // });
-
-    $('.close-modal').click(function() {
-      closeModal();
-    });
-  },
-
   photoModal : function() {
     var modalTrigger = $(".photo-modal-trigger");
     modalTrigger.click(function(event) {
@@ -244,10 +220,6 @@ var global = {
         $('.modal.visible').removeClass('visible');
       }, 200);
     }
-
-    // $('.overlay').click(function() {
-    //   closeModal();
-    // });
 
     $('.close-modal').click(function() {
       closeModal();
@@ -416,9 +388,96 @@ var global = {
     thisSlideImage.html('<img src="'+ thisImageSrc +'">');
   },
 
+  filmSlideshowModal : function() {
+    var modalTrigger = $(".film-modal-trigger");
+    modalTrigger.click(function(event) {
+      console.log('film modal trigger clicked')
+      event.preventDefault();
+      var modal = $('.modal#film-modal-slide');
+      $(modal).closest('.modal-wrap').addClass('open');
+      $(modal).addClass('visible');
+    });
+
+    var closeModal = function() {
+      $('.modal-wrap.open').removeClass('open');
+      setTimeout(function(){ 
+        $('.modal.visible').removeClass('visible');
+      }, 200);
+    }
+    
+    $('.close-modal').click(function() {
+      closeModal();
+    });
+
+  },
+
+  filmSlideshow: function() {
+    $('.film-slideshow').slick({
+      slidesToShow: 1,
+      centerMode: false,
+      slidesToScroll: 1,
+      arrows: true,
+      infinite: true,
+      fade: false,
+      speed: 750,
+      autoplay: false,
+      swipeToSlide: true,
+      accessibility: false,
+      pauseOnHover: false,
+      prevArrow: false,
+      nextArrow: false,
+      waitForAnimate: false,
+      // responsive: [
+      //   {
+      //     breakpoint: 600,
+      //     settings: {
+      //       slidesToShow: 1,
+      //       slidesToScroll: 1,
+      //       infinite: true,
+      //       dots: true,
+      //       centerMode: false,
+      //       arrows: true,
+      //     }
+      //   }
+      // ]
+    });
+
+    $('.films-page .film-thumb-wrapper').click(function() {
+
+      var videoId = $(this).attr('data-video-id');
+
+      var $slides = $('.film-slideshow').slick('getSlick').$slides;
+      console.log('slick slides: ', $slides)
+      var $tar;
+      // find slide of target image id
+      $slides.each(function(){
+        var tarSlide = $(this).find('.slide');
+        if ( tarSlide.attr('data-video-id') == videoId) {
+          $tar = $(this);
+        }
+      })
+
+      // set idx as slick index
+      var idx = $slides.index( $tar );
+
+      $('.film-slideshow').slick("refresh");
+      $('.film-slideshow').slick('slickGoTo', idx, true);
+      $('.film-slideshow').slick("refresh");
+    });
+
+    $('.film-modal .modal .arrow-nav p.prev-arrow').click(function(){
+      $('.film-slideshow').slick('slickPrev');
+    })
+    $('.film-modal .modal .arrow-nav p.next-arrow').click(function(){
+      $('.film-slideshow').slick('slickNext');
+    }) 
+  },
+
   filterFilmsByCategory: function() {
     $('.film-category').click(function(event) {
       var categoryID = $(this).attr('data-category-id');
+      console.log('categoryID::::', categoryID);
+
       $('.film-thumb-wrapper').each(function( index ) {
         var catArray = $( this ).attr('data-category-id').split(',');
         if ( catArray.includes(categoryID) ){
@@ -427,6 +486,25 @@ var global = {
           $(this).hide();
         }
       });
+
+      // filter slick slides
+      $('.film-slideshow').slick('slickUnfilter');
+      $('.film-slideshow')[0].slick.refresh()
+      // $('.film-slideshow').slickUnfilter();
+      $('.film-slideshow .slick-slide').each(function(){
+        $(this).removeClass('slide-visible');
+      });
+
+      $('.film-slideshow .slide').each(function(){
+        if( $(this).attr('data-category-id').split(',').includes(categoryID) ){
+          console.log('found target cat only :: ', $(this).attr('data-video-id'));
+          $(this).parent().parent().addClass('slide-visible');
+        }
+      });
+
+      $('.film-slideshow').slick('slickFilter', '.slide-visible');
+      var $afterSlides = $('.film-slideshow').slick('getSlick').$slides;
+      console.log('AFTER SLICK FILTER slick slides: ', $afterSlides);
     });
   },
 

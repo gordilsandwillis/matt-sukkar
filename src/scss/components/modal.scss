@@ -18,7 +18,7 @@
 		padding-top: $gutter;
 		padding-bottom: $gutter;
 	}
-	&.video-modal {
+	&.film-modal {
 		.modal {
 			padding: 0;
 			background: transparent;
@@ -48,6 +48,7 @@
 			background: $bg-color;
 		}
 	}
+	// &.film-modal,
 	&.photo-modal {
 		.modal {
 			padding: 0;
@@ -167,6 +168,104 @@
 						width: 50%;
 					}
 				}
+			}
+		}
+	}
+}
+
+
+.film-modal,
+.photo-modal {
+	.modal {
+		.photo-slideshow {
+			height: 100%;
+			.slick-list {
+				height: 100%;
+				.slick-track {
+					height: 100%;
+					.slick-slide {
+						> div {
+							height: 100%;
+						}
+						.slide {
+							height: 100%;
+							.slide-content {
+					    	width: 100%;
+					    	height: 100%;
+								display: flex;
+					    	flex-direction: column;
+								.video-wrap,
+								.image-wrap {
+						    	width: 100%;
+									flex-grow: 1;
+						    	flex-shrink: 0;
+						    	position: relative;
+									img {
+										position: absolute;
+						    		width: 100%;
+						    		height: 100%;
+						    		top: 0;
+						    		left: 0;
+						    		right: 0;
+						    		bottom: 0;
+						    		object-fit: contain;
+									}
+								}
+								.caption {
+									width: 100%;
+									min-width: 100%;
+									flex-grow: 0;
+									flex-shrink: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
+}
+
+.photo-modal {
+	.modal {
+		.arrow-nav {
+			.prev-arrow {
+				cursor: pointer;
+				position: absolute;
+				top: 50%;
+				left: 5%;
+				z-index: 6;
+			}
+			.next-arrow {
+				cursor: pointer;
+				position: absolute;
+				top: 50%;
+				right: 5%;
+				z-index: 6;
+			}
+		}
+	}
+}
+
+.film-modal {
+	.modal {
+		.arrow-nav {
+			.prev-arrow {
+				cursor: pointer;
+				position: absolute;
+				bottom: 5%;
+				left: 5%;
+				// left: calc(50% - 36px);
+				z-index: 6;
+			}
+			.next-arrow {
+				cursor: pointer;
+				position: absolute;
+				bottom: 5%;
+				right: 5%;
+				// right: calc(50% - 36px);
+				z-index: 6;
 			}
 		}
 	}

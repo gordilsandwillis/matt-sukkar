@@ -1,11 +1,13 @@
 html {
-	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-x: inherit;
+	overflow-y: inherit;
 }
 
 body {
 	transition: background $slow-speed $ease, color $slow-speed $ease;
 	min-height: 100%;
+	height: 100%;
+	overflow: inherit;
 }
 
 #main {

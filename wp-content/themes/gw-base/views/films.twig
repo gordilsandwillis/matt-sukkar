@@ -1,7 +1,7 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="films-page">
+<div class="films-page mt-margin pt-margin">
 	<div class="container">
 		<div class="categories">
 			{% for category in all_categories %}
@@ -15,8 +15,8 @@
 						{% for cats in video.category %}
 							{% set category_ids = category_ids|merge([cats.term_id])%}
 						{% endfor %}
-					<div class="col-6 film-thumb-wrapper" data-category-id="{% if category_ids %}{{category_ids|join(',')}}{% else %}n{% endif %}">
-						<div class="film-thumb pb-3 trigger modal-trigger" data-modal-id="vimeo-modal-{{ video.vimeo_id }}-{{ loop.index }}">
+					<div class="col-6 film-thumb-wrapper" data-category-id="{% if category_ids %}{{category_ids|join(',')}}{% else %}n{% endif %}" data-video-id="{{video.vimeo_id}}">
+						<div class="film-thumb pb-3 trigger film-modal-trigger" data-modal-id="vimeo-modal-{{ video.vimeo_id }}-{{ loop.index }}">
 							<div class="set-ratio-16-9">
 								<div class="lazy-wrap lazyload object-cover">
 									<img src="{{ TimberImage(video.cover_image).src('gw-lg-16-9') }}">
@@ -33,7 +33,44 @@
 		</div>
 	</div>
 
-	<div class="modal-wrap video-modal">
+	<div class="modal-wrap film-modal">
+		<div class="overlay"></div>
+		<div class="modal" id="film-modal-slide">
+			<div class="close-modal"><span class="material-icons md-24">close</span></div>
+			<div class="arrow-nav">
+				<p class="prev-arrow">
+					<span class="material-icons md-36">keyboard_arrow_left</span>
+				</p>
+				<p class="next-arrow">
+					<span class="material-icons md-36">keyboard_arrow_right</span>
+				</p>
+			</div>
+			<div class="film-slideshow">
+			{% for video in post.get_field('videos') %}
+				{% if video.cover_image and video.vimeo_id %}
+					{% set category_ids = [] %}
+						{% for cats in video.category %}
+							{% set category_ids = category_ids|merge([cats.term_id])%}
+						{% endfor %}
+					<div class="slide" data-category-id="{% if category_ids %}{{category_ids|join(',')}}{% else %}n{% endif %}" data-video-id="{{video.vimeo_id}}">
+						<div class="pt-margin slide-content">
+							<div class="video-wrap lazyload lazy-wrap" style="background-image: url({{ TimberImage(video.cover_image).src('gw-lg-16-9') }})">
+								<iframe id="aboutVideo" src="https://player.vimeo.com/video/{{ video.vimeo_id }}?&color=00AEEF&title=0&byline=0&portrait=0" width="1200" height="675" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+							</div>
+							<div class="py-margin align-center caption">
+								<p class="medium-weight">{{ video.caption.primary_caption }}</p>
+								<p>{{ video.caption.secondary_caption }}</p>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	{# OLD MODAL ( non-slideshow )#}
+	{# <div class="modal-wrap video-modal">
 		<div class="overlay"></div>
 		{% for video in post.get_field('videos') %}
 			{% if video.cover_image and video.vimeo_id %}
@@ -45,6 +82,6 @@
 				</div>
 			{% endif %}
 		{% endfor %}
-	</div>
+	</div> #}
 </div>
 {% endblock %}
