@@ -223,6 +223,7 @@ var global = {
     // $('.menu-wrap').click(function(){
     //   $('body').removeClass('menu-open');
     // });
+    
   },
 
   getInstalink: function () {
