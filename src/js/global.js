@@ -509,7 +509,7 @@ var global = {
 
   filterFilmsByCategory: function() {
     $('.film-category').click(function(event) {
-
+      $(this).addClass('active');
       var categoryID = $(this).attr('data-category-id');
 
       if ( categoryID === 'all'){
