@@ -4,7 +4,7 @@
 
 <div class="photography-page">
 	
-	<div class="toggle-view mb-2 hide-md">
+{# 	<div class="toggle-view mb-2 hide-md">
 		<div class="grid-flex no-break right gutter-none">
 			<div class="col">
 				<div class="toggle-item toggle-grid active">
@@ -17,14 +17,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> #}
 
 	<div class="photography-content">
 		<div class="container">
 			<div class="staggered-photo-grid grid-view" data-columns>
 				{% for i in post.get_field('image_gallery') %}
 					<div>
-					<div class="item mb-gutter">
+					<div class="item">
 						<div class="lazy-wrap lazyload photo-thumb photo-modal-trigger" data-modal-id="photo-modal-{{ i.id }}">
 							<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}" data-imageID="{{i.id}}">
 						</div>

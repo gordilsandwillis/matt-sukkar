@@ -27,7 +27,6 @@ var global = {
     this.getInstalink();
     this.mailchimpFooter();
     this.togglePhotoView();
-    this.modals();
     this.photoModal();
     this.photographySlideshow();
     this.filmSlideshowModal();
@@ -138,66 +137,6 @@ var global = {
     }
   },
 
-  modals : function () {
-    var modalTrigger = $(".modal-trigger");
-    
-    var playVideo = function(modalId) {
-      // Get iFrame and player by Modal Id
-      var iframe = $('.modal#'+modalId+ ' iframe');
-      var player = new Vimeo.Player(iframe);
-      player.play();
-      var onEnd = function(data) {
-        $(iframe).closest('.modal-wrap.open').removeClass('open');
-        $(iframe).closest('.modal.visible').removeClass('visible');
-      };
-      player.on('ended', onEnd);
-    };
-
-    var stopVideo = function (modalId) {
-      //Get iFrame and player by Modal Id
-      var iframe = $('.modal#'+modalId+ ' iframe');
-      var player = new Vimeo.Player(iframe);
-      player.unload();
-    };
-
-    modalTrigger.click(function(event) {
-    console.log('modal-trigger clicked')
-      event.preventDefault();
-      var modalId = $(this).attr('data-modal-id');
-      var modal = $('.modal#vimeo-modal-' + modalId);
-      $(modal).closest('.modal-wrap').addClass('open');
-      $(modal).addClass('visible');
-
-      //Is there is a video?
-      if (modalId.includes('vimeo')) {
-        playVideo(modalId);
-      }
-
-    });
-
-    var closeModal = function(modalId) {
-      // Need to stop a video when the modal is closed
-      $('.modal-wrap.open').removeClass('open');
-      setTimeout(function(){
-        $('.modal.visible').removeClass('visible');
-        // Is there a video in the modal? Stop it
-      }, 200);
-      if (modalId.includes('vimeo')) {
-        stopVideo(modalId);
-      }
-    };
-
-    // $('.overlay').click(function() {
-    //   var modalId = $(this).siblings('.modal.visible').attr('id');
-    //   closeModal(modalId);
-    // });
-
-    $('.close-modal').click(function() {
-      var modalId = $(this).parent('.modal').attr('id');
-      closeModal(modalId);
-    });
-  },
-
   headerScroll: function () {
     var scrollTop = $('body').scrollTop() || $('html').scrollTop();
     if (scrollTop > 150) {
@@ -221,28 +160,30 @@ var global = {
 
   photoModal : function() {
     var modalTrigger = $('.photo-modal-trigger');
-    modalTrigger.click(function(event) {
-      if ( $('.staggered-photo-grid').hasClass('grid-view') ) {
-        event.preventDefault();
-        var modal = $('.modal#photo-modal-slide');
-        $(modal).closest('.modal-wrap').addClass('open');
-        $(modal).addClass('visible');
-      } else {
-        console.log('full-view, no modal');
+    if ( (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) ) {
+    } else {
+      modalTrigger.click(function(event) {
+        if ( $('.staggered-photo-grid').hasClass('grid-view') ) {
+          event.preventDefault();
+          var modal = $('.modal#photo-modal-slide');
+          $(modal).closest('.modal-wrap').addClass('open');
+          $(modal).addClass('visible');
+        } else {
+          console.log('full-view, no modal');
+        }
+      });
+
+      var closeModal = function() {
+        $('.modal-wrap.open').removeClass('open');
+        setTimeout(function(){ 
+          $('.modal.visible').removeClass('visible');
+        }, 200);
       }
-    });
 
-    var closeModal = function() {
-      $('.modal-wrap.open').removeClass('open');
-      setTimeout(function(){ 
-        $('.modal.visible').removeClass('visible');
-      }, 200);
+      $('.close-modal').click(function() {
+        closeModal();
+      });
     }
-
-    $('.close-modal').click(function() {
-      closeModal();
-    });
-
   },
 
   topArea : function () {
@@ -253,6 +194,12 @@ var global = {
   menuToggle: function () {
     var headerHeight = $('header').innerHeight();
     var navHeight = $('header .nav-main ul').innerHeight();
+
+    $(".home-page header").bind("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){ 
+      navHeight = $('header .nav-main ul').innerHeight();
+      $('body').addClass('menu-open');
+      $('header .nav-main').height(navHeight)
+    });
 
     $('.toggle-menu').click(function(){
       $('body').toggleClass('menu-open');
@@ -415,21 +362,48 @@ var global = {
     }) 
   },
 
-  replaceSlideshowImage: function(imageId){
+  replaceSlideshowImage: function(imageId) {
     // console.log('replaceSlideshowImage ran:::', imageId);
     var thisSlideImage = $('.photo-slideshow .slide').find('.image-wrap[data-image-id="'+ imageId +'"]');
     var thisImageSrc = thisSlideImage.attr('data-image-src');
     thisSlideImage.html('<img src="'+ thisImageSrc +'">');
   },
 
+  stopVideo: function(videoId) {
+    var iframe = $('.slide[data-video-id="'+videoId+ '"] iframe');
+    console.log('stop video iframe : ', iframe );
+    var player = new Vimeo.Player(iframe);
+    player.pause();
+    // player.unload();
+  },
+
+  playVideo: function(videoId) {
+
+    var iframe = $('.slide[data-video-id="'+videoId+ '"] iframe');
+    console.log('play video iframe : ', iframe );
+
+    var player = new Vimeo.Player(iframe);
+    player.play();
+
+    var onEnd = function(data) {
+      $(iframe).closest('.modal-wrap.open').removeClass('open');
+      $(iframe).closest('.modal.visible').removeClass('visible');
+    };
+
+    player.on('ended', onEnd);
+  },
+
   filmSlideshowModal : function() {
     var modalTrigger = $(".film-modal-trigger");
+
     modalTrigger.click(function(event) {
       console.log('film modal trigger clicked')
       event.preventDefault();
       var modal = $('.modal#film-modal-slide');
       $(modal).closest('.modal-wrap').addClass('open');
+      $(modal).children().first().attr('data-video-id', $(this).attr('data-video-id'));
       $(modal).addClass('visible');
+      global.playVideo($(this).attr('data-video-id'));
     });
 
     var closeModal = function() {
@@ -440,7 +414,9 @@ var global = {
     }
     
     $('.close-modal').click(function() {
+      var videoId = $(this).attr('data-video-id');
       closeModal();
+      global.stopVideo(videoId);
     });
 
   },
@@ -481,7 +457,6 @@ var global = {
       var videoId = $(this).attr('data-video-id');
 
       var $slides = $('.film-slideshow').slick('getSlick').$slides;
-      console.log('slick slides: ', $slides)
       var $tar;
       // find slide of target image id
       $slides.each(function(){
@@ -500,15 +475,28 @@ var global = {
     });
 
     $('.film-modal .modal .arrow-nav p.prev-arrow').click(function(){
+      var elSlide = $('.film-slideshow').find('.slick-current');
+      var videoId = elSlide.find('.slide').attr('data-video-id');
+      console.log('beforeChange, videoId:', videoId)
+      global.stopVideo(videoId);
       $('.film-slideshow').slick('slickPrev');
     })
     $('.film-modal .modal .arrow-nav p.next-arrow').click(function(){
+      var elSlide = $('.film-slideshow').find('.slick-current');
+      var videoId = elSlide.find('.slide').attr('data-video-id');
+      console.log('beforeChange, videoId:', videoId)
+      global.stopVideo(videoId);
       $('.film-slideshow').slick('slickNext');
     }) 
   },
 
   filterFilmsByCategory: function() {
     $('.film-category').click(function(event) {
+      $('.film-category').each(function( index ) {
+        if ( $(this).hasClass('active')){
+          $(this).removeClass('active');
+        }
+      });
       $(this).addClass('active');
       var categoryID = $(this).attr('data-category-id');
 

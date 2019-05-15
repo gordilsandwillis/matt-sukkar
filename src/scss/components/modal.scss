@@ -59,14 +59,12 @@
 		  max-width: $max-site-width;
 		  
 			.close-modal {
-				@include respond($md) {
-					position: fixed;
-					right: 1rem;
-					top: 1rem;
-					color: $text-color;
-					&:hover {
-						color: $light-text-color;
-					}
+				position: fixed;
+				right: 1rem;
+				top: 1rem;
+				color: $text-color;
+				&:hover {
+					color: $light-text-color;
 				}
 			}
 		}
