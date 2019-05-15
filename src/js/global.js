@@ -38,6 +38,7 @@ var global = {
   },
   
   resize:function(){
+
   },
   
   scroll: function(){
@@ -193,7 +194,7 @@ var global = {
 
   menuToggle: function () {
     var headerHeight = $('header').innerHeight();
-    var navHeight = $('header .nav-main ul').innerHeight();
+    var navHeight;
 
     $(".home-page header").bind("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){ 
       navHeight = $('header .nav-main ul').innerHeight();
@@ -202,6 +203,7 @@ var global = {
     });
 
     $('.toggle-menu').click(function(){
+      navHeight = $('header .nav-main ul').innerHeight();
       $('body').toggleClass('menu-open');
       if ($('body').hasClass('menu-open')) {
         // $('body #main .page-content .wrapper').css({'transform': 'translate3d(0, ' + navHeight + 'px, 0)'});
@@ -223,7 +225,7 @@ var global = {
     // $('.menu-wrap').click(function(){
     //   $('body').removeClass('menu-open');
     // });
-    
+
   },
 
   getInstalink: function () {

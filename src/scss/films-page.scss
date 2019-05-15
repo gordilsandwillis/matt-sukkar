@@ -1,8 +1,20 @@
 .films-page {
 	.categories {
-		max-width: 75%;
-		margin: $space-2 auto $space-4;
+		position: fixed;
+		top: 0;
+		right: $margin;
+		z-index: 6;
+		// max-width: 75%;
+		margin: $margin auto 0;
 		// justify-content: space-evenly;
+		@include respond(1200){
+			left: 200px;
+			right: 200px;
+		}
+
+		@include respond-smaller-than(930){
+			display: none;
+		}
 		p {
 			display: inline-block;
 			margin-left: $space-2;
