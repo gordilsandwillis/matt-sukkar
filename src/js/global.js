@@ -272,7 +272,8 @@ var global = {
     touchsurface.addEventListener('touchstart', function(e){
         var touchobj = e.changedTouches[0]
         swipedir = 'none'
-        dist = 0
+        distX = 0
+        distY = 0
         startX = touchobj.pageX
         startY = touchobj.pageY
         startTime = new Date().getTime() // record time when finger first makes contact with surface
@@ -301,12 +302,70 @@ var global = {
     }, false)
   },
 
+  isSwipe: function () {
+  var container = document.querySelector("#explore-page-swipe");
+
+  container.addEventListener("touchstart", startTouch, false);
+  container.addEventListener("touchmove", moveTouch, false);
+
+  // Swipe Up / Down / Left / Right
+  var initialX = null;
+  var initialY = null;
+
+  function startTouch(e) {
+    initialX = e.touches[0].clientX;
+    initialY = e.touches[0].clientY;
+  };
+
+  function moveTouch(e) {
+    if (initialX === null) {
+      return;
+    }
+
+    if (initialY === null) {
+      return;
+    }
+
+    var currentX = e.touches[0].clientX;
+    var currentY = e.touches[0].clientY;
+
+    var diffX = initialX - currentX;
+    var diffY = initialY - currentY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      // sliding horizontally
+      if (diffX > 0) {
+        // swiped left
+        console.log("swiped left");
+      } else {
+        // swiped right
+        console.log("swiped right");
+      }  
+    } else {
+      // sliding vertically
+      if (diffY > 0) {
+        // swiped up
+        console.log("swiped up");
+      } else {
+        // swiped down
+        console.log("swiped down");
+      }  
+    }
+
+    initialX = null;
+    initialY = null;
+
+    e.preventDefault();
+  };
+  },
+
   explorePageSwipe: function () {
     // if ( (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) ) {
       var el = document.getElementById('explore-page-swipe');
       if ( el ) {
         global.swipedetect(el, function(swipedir){
           if (swipedir != 'none') {
+            console.log('SWIPED!!')
             if (!$('.explore-overlay').hasClass('hidden')){
               $('.explore-overlay').addClass('hidden');
             }
