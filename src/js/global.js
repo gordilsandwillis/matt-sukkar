@@ -302,14 +302,18 @@ var global = {
   },
 
   explorePageSwipe: function () {
-    var el = document.getElementById('explore-page-swipe')
-    global.swipedetect(el, function(swipedir){
-      if (swipedir != 'none') {
-        if (!$('.explore-overlay').hasClass('hidden')){
-          $('.explore-overlay').addClass('hidden');
-        }
+    // if ( (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) ) {
+      var el = document.getElementById('explore-page-swipe');
+      if ( el ) {
+        global.swipedetect(el, function(swipedir){
+          if (swipedir != 'none') {
+            if (!$('.explore-overlay').hasClass('hidden')){
+              $('.explore-overlay').addClass('hidden');
+            }
+          }
+        })
       }
-    })
+    // }
   },
 
   getInstalink: function () {
