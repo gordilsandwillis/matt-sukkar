@@ -90,7 +90,7 @@ header {
 				margin: -14px 0 -.5rem;
 				padding-right: 0;
 				position: absolute;
-				right: $mobile-margin;
+				right: calc(#{$mobile-margin} - 6px);
 				top: $margin;
 		  }
 		}

@@ -25,9 +25,13 @@
 				{% for i in post.get_field('image_gallery') %}
 					<div>
 					<div class="item">
-						<div class="lazy-wrap lazyload photo-thumb photo-modal-trigger" data-modal-id="photo-modal-{{ i.id }}">
-							<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}" data-imageID="{{i.id}}">
-						</div>
+						<a href="{{i.link}}">
+							<div class="photo-thumb-wrapper">
+								<div class="lazy-wrap lazyload photo-thumb" data-modal-id="photo-modal-{{ i.id }}">
+									<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}" data-imageID="{{i.id}}">
+								</div>
+							</div>
+						</a>
 						<div class="item-caption pt-gutter align-center">
 							<p class="medium-weight">{{ i.title }}</p>
 							<p>{{ i.caption }}</p>

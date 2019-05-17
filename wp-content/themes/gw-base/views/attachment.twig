@@ -1,8 +1,40 @@
-{% if post.children %}
-    Here are the child pages:
-    {% for child in post.children %}
-        <a href="{{ child.link }}">{{ child.title }}</a>
-    {% endfor %}
-{% else %}
-	<h1>nothin</h1>
-{% endif %}
+{% block html_head_container %}
+
+{% include 'partials/head.twig' %}
+	{% block head %}
+	{% endblock %}
+	</head>
+{% endblock %}
+
+	<body data-template="base.twig">
+
+		<div id="main">
+
+			<div class="attachment">
+			{% include 'partials/header.twig' with { 'menu': menu.get_items } %}
+			<section id="content" role="main" class="page-content">
+				{% if title %}<h1>{{title}}</h1>{% endif %}
+				<div class="wrapper">
+					{% block content %}
+						Sorry, no content
+					{% endblock %}
+				</div>
+				{% if sidebar %}
+					<aside class="layout-sidebar">
+						{{sidebar}}
+					</aside>
+				{% endif %}
+			</section>
+
+			</div>
+
+			{#% block footer %}
+				{% include 'partials/footer.twig' %}
+				{{ function('wp_footer') }}
+			{% endblock %#}
+		</div>
+		
+		{% include 'partials/foot.twig' %}
+
+	</body>
+</html>
