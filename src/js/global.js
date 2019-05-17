@@ -57,10 +57,12 @@ var global = {
       debug: true,
       // anchors: '.transition-link:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not(.trigger)',
       onStart: {
-        duration: 750, // Duration of our animation
+        duration: 1000, // Duration of our animation
         render: function ($container) {
           // Add your CSS animation reversing class
           $container.addClass('is-exiting');
+          $container.removeClass('entered');
+          $('body').removeClass('menu-open');
 
           // Restart your animation
           smoothState.restartCSSAnimations();
@@ -86,8 +88,13 @@ var global = {
           // }
 
           $container.removeClass();
-          // $container.removeClass('is-exiting');
-          // $container.addClass(path);
+          $container.removeClass('is-exiting');
+          $container.addClass('is-entering');
+
+          setTimeout(() => {
+            $container.removeClass('is-entering');
+            $container.addClass('entered');
+          }, 900)
 
           // Inject the new content
           $container.html($newContent);
@@ -196,11 +203,13 @@ var global = {
     var headerHeight = $('header').innerHeight();
     var navHeight;
 
-    $(".home-page header").bind("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){ 
-      navHeight = $('header .nav-main ul').innerHeight();
-      $('body').addClass('menu-open');
-      $('header .nav-main').height(navHeight)
-    });
+    if($(".home-page header").length) {
+      setTimeout(() => {
+        navHeight = $('header .nav-main ul').innerHeight();
+        $('body').addClass('menu-open');
+        $('header .nav-main').height(navHeight)
+      }, 1000)
+    }
 
     $('.toggle-menu').click(function(){
       navHeight = $('header .nav-main ul').innerHeight();

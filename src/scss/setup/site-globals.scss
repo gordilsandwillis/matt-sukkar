@@ -20,6 +20,9 @@ body {
 			min-height: 100vh;
 			padding-top: $header-height;
 			transition: transform $md-speed $ease, padding $md-speed $ease;
+			@include respond-smaller-than($md) {
+				padding-top: 105px;
+			}
 		}
 	}
 	&.contact {

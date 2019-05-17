@@ -7,6 +7,6 @@ $context['body_class'] = 'photography-page';
 $image_array = get_field('image_gallery', $post);
 
 echo '<pre>';
-var_dump($image_array[0]);
+var_dump($post);
 echo '</pre>';
-Timber::render( 'photography.twig' , $context );
+Timber::render( 'attachment.twig' , $context );

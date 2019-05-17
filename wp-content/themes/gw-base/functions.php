@@ -127,4 +127,11 @@ register_rest_field( 'post',
 }
 add_action( 'rest_api_init', 'add_thumbnail_to_JSON' );
 
+function default_attachment_display_settings() {
+  update_option( 'image_default_align', 'right' );
+  update_option( 'image_default_link_type', 'attachment page' );
+  update_option( 'image_default_size', 'full' );
+}
+add_action( 'after_setup_theme', 'default_attachment_display_settings' );
+
 new GW();

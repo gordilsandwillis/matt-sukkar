@@ -1,0 +1,8 @@
+{% if post.children %}
+    Here are the child pages:
+    {% for child in post.children %}
+        <a href="{{ child.link }}">{{ child.title }}</a>
+    {% endfor %}
+{% else %}
+	<h1>nothin</h1>
+{% endif %}

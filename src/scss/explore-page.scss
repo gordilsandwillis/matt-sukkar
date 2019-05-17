@@ -15,6 +15,8 @@
 		align-items: center;
 		justify-content: center;
 		z-index: 10;
+		transition: opacity $md-speed $ease, visibility $md-speed $ease;
+		animation: fade-out 1s 3s $ease forwards;
 		.h6 {
 			@include respond($xlg) {
 				font-size: 1rem;
@@ -26,7 +28,10 @@
 				}
 			}
 		}
-		animation: fade-out 1s 3s $ease forwards;
+		&.hidden {
+			opacity: 0;
+			visibility: hidden;
+		}
 	}
 	header {
 		z-index: 4;

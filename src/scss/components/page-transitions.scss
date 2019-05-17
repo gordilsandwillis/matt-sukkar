@@ -1,28 +1,223 @@
 #main {
-  // header {
-  //   animation-duration: 1s;
-  //   transition-timing-function: ease-in;
-  //   animation-fill-mode: both;
-		// animation-name: fade-in;
-  // }
 
 	.page-content {
 		animation-duration: 1s;
     transition-timing-function: ease-in;
     animation-fill-mode: both;
-		// animation-name: fade-in;
-    // position: relative;
-    // z-index: 3;
+		animation-name: fade-in-page;
 	}
+  &.entered {
+    .home-page {
+      header {
+        animation: none;
+      }
+    }
+    .page-content {
+      animation: none;
+    }
+  }
+  &.is-entering {
+    .home-page {
+      header {
+        animation-duration: 1s;
+        top: 50%;
+        transform: translateY(-50%);
+        animation-name: grow-header;
+        .title {
+          @include respond($md) {
+            animation-name: grow-header-title;
+          }
+        }
+        nav ul {
+          @include respond($md) {
+            animation-name: grow-header-links;
+          }
+        }
+      }
+    }
+    .page-content {
+      animation-name: fade-in-page;
+    }
+  }
 
   /** Reverse "exit" animations */
   &.is-exiting {
-  	&.home {
-
-  	}
-    .page-content {
-      animation-name: fade-out;
-      // animation-direction: alternate-reverse;
+  	.home-page {
+      header {
+        animation-duration: 1s;
+        transform: translateY(-50%);
+        animation-name: shrink-header;
+        .title {
+          @include respond($md) {
+            animation-name: shrink-header-title;
+          }
+        }
+        .nav-main {
+          transition: height $md-speed $ease;
+        }
+        nav ul {
+          @include respond($md) {
+            animation-name: shrink-header-links;
+          }
+        }
+      }
     }
+    .page-content {
+      animation-name: fade-out-page;
+    }
+  }
+}
+
+.home-page {
+  .toggle-menu {
+    opacity: 0;
+    visibility: hidden;
+  }
+  header {
+    animation-duration: 2s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+    top: 50%;
+    transform: translateY(-50%);
+    animation-name: fade-in;
+    .title {
+      font-size: $h1-font-size;
+      font-family: $h1-font-family;
+      text-transform: $h1-text-transform;
+      font-size: $h1-font-size;
+      font-weight: $h1-font-weight;
+      letter-spacing: $h1-letter-spacing;
+      @include font-smooth($h1-font-smoothing);
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+    .nav-main {
+      transition: height 1s $ease;
+    }
+    nav ul {
+      font-size: $h3-font-size;
+      font-family: $h3-font-family;
+      text-transform: $h3-text-transform;
+      font-size: $h3-font-size;
+      font-weight: $h3-font-weight;
+      letter-spacing: $h3-letter-spacing;
+      @include font-smooth($h3-font-smoothing);
+    }
+  }
+}
+
+
+// Shrink header for internal pages
+@keyframes shrink-header {
+  0% {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  100% {
+    top: 0;
+    transform: none;
+  }
+}
+
+@keyframes shrink-header-title {
+  0% {
+    line-height: $h1-font-size;
+    font-family: $h1-font-family;
+    text-transform: $h1-text-transform;
+    font-size: $h1-font-size;
+    font-weight: $h1-font-weight;
+    @include font-smooth($h1-font-smoothing);
+  }
+  100% {
+    line-height: $h6-font-size;
+    font-family: $h6-font-family;
+    text-transform: $h6-text-transform;
+    font-size: $h6-font-size;
+    font-weight: $h6-font-weight;
+    @include font-smooth($h6-font-smoothing);
+  }
+  
+}
+
+@keyframes shrink-header-links {
+  0% {
+    font-family: $h3-font-family;
+    text-transform: $h3-text-transform;
+    font-size: $h3-font-size;
+    font-weight: $h3-font-weight;
+    @include font-smooth($h3-font-smoothing);
+  }
+  100% {
+    font-family: $h6-font-family;
+    text-transform: $h6-text-transform;
+    font-size: $h6-font-size;
+    font-weight: $h6-font-weight;
+    @include font-smooth($h6-font-smoothing);
+  }
+}
+
+// Enlarge header for Homepage
+@keyframes grow-header {
+  0% {
+    top: 0;
+    transform: none;
+  }
+  100% {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes grow-header-title {
+  0% {
+    font-family: $h6-font-family;
+    text-transform: $h6-text-transform;
+    font-size: $h6-font-size;
+    font-weight: $h6-font-weight;
+    @include font-smooth($h6-font-smoothing);
+  }
+  100% {
+    font-family: $h1-font-family;
+    text-transform: $h1-text-transform;
+    font-size: $h1-font-size;
+    font-weight: $h1-font-weight;
+    @include font-smooth($h1-font-smoothing);
+  }
+}
+
+@keyframes grow-header-links {
+  0% {
+    font-family: $h6-font-family;
+    text-transform: $h6-text-transform;
+    font-size: $h6-font-size;
+    font-weight: $h6-font-weight;
+    @include font-smooth($h6-font-smoothing);
+  }
+  100% {
+    font-family: $h3-font-family;
+    text-transform: $h3-text-transform;
+    font-size: $h3-font-size;
+    font-weight: $h3-font-weight;
+    @include font-smooth($h3-font-smoothing);
+  }
+}
+
+
+// Fade page content
+@keyframes fade-in-page-page {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-page {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

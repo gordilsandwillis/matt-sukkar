@@ -28,7 +28,7 @@
 .photography-page {
 	.toggle-view {
 		display: block;
-		@include respond-smaller-than($sm) {
+		@include respond-smaller-than($md) {
 	    display: none;
 	  }
 	}
@@ -43,28 +43,28 @@
 		.col4 { width: 33.333%; }
 		.col6 { width: 50%; }
 		.col12 { 
-			@include respond-smaller-than($sm) {
+			@include respond-smaller-than($md) {
 		    padding-left: $gutter/2; 
 		    padding-right: $gutter/2;
 	  	}
 	  	width: 100%; 
 	 	}
 		.item-caption {
-			@include respond($sm) {
+			@include respond($md) {
 				display: none;
 			}
 		}
 		&[data-columns]::before {
-			@media screen and (min-width: 1 + px) and (max-width: $sm + px) {
+			@media screen and (min-width: 1 + px) and (max-width: $md + px) {
 				content: '1 .col12';
 			}
-			@media screen and (min-width: $sm + px) and (max-width: $md + px) {
+			@media screen and (min-width: $md + px) and (max-width: $lg + px) {
 				content: '2 .col.col6';
 			}
-			@media screen and (min-width: $md + px) and (max-width: $lg + px) {
+			@media screen and (min-width: $lg + px) and (max-width: $xlg + px) {
 				content: '3 .col.col4';
 			}
-			@media screen and (min-width: $lg + px) and (max-width: 20000 + px) {
+			@media screen and (min-width: $xlg + px) and (max-width: 20000 + px) {
 				content: '4 .col.col3';
 			}
 		}
@@ -87,7 +87,7 @@
 			opacity: 1;
 			transform: none;
 			.item {
-				@include respond-smaller-than($sm) {
+				@include respond-smaller-than($md) {
 					margin-bottom: $margin;
 			  }
 				margin-bottom: $gutter;

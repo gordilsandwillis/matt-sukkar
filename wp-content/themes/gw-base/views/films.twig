@@ -62,9 +62,9 @@
 					<div class="slide px-margin" data-category-id="{% if category_ids %}{{category_ids|join(',')}}{% else %}n{% endif %}" data-video-id="{{video.vimeo_id}}">
 						<div class="slide-content">
 							<div class="video-wrap lazyload lazy-wrap">
-								<iframe id="aboutVideo" src="https://player.vimeo.com/video/{{ video.vimeo_id }}?&color=00AEEF&title=0&byline=0&portrait=0" width="1200" height="675" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay"></iframe>
+								<iframe id="aboutVideo" src="https://player.vimeo.com/video/{{ video.vimeo_id }}?&color=FFFFFF&title=0&byline=0&portrait=0" width="1200" height="675" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay"></iframe>
 							</div>
-							<div class="pb-margin align-center caption">
+							<div class="align-center caption">
 								<p class="medium-weight">{{ video.caption.primary_caption }}</p>
 								<p>{{ video.caption.secondary_caption }}</p>
 							</div>

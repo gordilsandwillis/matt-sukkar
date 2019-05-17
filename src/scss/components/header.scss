@@ -20,13 +20,16 @@ header {
   	cursor: pointer;
   	padding: .5rem;
   	margin: -12px 0 -.5rem;
+  	transition: opacity $md-speed $ease, visibility $md-speed $ease;
+  	opacity: 1;
+  	visibility: visible;
   }
 	.c-inner-header {
 		width: 100%;
 	}
 	.current_page_item {
 		pointer-events: none;
-		cursor: pointer;
+		cursor: not-allowed;
 	}
 	.nav-main {
 		height: 0;
@@ -45,7 +48,7 @@ header {
 		//
 		animation-duration: .75s;
 	  animation-fill-mode: both;
-	  @include respond-smaller-than($sm) {
+	  @include respond-smaller-than($md) {
 	  	font-size: $h1-font-size;
 			font-weight: $h1-font-weight
 	  }
@@ -60,13 +63,13 @@ header {
 			li {
 				font-size: 1em;
 				line-height: 1em;
-				@include respond-smaller-than($sm) {
+				@include respond-smaller-than($md) {
 			  	font-size: $h3-font-size;
 			  }
 				a {
 					font-size: 1em;
 					line-height: 1em;
-					@include respond-smaller-than($sm) {
+					@include respond-smaller-than($md) {
 				  	font-size: $h3-font-size;
 				  }
 				}
@@ -82,123 +85,14 @@ header {
 	}
 	.material-icons {
 		&.menu-icon {
-			@include respond-smaller-than($sm) {
-		  	font-size: $h1-font-size;
-				font-weight: $h1-font-weight;
-				margin: -25px 0 -.5rem;
+			@include respond-smaller-than($md) {
+		  	font-size: 48px;
+				margin: -14px 0 -.5rem;
 				padding-right: 0;
+				position: absolute;
+				right: $mobile-margin;
+				top: $margin;
 		  }
 		}
-	}
-}
-
-.home-page > header {
-	// height: 100vh;
-	// animation-name: grow-header;
-	min-height: 100vh;
-	animation-name: header-fade-in;
-	.title {
-		font-size: $h1-font-size;
-		// font-family: $h1-font-family;
-		// text-transform: $h1-text-transform;
-		// font-size: $h1-font-size;
-		// font-weight: $h1-font-weight;
-		// letter-spacing: $h1-letter-spacing;
-		// @include font-smooth($h1-font-smoothing);
-		// animation-name: grow-header-title;
-	}
-	nav ul {
-		font-size: $h3-font-size;
-		// font-family: $h3-font-family;
-		// text-transform: $h3-text-transform;
-		// font-size: $h3-font-size;
-		// font-weight: $h3-font-weight;
-		// letter-spacing: $h3-letter-spacing;
-		// @include font-smooth($h3-font-smoothing);
-		// animation-name: grow-header-links;
-	}
-}
-
-.is-exiting.home header {
-	animation-name: header-fade-out;
-	// .title {
-	// 	animation-name: shrink-header-title;
-	// }
-	// nav ul {
-	// 	animation-name: shrink-header-links;
-	// }
-}
-
-@keyframes header-fade-in {
-	100% {
-		opacity: 1;
-		visibility: visible;
-	}
-	0% {
-		opacity: 0;
-	}
-}
-
-@keyframes header-fade-out {
-	100% {
-		opacity: 0;
-	}
-	0% {
-		opacity: 1;
-		visibility: visible;
-	}
-}
-
-@keyframes shrink-header {
-	100% {
-		min-height: $header-height;
-	}
-	0% {
-		min-height: 100vh;
-	}
-}
-
-@keyframes shrink-header-title {
-	100% {
-		font-size: $h6-font-size;
-	}
-	0% {
-		font-size: $h1-font-size;
-	}
-}
-
-@keyframes shrink-header-links {
-	100% {
-		font-size: $h6-font-size;
-	}
-	0% {
-		font-size: $h3-font-size;
-	}
-}
-
-@keyframes grow-header {
-	0% {
-		min-height: $header-height;
-	}
-	100% {
-		min-height: 100vh;
-	}
-}
-
-@keyframes grow-header-title {
-	0% {
-		font-size: $h6-font-size;
-	}
-	100% {
-		font-size: $h1-font-size;
-	}
-}
-
-@keyframes grow-header-links {
-	0% {
-		font-size: $h6-font-size;
-	}
-	100% {
-		font-size: $h3-font-size;
 	}
 }

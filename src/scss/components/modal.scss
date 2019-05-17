@@ -15,8 +15,8 @@
 	opacity: 0;
 	transition: opacity $md-speed $ease, visibility $md-speed $ease;
 	@include respond($md) {
-		padding-top: $gutter;
-		padding-bottom: $gutter;
+		// padding-top: $gutter;
+		// padding-bottom: $gutter;
 	}
 	&.video-modal {
 		.modal {
@@ -218,11 +218,16 @@
 						    		object-fit: contain;
 									}
 								}
+								.video-wrap {
+									flex-shrink: 1;
+									padding-bottom: 0;
+								}
 								.caption {
 									width: 100%;
 									min-width: 100%;
 									flex-grow: 0;
 									flex-shrink: 0;
+									padding-top: $margin;
 								}
 							}
 						}
