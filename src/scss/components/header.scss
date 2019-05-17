@@ -16,7 +16,7 @@ header {
 	justify-content: flex-start;
 	animation-duration: .75s;
   animation-fill-mode: both;
-  .toggle-menu {
+  .menu-icon {
   	cursor: pointer;
   	padding: .5rem;
   	margin: -12px 0 -.5rem;
@@ -38,6 +38,7 @@ header {
 	}
 	.title,
 	nav ul {
+		cursor: pointer;
 		line-height: 1em;
 		display: inline-block;
 		font-family: $h6-font-family;
@@ -50,7 +51,7 @@ header {
 	  animation-fill-mode: both;
 	  @include respond-smaller-than($md) {
 	  	font-size: $h1-font-size;
-			font-weight: $h1-font-weight
+			font-weight: $h1-font-weight;
 	  }
 	}
 	nav {

@@ -32,6 +32,7 @@ var global = {
     this.filmSlideshowModal();
     this.filmSlideshow();
     this.filterFilmsByCategory();
+    this.exploreOverlay();
     window.lazySizesConfig = {
       addClasses: true
     };
@@ -163,6 +164,15 @@ var global = {
     tglHandle.click(function() {
       $(this).next(".accordion .c-content").slideFadeToggle();
       $(this).toggleClass("open");
+    });
+  },
+
+  exploreOverlay : function () {
+    $('.explore-page').click(function(){
+      console.log('explore page clicked')
+      if (!$(this).hasClass('hidden')){
+        $('.explore-overlay').addClass('hidden');
+      }
     });
   },
 
