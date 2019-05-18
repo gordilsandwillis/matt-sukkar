@@ -38,7 +38,11 @@
 		margin-right: -$gutter/2;
 		display: flex;
 		transition: opacity $md-speed $ease, transform $md-speed $ease;
-		.col { padding-left: $gutter/2; padding-right: $gutter/2; flex: 1; }
+		.col { 
+			padding-left: $gutter/2; 
+			padding-right: $gutter/2; 
+			flex: 1;
+		}
 		.col3 { width: 25%; }
 		.col4 { width: 33.333%; }
 		.col6 { width: 50%; }
@@ -95,7 +99,7 @@
 
 				.photo-thumb {
 					overflow: hidden;
-					vertical-align: inherit;
+					// vertical-align: inherit;
 					img {
 						transition: all $md-speed $ease;
 					}

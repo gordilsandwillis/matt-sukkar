@@ -178,7 +178,7 @@ var global = {
   },
 
   photoModal : function() {
-    var modalTrigger = $('.photo-modal-trigger');
+    var modalTrigger = $('.grid-view .photo-modal-trigger');
     if ( (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) ) {
     } else {
       modalTrigger.click(function(event) {
@@ -187,8 +187,6 @@ var global = {
           var modal = $('.modal#photo-modal-slide');
           $(modal).closest('.modal-wrap').addClass('open');
           $(modal).addClass('visible');
-        } else {
-          console.log('full-view, no modal');
         }
       });
 
@@ -201,6 +199,7 @@ var global = {
 
       $('.close-modal').click(function() {
         closeModal();
+        window.history.pushState({}, "", '/photography');
       });
     }
   },
@@ -249,9 +248,9 @@ var global = {
   },
 
   permalinkGoBack: function () {
-    $('.attachment-back-button').click(function(){
-        window.history.back();
-    });
+    // $('.attachment-back-button').click(function(){
+    //     window.history.back();
+    // });
   },
 
   swipedetect: function(el, callback){
@@ -303,60 +302,60 @@ var global = {
   },
 
   isSwipe: function () {
-  var container = document.querySelector("#explore-page-swipe");
+    var container = document.querySelector("#explore-page-swipe");
 
-  container.addEventListener("touchstart", startTouch, false);
-  container.addEventListener("touchmove", moveTouch, false);
+    container.addEventListener("touchstart", startTouch, false);
+    container.addEventListener("touchmove", moveTouch, false);
 
-  // Swipe Up / Down / Left / Right
-  var initialX = null;
-  var initialY = null;
+    // Swipe Up / Down / Left / Right
+    var initialX = null;
+    var initialY = null;
 
-  function startTouch(e) {
-    initialX = e.touches[0].clientX;
-    initialY = e.touches[0].clientY;
-  };
+    function startTouch(e) {
+      initialX = e.touches[0].clientX;
+      initialY = e.touches[0].clientY;
+    };
 
-  function moveTouch(e) {
-    if (initialX === null) {
-      return;
-    }
+    function moveTouch(e) {
+      if (initialX === null) {
+        return;
+      }
 
-    if (initialY === null) {
-      return;
-    }
+      if (initialY === null) {
+        return;
+      }
 
-    var currentX = e.touches[0].clientX;
-    var currentY = e.touches[0].clientY;
+      var currentX = e.touches[0].clientX;
+      var currentY = e.touches[0].clientY;
 
-    var diffX = initialX - currentX;
-    var diffY = initialY - currentY;
+      var diffX = initialX - currentX;
+      var diffY = initialY - currentY;
 
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-      // sliding horizontally
-      if (diffX > 0) {
-        // swiped left
-        console.log("swiped left");
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        // sliding horizontally
+        if (diffX > 0) {
+          // swiped left
+          console.log("swiped left");
+        } else {
+          // swiped right
+          console.log("swiped right");
+        }  
       } else {
-        // swiped right
-        console.log("swiped right");
-      }  
-    } else {
-      // sliding vertically
-      if (diffY > 0) {
-        // swiped up
-        console.log("swiped up");
-      } else {
-        // swiped down
-        console.log("swiped down");
-      }  
-    }
+        // sliding vertically
+        if (diffY > 0) {
+          // swiped up
+          console.log("swiped up");
+        } else {
+          // swiped down
+          console.log("swiped down");
+        }  
+      }
 
-    initialX = null;
-    initialY = null;
+      initialX = null;
+      initialY = null;
 
-    e.preventDefault();
-  };
+      e.preventDefault();
+    };
   },
 
   explorePageSwipe: function () {
@@ -475,7 +474,6 @@ var global = {
     });
 
     $('.staggered-photo-grid.grid-view img').click(function() {
-
       var imageIndex = $(this).attr('data-imageID');
 
       var $slides = $('.photo-slideshow').slick('getSlick').$slides;
@@ -494,6 +492,7 @@ var global = {
       $('.photo-slideshow').slick("refresh");
       $('.photo-slideshow')[0].slick.cssTransitions = false;
       $('.photo-slideshow').slick('slickGoTo', idx, true);
+      var permalinkUrl = $(this).attr('data-permalink');
       // $('.photo-slideshow').slick('slickGoTo', slideIndex, true);
       $('.photo-slideshow').slick("refresh");
     });
@@ -504,12 +503,22 @@ var global = {
       // console.log(imageID);
       global.replaceSlideshowImage(imageID);
     });
+
+    $('.photo-slideshow').on('afterChange', function(event, slick, currentSlide){
+      var slideDom = $(slick.$slides.get(currentSlide));
+      var slidePermalink = slideDom.find('div.image-wrap').attr('data-permalink');
+      if($('.photo-modal').hasClass('open')) {
+        window.history.pushState({}, "", slidePermalink);
+      }
+    });
+
     $('.photo-modal .modal .arrow-nav p.prev-arrow').click(function(){
       $('.photo-slideshow').slick('slickPrev');
     })
     $('.photo-modal .modal .arrow-nav p.next-arrow').click(function(){
       $('.photo-slideshow').slick('slickNext');
     }) 
+
   },
 
   replaceSlideshowImage: function(imageId) {

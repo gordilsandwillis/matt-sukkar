@@ -6,6 +6,12 @@
     animation-fill-mode: both;
 		animation-name: fade-in-page;
 	}
+
+  // Delay photography page entrance until grid loads
+  .photography-page .page-content {
+    animation-delay: 3s;
+  }
+  
   &.entered {
     .home-page {
       header {
@@ -204,7 +210,7 @@
 
 
 // Fade page content
-@keyframes fade-in-page-page {
+@keyframes fade-in-page {
   0% {
     opacity: 0;
   }
