@@ -179,8 +179,6 @@ var global = {
 
   photoModal : function() {
     var modalTrigger = $('.grid-view .photo-modal-trigger');
-    if ( (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) ) {
-    } else {
       modalTrigger.click(function(event) {
         if ( $('.staggered-photo-grid').hasClass('grid-view') ) {
           event.preventDefault();
@@ -197,11 +195,10 @@ var global = {
         }, 200);
       }
 
-      $('.close-modal').click(function() {
+      $('.photo-modal .close-modal').click(function() {
         closeModal();
         window.history.pushState({}, "", '/photography');
       });
-    }
   },
 
   topArea : function () {
@@ -401,7 +398,7 @@ var global = {
       centerMode: false,
       slidesToScroll: 1,
       arrows: true,
-      infinite: false,
+      infinite: true,
       fade: false,
       speed: 750,
       autoplay: false,
@@ -572,10 +569,11 @@ var global = {
       }, 200);
     }
     
-    $('.close-modal').click(function() {
+    $('.film-modal .close-modal').click(function() {
       var videoId = $(this).attr('data-video-id');
       closeModal();
       global.stopVideo(videoId);
+      window.history.pushState({}, "", '/films');
     });
 
   },
@@ -631,6 +629,14 @@ var global = {
       $('.film-slideshow').slick("refresh");
       $('.film-slideshow').slick('slickGoTo', idx, true);
       $('.film-slideshow').slick("refresh");
+    });
+
+    $('.film-slideshow').on('afterChange', function(event, slick, currentSlide){
+      var slideDom = $(slick.$slides.get(currentSlide));
+      var slidePermalink = slideDom.find('div.video-wrap').attr('data-permalink');
+      if($('.film-modal').hasClass('open')) {
+        window.history.pushState({}, "", slidePermalink);
+      }
     });
 
     $('.film-modal .modal .arrow-nav p.prev-arrow').click(function(){

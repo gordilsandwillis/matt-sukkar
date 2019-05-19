@@ -35,7 +35,7 @@ define( 'AI1WM_DEBUG', false );
 // ==================
 // = Plugin Version =
 // ==================
-define( 'AI1WM_VERSION', '6.91' );
+define( 'AI1WM_VERSION', '6.95' );
 
 // ===============
 // = Plugin Name =
@@ -117,11 +117,6 @@ define( 'AI1WM_REPORT_URL', 'https://servmask.com/ai1wm/report/create' );
 // ==============================
 define( 'AI1WM_ARCHIVE_TOOLS_URL', 'https://servmask.com/archive/tools' );
 
-// ===========================
-// = ServMask Activation URL =
-// ===========================
-define( 'AI1WM_ACTIVATION_URL', 'https://servmask.com/purchase/activations' );
-
 // =========================
 // = ServMask Table Prefix =
 // =========================
@@ -198,9 +193,14 @@ define( 'AI1WM_ENDURANCE_BROWSER_CACHE_NAME', 'endurance-browser-cache.php' );
 define( 'AI1WM_GD_SYSTEM_PLUGIN_NAME', 'gd-system-plugin.php' );
 
 // =======================
-// = Wp Stack Cache Name =
+// = WP Stack Cache Name =
 // =======================
 define( 'AI1WM_WP_STACK_CACHE_NAME', 'wp-stack-cache.php' );
+
+// ===========================
+// = WP.com Site Helper Name =
+// ===========================
+define( 'AI1WM_WP_COMSH_LOADER_NAME', 'wpcomsh-loader.php' );
 
 // ===================
 // = Export Log Name =

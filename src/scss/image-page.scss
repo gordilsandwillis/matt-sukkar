@@ -68,8 +68,37 @@
 			}
 			.attachment-back-button {
 				display: block;
+				.mobile-icon {
+					display: none;
+					@include respond-smaller-than($md) {
+				    display: block;
+				  }
+				}
+				.desktop-icon {
+			    display: block;
+					@include respond-smaller-than($md) {
+						display: none;
+				  }
+				}
 			}
 		}
+
+		.attachment-back-button {
+			display: block;
+			.mobile-icon {
+				display: none;
+				@include respond-smaller-than($md) {
+			    display: block;
+			  }
+			}
+			.desktop-icon {
+		    display: block;
+				@include respond-smaller-than($md) {
+					display: none;
+			  }
+			}
+		}
+
 		.menu-icon {
 			@include respond-smaller-than($md) {
 		    display: none;

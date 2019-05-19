@@ -1,0 +1,102 @@
+.attachment-back-button {
+	display: none;
+	cursor: pointer;
+	position: absolute;
+	top: calc(#{$margin} - 4px);
+	right: calc(#{$margin} - 10px);
+
+	z-index: 5;
+	transition: color $md-speed $ease, background $md-speed $ease;
+	box-shadow: none;
+	background: transparent;
+	border-radius: 0;
+	color: $text-color;
+	&:hover {
+		color: $light-text-color;
+		background: transparent;
+	}
+	.material-icons {
+		font-size: 30px;
+		@include respond-smaller-than($md) {
+			font-size: 42px;
+	  }
+	}
+
+	@include respond-smaller-than($md) {
+		top: calc(#{$margin} + 4px);
+		right: calc(#{$margin} - 10px);
+	}
+}
+
+#main {
+	.attachment {
+		.wrapper {
+			padding-top: 0;
+			position: relative;
+			width: 100%;
+
+			.attachment-image-page {
+				// background-color: salmon;
+				width: 100%;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				padding: calc(#{$margin} *2) $margin;
+
+				.attachment-image-wrapper {
+					width: 100%;
+					flex-grow: 1;
+					flex-shrink: 0;
+					position: relative;
+
+					.attachment-image {
+						position: absolute;
+						width: 100%;
+						height: 100%;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						object-fit: contain;
+					}
+
+					.video-wrap {
+			    	width: 100%;
+			    	height: 100%;
+						flex-grow: 1;
+						flex-shrink: 1;
+			    	position: relative;
+						padding-bottom: 0;
+					}
+				}
+				.attachment-image-info {
+					width: 100%;
+					flex-grow: 0;
+					flex-shrink: 0;
+				}
+			}
+			.attachment-back-button {
+				display: block;
+				.mobile-icon {
+					display: none;
+					@include respond-smaller-than($md) {
+				    display: block;
+				  }
+				}
+				.desktop-icon {
+			    display: block;
+					@include respond-smaller-than($md) {
+						display: none;
+				  }
+				}
+			}
+		}
+		.menu-icon {
+			@include respond-smaller-than($md) {
+		    display: none;
+		  }
+		}
+	}
+}
+
+
