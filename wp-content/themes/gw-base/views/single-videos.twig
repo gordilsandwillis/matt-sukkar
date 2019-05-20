@@ -17,7 +17,9 @@
 		<div class="attachment-video-info">
 			<div class="pt-margin align-center caption">
 				<p class="medium-weight">{{ video_title }}</p>
-				<p>{{ caption }}</p>
+				{% if caption %}
+					<p>{{ caption }}</p>
+				{% endif %}
 			</div>
 		</div>
 	</div>

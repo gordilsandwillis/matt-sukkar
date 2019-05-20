@@ -31,7 +31,9 @@
 							</div>
 							<div class="pt-gutter thumb-info align-center">
 								<p class="medium-weight">{{ video.title }}</p>
-								<p>{{ video.caption }}</p>
+								{% if video.caption %}
+									<p>{{ video.caption }}</p>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -66,7 +68,9 @@
 							</div>
 							<div class="align-center caption">
 								<p class="medium-weight">{{ video.title }}</p>
-								<p>{{ video.caption }}</p>
+								{% if video.caption %}
+									<p>{{ video.caption }}</p>
+								{% endif %}
 							</div>
 						</div>
 					</div>
