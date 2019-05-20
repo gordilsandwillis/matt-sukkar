@@ -21,8 +21,8 @@ $context['caption'] = $post->caption;
 // $context['img_caption'] = $post->post_excerpt;
 // $context['img_description'] = $post->post_content;
 
-echo '<pre>';
-var_dump($post);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($post);
+// echo '</pre>';
 
-Timber::render( 'single-video.twig', $context );
+Timber::render( 'single-videos.twig', $context );

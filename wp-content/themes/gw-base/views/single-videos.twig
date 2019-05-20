@@ -2,19 +2,19 @@
 
 {% block content %}
 	<div class="attachment-back-button">
-		<a href="/films" class="material-icons md-24 mobile-icon">keyboard_arrow_left
+		{# <a href="/films" class="material-icons md-24 mobile-icon">keyboard_arrow_left
 		</a>
 		<a href="/films" class="material-icons md-24 desktop-icon">close
-		</a>
+		</a> #}
 	</div>
 
-	<div class="attachment-image-page" >
-		<div class="attachment-image-wrapper">
+	<div class="attachment-video-page" >
+		<div class="attachment-video-wrapper">
 			<div class="video-wrap lazyload lazy-wrap" >
 				<iframe src="https://player.vimeo.com/video/{{ vimeo_id }}?&color=FFFFFF&title=0&byline=0&portrait=0" width="1200" height="675" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay"></iframe>
 			</div>
 		</div>
-		<div class="attachment-image-info">
+		<div class="attachment-video-info">
 			<div class="pt-margin align-center caption">
 				<p class="medium-weight">{{ video_title }}</p>
 				<p>{{ caption }}</p>

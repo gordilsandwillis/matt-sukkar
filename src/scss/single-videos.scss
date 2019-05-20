@@ -35,7 +35,7 @@
 			position: relative;
 			width: 100%;
 
-			.attachment-image-page {
+			.attachment-video-page {
 				// background-color: salmon;
 				width: 100%;
 				min-height: 100vh;
@@ -43,11 +43,12 @@
 				flex-direction: column;
 				padding: calc(#{$margin} *2) $margin;
 
-				.attachment-image-wrapper {
+				.attachment-video-wrapper {
 					width: 100%;
 					flex-grow: 1;
 					flex-shrink: 0;
 					position: relative;
+					display: flex;
 
 					.attachment-image {
 						position: absolute;
@@ -62,17 +63,24 @@
 
 					.video-wrap {
 			    	width: 100%;
-			    	height: 100%;
 						flex-grow: 1;
 						flex-shrink: 1;
 			    	position: relative;
 						padding-bottom: 0;
 					}
+
+					.lazy-wrap {
+						background: none;
+					}
 				}
-				.attachment-image-info {
+				.attachment-video-info {
 					width: 100%;
 					flex-grow: 0;
 					flex-shrink: 0;
+					.caption {
+						max-width: 40rem;
+						margin: 0 auto;
+					}
 				}
 			}
 			.attachment-back-button {

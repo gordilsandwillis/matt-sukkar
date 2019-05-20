@@ -64,6 +64,10 @@
 					width: 100%;
 					flex-grow: 0;
 					flex-shrink: 0;
+					.caption {
+						max-width: 40rem;
+						margin: 0 auto;
+					}
 				}
 			}
 			.attachment-back-button {

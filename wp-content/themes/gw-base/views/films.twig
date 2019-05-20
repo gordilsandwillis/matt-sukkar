@@ -31,7 +31,7 @@
 							</div>
 							<div class="pt-gutter thumb-info align-center">
 								<p class="medium-weight">{{ video.title }}</p>
-								<p>{{ video.caption.secondary_caption }}</p>
+								<p>{{ video.caption }}</p>
 							</div>
 						</div>
 					</div>
@@ -56,7 +56,7 @@
 			{% for video in videos %}
 				{% if video.thumbnail and video.vimeo_id %}
 					{% set category_ids = [] %}
-						{% for cats in video.category %}
+						{% for cats in video.terms %}
 							{% set category_ids = category_ids|merge([cats.term_id])%}
 						{% endfor %}
 					<div class="slide px-margin" data-category-id="{% if category_ids %}{{category_ids|join(',')}}{% else %}n{% endif %}" data-video-id="{{video.vimeo_id}}">
@@ -65,8 +65,8 @@
 								<iframe id="aboutVideo" src="https://player.vimeo.com/video/{{ video.vimeo_id }}?&color=FFFFFF&title=0&byline=0&portrait=0" width="1200" height="675" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay"></iframe>
 							</div>
 							<div class="align-center caption">
-								<p class="medium-weight">{{ video.caption.primary_caption }}</p>
-								<p>{{ video.caption.secondary_caption }}</p>
+								<p class="medium-weight">{{ video.title }}</p>
+								<p>{{ video.caption }}</p>
 							</div>
 						</div>
 					</div>
