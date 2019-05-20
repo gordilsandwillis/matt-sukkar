@@ -67,6 +67,7 @@
 					.caption {
 						max-width: 40rem;
 						margin: 0 auto;
+						padding: $margin 0;
 					}
 				}
 			}
@@ -101,12 +102,6 @@
 					display: none;
 			  }
 			}
-		}
-
-		.menu-icon {
-			@include respond-smaller-than($md) {
-		    display: none;
-		  }
 		}
 	}
 }

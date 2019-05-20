@@ -1,9 +1,3 @@
-body.open-modal {
-	header {
-		z-index: 0;
-	}
-}
-
 .modal-wrap {
 	display: flex;
 	align-items: center;
@@ -234,6 +228,7 @@ body.open-modal {
 									flex-grow: 0;
 									flex-shrink: 0;
 									padding-top: $margin;
+									padding-bottom: $margin;
 								}
 							}
 						}

@@ -41,7 +41,9 @@
 						{# </a> #}
 						<div class="item-caption pt-gutter align-center">
 							<p class="medium-weight">{{ i.title }}</p>
-							<p>{{ i.caption }}</p>
+							{% if i.caption %}
+								<p>{{ i.caption }}</p>
+							{{% endif %}}
 						</div>
 					</div>
 					</div>
@@ -71,9 +73,11 @@
 										<div class="image-wrap" data-image-id="{{i.id}}" data-image-src="{{i.url}}" data-permalink="{{i.link}}">
 										</div>
 									{# </div> #}
-									<div class="pt-margin align-center caption">
+									<div class="align-center caption">
 										<p class="medium-weight">{{ i.title }}</p>
-										<p>{{ i.caption }}</p>
+										{% if i.caption %}
+											<p>{{ i.caption }}</p>
+										{{% endif %}}
 									</div>
 								</div>
 							</div>
