@@ -1,3 +1,9 @@
+body.open-modal {
+	header {
+		z-index: 0;
+	}
+}
+
 .modal-wrap {
 	display: flex;
 	align-items: center;

@@ -185,11 +185,13 @@ var global = {
           var modal = $('.modal#photo-modal-slide');
           $(modal).closest('.modal-wrap').addClass('open');
           $(modal).addClass('visible');
+          $('body').addClass('open-modal');
         }
       });
 
       var closeModal = function() {
         $('.modal-wrap.open').removeClass('open');
+        $('body').removeClass('open-modal');
         setTimeout(function(){ 
           $('.modal.visible').removeClass('visible');
         }, 200);
@@ -557,6 +559,7 @@ var global = {
       event.preventDefault();
       var modal = $('.modal#film-modal-slide');
       $(modal).closest('.modal-wrap').addClass('open');
+      $('body').addClass('open-modal');
       $(modal).children().first().attr('data-video-id', $(this).attr('data-video-id'));
       $(modal).addClass('visible');
       global.playVideo($(this).attr('data-video-id'));
@@ -564,6 +567,7 @@ var global = {
 
     var closeModal = function() {
       $('.modal-wrap.open').removeClass('open');
+      $('body').removeClass('open-modal');
       setTimeout(function(){ 
         $('.modal.visible').removeClass('visible');
       }, 200);
