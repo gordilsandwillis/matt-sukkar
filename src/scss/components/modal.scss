@@ -1,3 +1,9 @@
+body.open-modal {
+	header {
+		z-index: 0;
+	}
+}
+
 .modal-wrap {
 	display: flex;
 	align-items: center;
@@ -183,6 +189,9 @@
 				.slick-track {
 					height: 100%;
 					.slick-slide {
+						&:focus {
+							outline: none;
+						}
 						> div {
 							height: 100%;
 						}

@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "animsition": "^4.0.2",
+    "body-scroll-lock": "^2.6.1",
     "bricklayer": "^0.4.3",
     "compression-webpack-plugin": "^1.1.11",
     "gw-ui": "^1.3.7",
