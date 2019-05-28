@@ -4,7 +4,10 @@
 	
 	<div class="explore-page" id="explore-page-swipe">
 		<div class="explore-overlay">
-			<p class="h6 bold"><span class="show-lg">Swipe</span><span class="hide-lg">Click</span> images to explore <span class="material-icons md-36">keyboard_arrow_right</span></p>
+			<div class="align-center">
+				<p class="xlg">Content will appear at random</p>
+				<p class="h6 bold mt-3"><span class="show-lg">Swipe</span><span class="hide-lg">Click</span> images to explore <span class="material-icons md-36">keyboard_arrow_right</span></p>
+			</div>
 		</div>
 		<div class="prev">Prev</div>
 		<div class="next">Next</div>
@@ -12,9 +15,15 @@
 			{% for i in images %}
 				<div class="slide" data-imageID="{{i.id}}">
 					<div class="{% if i.width / i.height > 1 %}slide-landscape{% else %}slide-portrait{% endif %}">
-						<div class="explore-wrap" data-image-id="{{i.id}}" data-image-src="{{i.url}}" data-image-alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
+						<div class="explore-wrap" 
+							data-image-id="{{i.id}}" 
+							data-image-src="{{ TimberImage(i).src('sukkar-lg') }}" 
+							data-image-alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
 							{% if loop.index == 1 %}
-								<img src="{{ i.url }}" alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
+								<img 
+									src="{{ TimberImage(i).src('sukkar-lg') }}" 
+									alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}"
+								>
 							{% endif %}
 						</div>
 					</div>

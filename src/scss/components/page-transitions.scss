@@ -98,7 +98,8 @@
       cursor: not-allowed;
     }
     .nav-main {
-      transition: height 1s $ease;
+      // transition: height 1s $ease;
+      height: 112px;
     }
     nav ul {
       font-size: $h3-font-size;

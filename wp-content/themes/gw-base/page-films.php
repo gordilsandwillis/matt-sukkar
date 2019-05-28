@@ -53,9 +53,9 @@ $context['all_categories'] = array_unique($all_categories, SORT_REGULAR);
 // $context['all_categories'] = $all_categories;
 
 // echo '<pre>';
-// var_dump($cat);
+// // var_dump($cat);
 // var_dump($all_videos[0]);
-// var_dump($context['all_categories']);
+// // var_dump($context['all_categories']);
 // echo '</pre>';
 
 Timber::render( 'films.twig' , $context );

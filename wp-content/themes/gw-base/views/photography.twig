@@ -3,33 +3,16 @@
 {% block content %}
 
 <div class="photography-page">
-	
-{# 	<div class="toggle-view mb-2 hide-md">
-		<div class="grid-flex no-break right gutter-none">
-			<div class="col">
-				<div class="toggle-item toggle-grid active">
-					{% include 'icons/grid.svg' %}
-				</div>
-			</div>
-			<div class="col">
-				<div class="toggle-item toggle-full">
-					{% include 'icons/full-view.svg' %}
-				</div>
-			</div>
-		</div>
-	</div> #}
-
 	<div class="photography-content">
 		<div class="container">
 			<div class="staggered-photo-grid grid-view" data-columns>
 				{% for i in post.get_field('image_gallery') %}
 					<div>
 					<div class="item">
-{# 						<a href="{{i.link}}">
- #}							<div class="photo-thumb-wrapper">
+								<div class="photo-thumb-wrapper">
 								<div class="lazy-wrap lazyload photo-thumb photo-modal-trigger" data-modal-id="photo-modal-{{ i.id }}" >
 									<img 
-										src="{{ i.url }}" 
+										src="{{ TimberImage(i).src('sukkar-thumb') }}" 
 										alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}"
 										data-imageID="{{i.id}}"
 										data-permalink="{{i.link}}"
@@ -38,11 +21,10 @@
 										>
 								</div>
 							</div>
-						{# </a> #}
 						<div class="item-caption pt-gutter align-center">
 							<p class="medium-weight">{{ i.title }}</p>
 							{% if i.caption %}
-								<p class="mt-2">{{ i.caption }}</p>
+								<p class="mt-1">{{ i.caption }}</p>
 							{% endif %}
 						</div>
 					</div>
@@ -69,14 +51,14 @@
 						{% if i.url %}
 							<div class="slide" data-imageID="{{i.id}}">
 								<div class="pt-margin slide-content">
-									{# <div class="lazyload lazy-wrap"> #}
-										<div class="image-wrap" data-image-id="{{i.id}}" data-image-src="{{i.url}}" data-permalink="{{i.link}}">
+										<div class="image-wrap" 
+										data-image-id="{{i.id}}" 
+										data-image-src="{{ TimberImage(i).src('sukkar-lg') }}" data-permalink="{{i.link}}">
 										</div>
-									{# </div> #}
 									<div class="align-center caption">
 										<p class="medium-weight">{{ i.title }}</p>
 										{% if i.caption %}
-											<p class="mt-2">{{ i.caption }}</p>
+											<p class="mt-1">{{ i.caption }}</p>
 										{% endif %}
 									</div>
 								</div>

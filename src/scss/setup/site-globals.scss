@@ -1,3 +1,6 @@
+$stagger-time : .45s;
+$stagger-delay : .05s;
+
 html {
 	overflow-x: inherit;
 	overflow-y: inherit;
@@ -146,3 +149,8 @@ a {
 	height: 100%;
 	object-fit: cover;
 }
+
+.nav-stagger-1 { animation: transition-in $stagger-time ($stagger-delay * 1 + 1.25s) $ease forwards; opacity: 0; transform: translate3d(0, 1.5rem, 0); }
+.nav-stagger-2 { animation: transition-in $stagger-time ($stagger-delay * 2 + 1.25s) $ease forwards; opacity: 0; transform: translate3d(0, 1.5rem, 0); }
+.nav-stagger-3 { animation: transition-in $stagger-time ($stagger-delay * 3 + 1.25s) $ease forwards; opacity: 0; transform: translate3d(0, 1.5rem, 0); }
+.nav-stagger-4 { animation: transition-in $stagger-time ($stagger-delay * 4 + 1.25s) $ease forwards; opacity: 0; transform: translate3d(0, 1.5rem, 0); }

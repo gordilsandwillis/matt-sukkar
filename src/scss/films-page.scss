@@ -7,10 +7,10 @@
 		// max-width: 75%;
 		margin: $margin auto 0;
 		// justify-content: space-evenly;
-		@include respond(1200){
-			left: 200px;
-			right: 200px;
-		}
+		// @include respond(1200){
+		// 	left: 200px;
+		// 	right: 200px;
+		// }
 
 		@include respond-smaller-than(930){
 			display: none;

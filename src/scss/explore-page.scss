@@ -16,15 +16,23 @@
 		justify-content: center;
 		z-index: 10;
 		transition: opacity $md-speed $ease, visibility $md-speed $ease;
-		animation: fade-out 1s 3s $ease forwards;
-		.h6 {
-			@include respond($xlg) {
-				font-size: 1rem;
+		// animation: fade-out 1s 3s $ease forwards;
+		p {
+			&.xlg {
+				@include respond-smaller-than($md) {
+					max-width: 24rem;
+					font-size: 32px;
+				}
 			}
-			.material-icons {
-				margin-top: -3px;
+			&.h6 {
 				@include respond($xlg) {
-					margin-top: -6px;
+					font-size: 1rem;
+				}
+				.material-icons {
+					margin-top: -3px;
+					@include respond($xlg) {
+						margin-top: -6px;
+					}
 				}
 			}
 		}
@@ -125,6 +133,28 @@
 					}
 				}
 			}
+		}
+	}
+
+	@include respond-smaller-than($lg) {
+		color: $text-color;
+		background: $white;
+
+		header {
+			nav li a {
+				color: $light-text-color;
+				&:hover {
+					color: $text-color;
+				}
+			}
+		}
+		a {
+			color: $text-color;
+		}
+
+		.explore-slideshow {
+			background: $white;
+			color: $text-color;
 		}
 	}
 }

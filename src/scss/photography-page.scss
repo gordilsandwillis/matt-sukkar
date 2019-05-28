@@ -59,7 +59,10 @@
 			}
 		}
 		&[data-columns]::before {
-			@media screen and (min-width: 1 + px) and (max-width: $md + px) {
+			@media screen and (min-width: 1 + px) and (max-width: $sm + px) {
+				content: '1 .col12';
+			}
+			@media screen and (min-width: $sm + px) and (max-width: $md + px) {
 				content: '1 .col12';
 			}
 			@media screen and (min-width: $md + px) and (max-width: $lg + px) {
@@ -107,7 +110,7 @@
 				&:hover {
 					.photo-thumb {
 						img {
-							transform: scale(1.05);
+							opacity: 0.9;
 						}
 					}
 				}

@@ -60,6 +60,7 @@ header {
 			li {
 				font-size: 1em;
 				line-height: 1em;
+				padding-right: 0.5em;
 				@include respond-smaller-than($md) {
 			  	font-size: $h3-font-size;
 			  }
@@ -76,6 +77,9 @@ header {
 			color: $light-text-color;
 			transition: color $slow-speed $ease;
 			&:hover {
+				color: $text-color;
+			}
+			&.active {
 				color: $text-color;
 			}
 		}
