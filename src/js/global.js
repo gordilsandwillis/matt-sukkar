@@ -430,7 +430,7 @@ var global = {
       centerMode: false,
       slidesToScroll: 1,
       arrows: true,
-      infinite: true,
+      infinite: false,
       fade: false,
       speed: 1200,
       autoplay: false,
@@ -501,7 +501,7 @@ var global = {
       centerMode: false,
       slidesToScroll: 1,
       arrows: true,
-      infinite: true,
+      infinite: false,
       fade: false,
       speed: 750,
       autoplay: false,
@@ -568,7 +568,6 @@ var global = {
         var imageID = futureSlideDom.find('div.image-wrap').attr('data-image-id');
         
         if ( futureSlideDom.find('div.image-wrap').children().length < 1 ){
-          console.log('replaceSlideshowImage call next')
           global.replaceSlideshowImage(imageID);
         }
       }
