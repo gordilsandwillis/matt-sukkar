@@ -51,10 +51,17 @@
 						{% if i.url %}
 							<div class="slide" data-imageID="{{i.id}}">
 								<div class="pt-margin slide-content">
-										<div class="image-wrap" 
-										data-image-id="{{i.id}}" 
-										data-image-src="{{ TimberImage(i).src('sukkar-lg') }}" data-permalink="{{i.link}}">
-										</div>
+									<div class="image-wrap" 
+									data-image-id="{{i.id}}" 
+									data-image-src="{{ TimberImage(i).src('sukkar-lg') }}" data-permalink="{{i.link}}">
+
+										{% if loop.index < 4 %}
+											<img 
+												src="{{ TimberImage(i).src('sukkar-lg') }}" 
+											>
+										{% endif %}
+
+									</div>
 									<div class="align-center caption">
 										<p class="medium-weight">{{ i.title }}</p>
 										{% if i.caption %}

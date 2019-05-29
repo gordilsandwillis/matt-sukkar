@@ -66,7 +66,7 @@ var global = {
       debug: true,
       // anchors: '.transition-link:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not(.trigger)',
       onStart: {
-        duration: 1000, // Duration of our animation
+        duration: 100, // Duration of our animation
         render: function ($container) {
           // Add your CSS animation reversing class
           $container.addClass('is-exiting');
@@ -366,19 +366,15 @@ var global = {
         // sliding horizontally
         if (diffX > 0) {
           // swiped left
-          console.log("swiped left");
         } else {
           // swiped right
-          console.log("swiped right");
         }  
       } else {
         // sliding vertically
         if (diffY > 0) {
           // swiped up
-          console.log("swiped up");
         } else {
           // swiped down
-          console.log("swiped down");
         }  
       }
 
@@ -428,8 +424,7 @@ var global = {
 
   exploreSlideshow: function() {
     $('.slideshow.explore-slideshow').on('init', function(event, slick){
-    console.log('slider was initialized');
-    $(document).find('.slick-list').attr('tabindex', 0).focus();
+    $(document).find('.slick-track').attr('tabindex', 0).focus();
     }).slick({
       slidesToShow: 1,
       centerMode: false,
@@ -437,7 +432,7 @@ var global = {
       arrows: true,
       infinite: true,
       fade: false,
-      speed: 750,
+      speed: 1200,
       autoplay: false,
       swipeToSlide: true,
       accessibility: true,
@@ -460,24 +455,31 @@ var global = {
     });
 
     $('.slideshow.explore-slideshow').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-      var nextSlideDom = $(slick.$slides.get(nextSlide));
-      // console.log(nextSlideDom);
-      var imageID = nextSlideDom.find('div.explore-wrap').attr('data-image-id');
-      // console.log(imageID);
-      global.replaceExploreImage(imageID);
+
+      var futureSlideIndex = nextSlide + 2;
+      
+      var slideCount = $('.slideshow.explore-slideshow').slick('getSlick').$slides.length;
+      
+      if ( futureSlideIndex <= slideCount ){
+        var futureSlideDom = $(slick.$slides.get(futureSlideIndex));
+        var imageID = futureSlideDom.find('div.explore-wrap').attr('data-image-id');
+        
+        if ( futureSlideDom.find('div.explore-wrap').children().length < 1 ){
+          global.replaceExploreImage(imageID);
+        }
+      }
+
     });
 
     $(".explore-slideshow").on("keydown", function(event) {
       
       if(event.keyCode == 37){
-        console.log('PREV arrow key PRESSED');
         if (!$('.explore-overlay').hasClass('hidden')){
           $('.explore-overlay').addClass('hidden');
         }
         $('.slideshow.explore-slideshow').slick('slickPrev');
       }
       if (event.keyCode == 39){
-        console.log('NEXT arrow key PRESSED')
         if (!$('.explore-overlay').hasClass('hidden')){
           $('.explore-overlay').addClass('hidden');
         }
@@ -487,7 +489,6 @@ var global = {
   },
 
   replaceExploreImage: function(imageId){
-    // console.log('replaceSlideshowImage ran:::', imageId);
     var thisSlideImage = $('.slideshow.explore-slideshow .slide').find('.explore-wrap[data-image-id="'+ imageId +'"]');
     var thisImageSrc = thisSlideImage.attr('data-image-src');
     var thisImageAlt = thisSlideImage.attr('data-image-alt');
@@ -550,12 +551,28 @@ var global = {
       $('.photo-slideshow .slick-track').attr('tabindex', 0);
     });
 
+    // $('.photo-slideshow').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+    //   var nextSlideDom = $(slick.$slides.get(nextSlide));
+    //   var imageID = nextSlideDom.find('div.image-wrap').attr('data-image-id');
+    //   global.replaceSlideshowImage(imageID);
+    // });
+
     $('.photo-slideshow').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-      var nextSlideDom = $(slick.$slides.get(nextSlide));
-      // console.log(nextSlideDom);
-      var imageID = nextSlideDom.find('div.image-wrap').attr('data-image-id');
-      // console.log(imageID);
-      global.replaceSlideshowImage(imageID);
+
+      var futureSlideIndex = nextSlide + 2;
+      
+      var slideCount = $('.photo-slideshow').slick('getSlick').$slides.length;
+      
+      if ( futureSlideIndex <= slideCount ){
+        var futureSlideDom = $(slick.$slides.get(futureSlideIndex));
+        var imageID = futureSlideDom.find('div.image-wrap').attr('data-image-id');
+        
+        if ( futureSlideDom.find('div.image-wrap').children().length < 1 ){
+          console.log('replaceSlideshowImage call next')
+          global.replaceSlideshowImage(imageID);
+        }
+      }
+
     });
 
     $('.photo-slideshow').on('afterChange', function(event, slick, currentSlide){
@@ -576,7 +593,6 @@ var global = {
   },
 
   replaceSlideshowImage: function(imageId) {
-    // console.log('replaceSlideshowImage ran:::', imageId);
     var thisSlideImage = $('.photo-slideshow .slide').find('.image-wrap[data-image-id="'+ imageId +'"]');
     var thisImageSrc = thisSlideImage.attr('data-image-src');
     thisSlideImage.html('<img src="'+ thisImageSrc +'">');

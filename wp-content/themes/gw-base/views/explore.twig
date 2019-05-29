@@ -19,7 +19,7 @@
 							data-image-id="{{i.id}}" 
 							data-image-src="{{ TimberImage(i).src('sukkar-lg') }}" 
 							data-image-alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
-							{% if loop.index == 1 %}
+							{% if loop.index < 4 %}
 								<img 
 									src="{{ TimberImage(i).src('sukkar-lg') }}" 
 									alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}"
