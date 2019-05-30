@@ -25,6 +25,7 @@ var global = {
     this.topArea();
     this.scroll();
     this.exploreSlideshow();
+    this.exploreLoader();
     this.splitSlideshowBlock();
     this.accordion();
     this.getInstalink();
@@ -98,10 +99,10 @@ var global = {
           $container.removeClass();
           $container.removeClass('is-exiting');
           $container.addClass('is-entering');
-
           setTimeout(() => {
             $container.removeClass('is-entering');
             $container.addClass('entered');
+            $('.explore-loader').removeClass('visible');
           }, 900)
 
           // Inject the new content
@@ -263,6 +264,15 @@ var global = {
     //   $('body').removeClass('menu-open');
     // });
 
+  },
+
+  exploreLoader : function () {
+    $('header #nav-main li:not(.current_page_item) a.Explore').click(function(){
+      console.log('explore clicked');
+      setTimeout(function(){ 
+        $('.explore-loader').addClass('visible')
+      }, 1000);
+    })
   },
 
   permalinkGoBack: function () {

@@ -3,7 +3,7 @@
 	<ul>
 		{% for item in menu %}
 			<li class="col {{ item.classes | join(' ') }} nav-stagger-{{ loop.index }}">
-				<a class="transition-link close-menu menu-link" target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+				<a class="transition-link close-menu menu-link {{item.title}}" target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
 				{#% include "menu.twig" with {'menu': item.get_children} %#}
 			</li>
 		{% endfor %}

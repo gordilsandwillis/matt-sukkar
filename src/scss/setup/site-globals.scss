@@ -179,3 +179,34 @@ a {
   	}
   }
 }
+
+.explore-loader {
+	background: $black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 20;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity $slow-speed $ease, visibility $slow-speed $ease;
+
+	&.visible {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.explore-spinner {
+		display: block;
+		width: 2px;
+		height: 24px;
+		background: $white;
+		animation: rotate 1s $ease infinite;
+		z-index: 0;
+		transition: opacity 0s 1s $ease;
+	}
+}
