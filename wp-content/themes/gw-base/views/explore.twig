@@ -17,12 +17,10 @@
 					<div class="{% if i.width / i.height > 1 %}slide-landscape{% else %}slide-portrait{% endif %}">
 						<div class="explore-wrap" 
 							data-image-id="{{i.id}}" 
-							data-image-src="{{ TimberImage(i).src('sukkar-lg') }}" 
-							data-image-alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}">
+							data-image-src="{{ TimberImage(i).src('sukkar-lg') }}">
 							{% if loop.index < 4 %}
 								<img 
 									src="{{ TimberImage(i).src('sukkar-lg') }}" 
-									alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}"
 								>
 							{% endif %}
 						</div>

@@ -478,8 +478,7 @@ var global = {
   replaceExploreImage: function(imageId){
     var thisSlideImage = $('.slideshow.explore-slideshow .slide').find('.explore-wrap[data-image-id="'+ imageId +'"]');
     var thisImageSrc = thisSlideImage.attr('data-image-src');
-    var thisImageAlt = thisSlideImage.attr('data-image-alt');
-    thisSlideImage.html('<img src="'+ thisImageSrc +'" alt="'+ thisImageAlt +'">');
+    thisSlideImage.html('<img src="'+ thisImageSrc+'">');
   },
 
   photographySlideshow: function() {

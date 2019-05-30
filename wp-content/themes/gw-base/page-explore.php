@@ -5,23 +5,22 @@ $context['post'] = $post;
 $context['is_front_page'] = 'true';
 $context['body_class'] = 'explore-page';
 
-$image_array = get_field('image_gallery', $post);
+// $image_array = get_field('image_gallery', $post);
+// shuffle($image_array);
+// $context['images'] = $image_array;
 
-shuffle($image_array);
+$image_groups = get_field('image_group', $post);
 
-// $first_twenty = array_slice($image_array, 0, 20);
-// shuffle($first_twenty);
-// $context['images'] = $first_twenty;
+$random_group = $image_groups[array_rand($image_groups)];
 
+shuffle($random_group['image_gallery']);
 
-$context['images'] = $image_array;
+$random_gallery = $random_group['image_gallery'];
 
-// $chunk = array_chunk($image_array, 10);
+$context['images'] = $random_gallery;
 
-// foreach($chunk as $chunk_array) {
-// 	shuffle($chunk_array);
-// }
-
-// $context['images'] = array_merge(...$chunk);
+// echo '<pre>';
+// var_dump($random_gallery);
+// echo '</pre>';
 
 Timber::render( 'explore.twig' , $context );
