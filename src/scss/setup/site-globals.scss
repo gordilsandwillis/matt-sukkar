@@ -156,8 +156,9 @@ a {
 .nav-stagger-4 { animation: transition-in $stagger-time ($stagger-delay * 4 + 1.25s) $ease forwards; opacity: 0; transform: translate3d(0, 1.5rem, 0); }
 
 
-@media (min-aspect-ratio: 3/2) and (max-width: 700px) {
-  .orientation-overlay {
+.orientation-overlay {
+	display: none;
+	@media (min-aspect-ratio: 3/2) and (max-width: 700px) {
   	background: rgba(0, 0, 0, .4);
   	display: flex;
   	align-items: center;
