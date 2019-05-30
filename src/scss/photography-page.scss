@@ -102,15 +102,12 @@
 
 				.photo-thumb {
 					overflow: hidden;
-					// vertical-align: inherit;
-					img {
-						transition: all $md-speed $ease;
-					}
 				}
 				&:hover {
 					.photo-thumb {
 						img {
 							opacity: 0.9;
+							transition: opacity $md-speed $ease;
 						}
 					}
 				}

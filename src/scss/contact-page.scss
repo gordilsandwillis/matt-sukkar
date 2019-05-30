@@ -1,6 +1,6 @@
 #main .contact-page {
 	header {
-		background: transparent;
+		background: $white;
 	}
 	.page-content .wrapper {
 		@include respond($xlg) {

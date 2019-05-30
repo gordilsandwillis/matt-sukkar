@@ -20,7 +20,6 @@ var global = {
   ready: function(){
     this.pageTransitions();
     this.menuToggle();
-    // this.menuLinkActive();
     // this.mailchimpSignup.init(this.mailchimpSignup);
     lazySizes.init();
     this.topArea();
@@ -66,7 +65,7 @@ var global = {
       debug: true,
       // anchors: '.transition-link:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not(.trigger)',
       onStart: {
-        duration: 100, // Duration of our animation
+        duration: 1000, // Duration of our animation
         render: function ($container) {
           // Add your CSS animation reversing class
           $container.addClass('is-exiting');
@@ -266,18 +265,6 @@ var global = {
 
   },
 
-  // menuLinkActive: function () {
-  //   $('#nav-main .menu-link').click(function(){
-  //     console.log('menu-link active click', $(this));
-  //     $('#nav-main .menu-link').each(function( index ) {
-  //       if ( $(this).hasClass('active')){
-  //         $(this).removeClass('active');
-  //       }
-  //     });
-  //     $(this).addClass('active');
-  //   });
-  // },
-
   permalinkGoBack: function () {
     // $('.attachment-back-button').click(function(){
     //     window.history.back();
@@ -292,7 +279,7 @@ var global = {
     startY,
     distX,
     distY,
-    threshold = 150, //required min distance traveled to be considered swipe
+    threshold = 20, //required min distance traveled to be considered swipe
     restraint = 100, // maximum distance allowed at the same time in perpendicular direction
     allowedTime = 300, // maximum time allowed to travel that distance
     elapsedTime,
@@ -532,6 +519,7 @@ var global = {
 
       var $slides = $('.photo-slideshow').slick('getSlick').$slides;
       var $tar;
+
       // find slide of target image id
       $slides.each(function(){
         var tarSlide = $(this).find('.slide');
@@ -542,6 +530,32 @@ var global = {
 
       // set idx as slick index
       var idx = $slides.index( $tar );
+
+      // replace image for target
+      global.replaceSlideshowImage(imageIndex);
+      
+      // replace image for next slide
+      if ( idx + 1 < $slides.length ){
+        var nextSlideIndex = idx +1 ;
+        var nextSlideDom = $($slides.get(nextSlideIndex));
+        var nextImageID = nextSlideDom.find('div.image-wrap').attr('data-image-id');
+        global.replaceSlideshowImage(nextImageID);
+      }
+
+      // hide nav arrows for first/last slide
+      console.log('idx : ',idx);
+      console.log('total slides length: ', $slides.length)
+
+      $('#photo-modal-slide .arrow-nav .prev-arrow').show();
+      $('#photo-modal-slide .arrow-nav .next-arrow').show();
+
+      if ( idx === 0 ) {
+        console.log('first slide selected ');
+        $('#photo-modal-slide .arrow-nav .prev-arrow').hide();
+      } else if ( idx === $slides.length -1 ) {
+        console.log('last slide selected ')
+        $('#photo-modal-slide .arrow-nav .next-arrow').hide();
+      }
 
       $('.photo-slideshow').slick("refresh");
       // $('.photo-slideshow')[0].slick.cssTransitions = false;

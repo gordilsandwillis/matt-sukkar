@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="photography-page">
+<div class="photography-page page-body-transition">
 	<div class="photography-content">
 		<div class="container">
 			<div class="staggered-photo-grid grid-view" data-columns>
@@ -12,7 +12,11 @@
 								<div class="photo-thumb-wrapper">
 								<div class="lazy-wrap lazyload photo-thumb photo-modal-trigger" data-modal-id="photo-modal-{{ i.id }}" >
 									<img 
-										src="{{ TimberImage(i).src('sukkar-thumb') }}" 
+										srcset="{{ TimberImage(i).src('sukkar-thumb') }} 750w,
+											{{ TimberImage(i).src('gw-md') }} 1200w,
+											{{ TimberImage(i).src('gw-lg') }} 1500w,
+											{{ TimberImage(i).src('sukkar-lg') }} 2001w" 
+										src="{{ TimberImage(i).src('sukkar-thumb') }}"
 										alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}"
 										data-imageID="{{i.id}}"
 										data-permalink="{{i.link}}"

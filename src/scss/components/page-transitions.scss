@@ -7,9 +7,15 @@
 		// animation-name: fade-in-page;
 	}
 
-  // Delay photography page entrance until grid loads
-  .photography-page .page-content {
-    // animation-delay: 3s;
+  .page-body-transition {
+    animation-duration: 1s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+    animation-name: fade-in-page;
+
+    &.photography-page {
+      animation-delay: 1s;
+    }
   }
   
   &.entered {
@@ -41,8 +47,8 @@
         }
       }
     }
-    .page-content {
-      // animation-name: fade-in-page;
+    .page-body-transition{
+      animation-name: fade-in-page;
     }
   }
 
@@ -68,8 +74,8 @@
         }
       }
     }
-    .page-content {
-      // animation-name: fade-out-page;
+    .page-body-transition {
+      animation-name: fade-out-page;
     }
   }
 }

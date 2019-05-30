@@ -44,6 +44,11 @@
 	header {
 		z-index: 4;
 		background: transparent;
+		.current_page_item {
+			a {
+				color: $white;
+			}
+		}
 	}
 	.next,
 	.prev {
