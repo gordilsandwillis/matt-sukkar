@@ -1,7 +1,14 @@
+.explore-prev {
+	&.hidden {
+		display: none !important;
+	}
+}
+
 .explore-page {
-	color: $white;
-	background: $black;
 	height: 100%;
+	header {
+		background: transparent;
+	}
 	.explore-overlay {
 		position: fixed;
 		top: 0;
@@ -41,15 +48,6 @@
 			visibility: hidden;
 		}
 	}
-	header {
-		z-index: 4;
-		background: transparent;
-		.current_page_item {
-			a {
-				color: $white;
-			}
-		}
-	}
 	.next,
 	.prev {
 		position: fixed;
@@ -75,28 +73,23 @@
 		left: 0;
 		cursor: w-resize;
 	}
-	header {
-		nav li a {
-			color: rgba($white, .75);
-			&:hover {
-				color: $white;
-			}
-		}
-	}
-	a {
-		color: $white;
-	}
 	.explore-slideshow {
-		background: $black;
 		position: fixed;
 		z-index: 1;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
+		.slick-track,
+		.slick-list,
+		.slick-slide,
+		.slick-slide > div {
+			height: 100%;
+		}
 		.slide {
 			width: 100%;
 			height: 100vh;
+			height: 100% !important;
 			display: flex;
 			align-items: stretch;
 			justify-content: stretch;
@@ -141,25 +134,33 @@
 		}
 	}
 
-	@include respond-smaller-than($lg) {
-		color: $text-color;
-		background: $white;
+}
+
+@include respond($lg) {
+	.explore-page {
+		color: $white;
+		background: $black;
 
 		header {
 			nav li a {
-				color: $light-text-color;
+				color: rgba($white, .75);
 				&:hover {
-					color: $text-color;
+					color: $white;
+				}
+			}
+			.current_page_item {
+				a {
+					color: $white;
 				}
 			}
 		}
 		a {
-			color: $text-color;
+			color: $white;
 		}
 
 		.explore-slideshow {
-			background: $white;
-			color: $text-color;
+			color: $white;
+			background: $black;
 		}
 	}
 }

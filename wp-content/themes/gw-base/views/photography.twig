@@ -10,7 +10,11 @@
 					<div>
 					<div class="item">
 								<div class="photo-thumb-wrapper">
-								<div class="lazy-wrap lazyload photo-thumb photo-modal-trigger" data-modal-id="photo-modal-{{ i.id }}" >
+								<div
+									class="lazy-wrap lazyload photo-thumb photo-modal-trigger"
+									data-modal-id="photo-modal-{{ i.id }}"
+									style="padding-bottom: {{ i.height / i.width * 100}}%"
+								>
 									<img 
 										srcset="{{ TimberImage(i).src('sukkar-thumb') }} 750w,
 											{{ TimberImage(i).src('gw-md') }} 1200w,
@@ -28,7 +32,7 @@
 						<div class="item-caption pt-gutter align-center">
 							<p class="medium-weight">{{ i.title }}</p>
 							{% if i.caption %}
-								<p class="mt-1">{{ i.caption }}</p>
+								<p class="mt">{{ i.caption }}</p>
 							{% endif %}
 						</div>
 					</div>
@@ -43,7 +47,7 @@
 			<div class="modal" id="photo-modal-slide">
 				<div class="close-modal"><span class="material-icons md-24">close</span></div>
 				<div class="arrow-nav">
-					<p class="prev-arrow">
+					<p class="prev-arrow hidden">
 						<span class="material-icons md-36">keyboard_arrow_left</span>
 					</p>
 					<p class="next-arrow">
@@ -69,7 +73,7 @@
 									<div class="align-center caption">
 										<p class="medium-weight">{{ i.title }}</p>
 										{% if i.caption %}
-											<p class="mt-1">{{ i.caption }}</p>
+											<p class="mt">{{ i.caption }}</p>
 										{% endif %}
 									</div>
 								</div>

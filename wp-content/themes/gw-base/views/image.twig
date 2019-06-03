@@ -7,15 +7,26 @@
 		<a href="/photography" class="material-icons md-24 desktop-icon">close
 		</a> #}
 	</div>
-	<div class="attachment-image-page" >
+	<div class="attachment-image-page page-body-transition" >
 		<div class="attachment-image-wrapper">
-			<img class="attachment-image" src={{img_src}} />
+			<!-- <img class="attachment-image" src={{img_src}} /> -->
+			<img 
+				class="attachment-image" 
+				srcset="{{ TimberImage(post.id).src('sukkar-thumb') }} 750w,
+					{{ TimberImage(post.id).src('gw-md') }} 1200w,
+					{{ TimberImage(post.id).src('gw-lg') }} 1500w,
+					{{ TimberImage(post.id).src('sukkar-lg') }} 2001w" 
+				src="{{ TimberImage(post.id).src('sukkar-thumb') }}"
+				alt="{% if post.id.alt %}{{ post.id.alt }}{% else %}{{ post.id.title }}{% endif %}"
+				width="{{ post.id.width }}"
+				height="{{ post.id.height }}"
+				>
 		</div>
 		<div class="attachment-image-info">
-			<div class="pt-margin align-center caption">
+			<div class="pb-0 align-center caption">
 				<p class="medium-weight">{{ img_title }}</p>
 				{% if img_caption %}
-					<p class="mt-2">{{ img_caption }}</p>
+					<p class="mt">{{ img_caption }}</p>
 				{% endif %}
 			</div>
 		</div>

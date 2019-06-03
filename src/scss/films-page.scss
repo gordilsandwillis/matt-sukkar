@@ -1,3 +1,11 @@
+body.open-modal {
+	.films-page {
+		.categories {
+			z-index: 0;
+		}
+	}
+}
+
 .films-page {
 	.categories {
 		position: fixed;

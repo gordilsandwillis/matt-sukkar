@@ -33,6 +33,16 @@
 	  }
 	}
 
+	.prev-arrow {
+		opacity: 1;
+		visibility: visible;
+		transition: opacity $md-speed $ease, visibility $md-speed $ease, color $md-speed $ease;
+		&.hidden {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+
 	.staggered-photo-grid {
 		margin-left: -$gutter/2;
 		margin-right: -$gutter/2;
@@ -102,6 +112,12 @@
 
 				.photo-thumb {
 					overflow: hidden;
+					position: relative;
+					img {
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
 				}
 				&:hover {
 					.photo-thumb {

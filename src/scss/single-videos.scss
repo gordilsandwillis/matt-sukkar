@@ -41,7 +41,10 @@
 				min-height: 100vh;
 				display: flex;
 				flex-direction: column;
-				padding: calc(#{$margin} *2) $margin;
+				padding: calc(#{$margin} *2) $mobile-margin $mobile-margin;
+				@include respond($lg) {
+					padding: calc(#{$margin} *2) $margin $margin;
+				}
 
 				.attachment-video-wrapper {
 					width: 100%;
@@ -80,7 +83,7 @@
 					.caption {
 						max-width: 40rem;
 						margin: 0 auto;
-						padding: $margin 0;
+						// padding: $margin 0;
 					}
 				}
 			}
