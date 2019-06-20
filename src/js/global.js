@@ -422,7 +422,7 @@ var global = {
 
   exploreSlideshow: function() {
     $('.slideshow.explore-slideshow').on('init', function(event, slick){
-    $(document).find('.slick-track').attr('tabindex', 0).focus();
+  
     }).slick({
       slidesToShow: 1,
       centerMode: false,
@@ -469,8 +469,7 @@ var global = {
 
     });
 
-    $(".explore-slideshow").on("keydown", function(event) {
-      
+    $(document).on("keydown", function(event) {
       if(event.keyCode == 37){
         if (!$('.explore-overlay').hasClass('hidden')){
           $('.explore-overlay').addClass('hidden');

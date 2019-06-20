@@ -63,12 +63,16 @@ a {
 	img,
 	video,
 	iframe {
-		position: relative;
+		position: absolute;
 		opacity: 0;
 		transition: opacity .5s .2s $ease;
 		z-index: 1;
 		display: block;
 		width: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 	iframe {
 		transition-delay: .3s;
