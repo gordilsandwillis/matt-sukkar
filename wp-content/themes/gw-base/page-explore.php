@@ -32,13 +32,55 @@ $context['body_class'] = 'explore-page';
 // $random_gallery = $random_group_gallery;
 
 
-$random_index = mt_rand(1,10);
+// $random_index = mt_rand(1,10);
+
+// $random_field = 'image_group_'.$random_index;
+// $random_gallery = get_field($random_field, $post);
+// shuffle($random_gallery);
+
+
+
+// COOOKIES 
+
+if (isset($_COOKIE["explore_cook"]) && count(json_decode($_COOKIE['explore_cook'])) == 10){
+	
+	$random_index = mt_rand(1,10);
+  $init_value = array($random_index);
+  $init_value = json_encode($init_value, true);
+  setcookie('explore_cook', $init_value, time()+3600);
+} else {
+
+	if (!isset($_COOKIE["explore_cook"]) ) {
+	  // Set cookie to current value
+
+		$random_index = mt_rand(1,10);
+	  $init_value = array($random_index);
+	  $init_value = json_encode($init_value, true);
+	  setcookie('explore_cook', $init_value, time()+3600);
+
+	} else {
+	  // Get cookie value
+	  $prev_value = $_COOKIE["explore_cook"];
+	  $prev_value = stripslashes($prev_value);
+	  $prev_value = json_decode($prev_value, true);
+
+	  // Add truly random value to array and set cookie again
+	  $blacklist = $prev_value;
+		$range = range(1, 10);
+		$randomArray = array_diff($range, $blacklist);
+		$random_index = $randomArray[array_rand($randomArray, 1)];
+
+		array_push($prev_value, $random_index);
+
+	  $new_value = json_encode($prev_value, true);
+	  setcookie('explore_cook', $new_value, time()+3600);
+
+	}
+}
 
 $random_field = 'image_group_'.$random_index;
 $random_gallery = get_field($random_field, $post);
 shuffle($random_gallery);
-
-
 
 
 // $blacklist = $_SESSION['explore_index'];
@@ -51,17 +93,15 @@ shuffle($random_gallery);
 // $random_gallery = get_field($random_field, $post);
 // shuffle($random_gallery);
 
-// if (count($_SESSION['explore_index']) == 10) {
-// 	$context['explore_finish'] = true;
-// }
+if (count(json_decode($_COOKIE["explore_cook"])) == 10) {
+	$context['explore_finish'] = true;
+}
 
 $context['images'] = $random_gallery;
 
-// if (count($_SESSION['explore_index']) == 10) {
-// 	$_SESSION['explore_index'] = array();
-// }
 
 // echo '<pre>';
+// var_dump(json_decode($_COOKIE["explore_cook"]));
 // // var_dump($random_index);
 // // var_dump($_SESSION['explore_index']);
 // var_dump(count($_SESSION['explore_index']));
