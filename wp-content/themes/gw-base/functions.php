@@ -138,18 +138,18 @@ function default_attachment_display_settings() {
 }
 add_action( 'after_setup_theme', 'default_attachment_display_settings' );
 
-function start_session() {
-	if(!session_id()) {
-		session_start();
-		if(!isset($_SESSION['explore_index'])){
-			$_SESSION['explore_index'] = array();
-		} else {
-			if (count($_SESSION['explore_index']) == 10) {
-				$_SESSION['explore_index'] = array();
-			}
-		}
-	}
-}
-add_action('init', 'start_session', 1);
+// function start_session() {
+// 	if(!session_id()) {
+// 		session_start();
+// 		if(!isset($_SESSION['explore_index'])){
+// 			$_SESSION['explore_index'] = array();
+// 		} else {
+// 			if (count($_SESSION['explore_index']) == 10) {
+// 				$_SESSION['explore_index'] = array();
+// 			}
+// 		}
+// 	}
+// }
+// add_action('init', 'start_session', 1);
 
 new GW();
