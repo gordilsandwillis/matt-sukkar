@@ -494,11 +494,26 @@ var global = {
       } else {
         $('.explore-page .explore-prev').addClass('hidden')
       }
+      if (slideIndex == slick.$slides.length-1) {
+        console.log("Last slide");
+        $('.explore-page .explore-prev').addClass('hidden');
+        $('.explore-page .explore-next').addClass('hidden');
+        setTimeout(function(){ 
+          $('.explore-page .explore-more').removeClass('hidden');
+        }, 1000);
+      }
       // var slidePermalink = slideDom.find('div.video-wrap').attr('data-permalink');
       // if($('.film-modal').hasClass('open')) {
       //   window.history.pushState({}, "", slidePermalink);
       // }
     });
+
+    $('.explore-more').on('click',function(){
+      console.log('explore-more clicked');
+      $('.explore-loader').addClass('visible');
+      window.location.reload(true);
+    });
+
   },
 
   replaceExploreImage: function(imageId){

@@ -11,6 +11,17 @@
 		</div>
 		<div class="prev explore-prev hidden">Prev</div>
 		<div class="next explore-next">Next</div>
+
+		<div class="explore-more hidden">
+			<div class="container align-center">
+				{% if explore_finish %}
+					<p class="xlg mx-auto">Wow, you just looked at 400+ images, go outside you nerd!</p>
+				{% else %}
+					<p class="xlg mx-auto">Click to Load More Images</p>
+				{% endif %}
+			</div>
+		</div>
+		
 		<div class="slideshow explore-slideshow">
 			{% for i in images %}
 				<div class="slide" data-imageID="{{i.id}}">
