@@ -97,11 +97,13 @@ if (count(json_decode($_COOKIE["explore_cook"])) == 10) {
 	$context['explore_finish'] = true;
 }
 
+$context['explore_finish_text'] = get_field('explore_page_message', $post);
+
 $context['images'] = $random_gallery;
 
 
 // echo '<pre>';
-// var_dump(json_decode($_COOKIE["explore_cook"]));
+// var_dump($context['explore_finish_text']);
 // // var_dump($random_index);
 // // var_dump($_SESSION['explore_index']);
 // var_dump(count($_SESSION['explore_index']));
