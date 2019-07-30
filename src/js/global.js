@@ -176,9 +176,11 @@ var global = {
   },
 
   exploreOverlay : function () {
-    $('.explore-page').click(function(){
+    $('.explore-page').click(function(event){
       if (!$('.explore-overlay').hasClass('hidden')){
         $('.explore-overlay').addClass('hidden');
+        $('.explore-prev').removeClass('inactive');
+        $('.explore-next').removeClass('inactive');
       }
     });
   },
@@ -392,6 +394,7 @@ var global = {
             console.log('SWIPED!!')
             if (!$('.explore-overlay').hasClass('hidden')){
               $('.explore-overlay').addClass('hidden');
+              $('.slideshow.explore-slideshow').slick("slickSetOption", "swipe", true);
             }
           }
         })
@@ -432,7 +435,8 @@ var global = {
       fade: false,
       speed: 1200,
       autoplay: false,
-      swipeToSlide: true,
+      swipe: false,
+      swipeToSlide: false,
       accessibility: true,
       pauseOnHover: false,
       prevArrow: $('.explore-page .prev'),
@@ -582,6 +586,14 @@ var global = {
         global.replaceSlideshowImage(nextImageID);
       }
 
+      // replace image for previous slide
+      if ( idx - 1 > 0 ){
+        var prevSlideIndex = idx -1 ;
+        var prevSlideDom = $($slides.get(prevSlideIndex));
+        var prevImageID = prevSlideDom.find('div.image-wrap').attr('data-image-id');
+        global.replaceSlideshowImage(prevImageID);
+      }      
+
       // hide nav arrows for first/last slide
       console.log('idx : ',idx);
       console.log('total slides length: ', $slides.length)
@@ -622,6 +634,17 @@ var global = {
         var imageID = futureSlideDom.find('div.image-wrap').attr('data-image-id');
         
         if ( futureSlideDom.find('div.image-wrap').children().length < 1 ){
+          global.replaceSlideshowImage(imageID);
+        }
+      }
+
+      var prevSlideIndex = nextSlide -2;
+
+      if ( prevSlideIndex > 0 ){
+        var prevSlideDom = $(slick.$slides.get(prevSlideIndex));
+        var imageID = prevSlideDom.find('div.image-wrap').attr('data-image-id');
+        
+        if ( prevSlideDom.find('div.image-wrap').children().length < 1 ){
           global.replaceSlideshowImage(imageID);
         }
       }
