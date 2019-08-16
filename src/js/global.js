@@ -686,8 +686,10 @@ var global = {
   stopVideo: function(videoId) {
     var iframe = $('.slide[data-video-id="'+videoId+ '"] iframe');
     console.log('stop video iframe : ', iframe );
-    var player = new Vimeo.Player(iframe);
-    player.pause();
+    if (iframe.hasClass('lazyloaded')) {
+      var player = new Vimeo.Player(iframe);
+      player.pause();
+    }
     // player.unload();
   },
 
@@ -695,16 +697,19 @@ var global = {
 
     var iframe = $('.slide[data-video-id="'+videoId+ '"] iframe');
     console.log('play video iframe : ', iframe );
-
-    var player = new Vimeo.Player(iframe);
-    player.play();
+    if (iframe.hasClass('lazyloaded')) {
+      var player = new Vimeo.Player(iframe);
+      player.play();
+    }
 
     var onEnd = function(data) {
       $(iframe).closest('.modal-wrap.open').removeClass('open');
       $(iframe).closest('.modal.visible').removeClass('visible');
     };
 
-    player.on('ended', onEnd);
+    if (iframe.hasClass('lazyloaded')) {
+      player.on('ended', onEnd);
+    }
   },
 
   filmSlideshowModal : function() {
@@ -800,6 +805,7 @@ var global = {
       var slideDomCurr = $(slick.$slides.get(currentSlide));
       var videoId = slideDomCurr.find('.slide').attr('data-video-id');
       global.stopVideo(videoId);
+
     });
 
     $('.film-slideshow').on('afterChange', function(event, slick, currentSlide){

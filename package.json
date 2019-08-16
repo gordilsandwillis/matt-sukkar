@@ -37,7 +37,7 @@
     "compression-webpack-plugin": "^1.1.11",
     "gw-ui": "^1.3.7",
     "jquery-lazyload": "^1.9.7",
-    "lazysizes": "^4.1.7",
+    "lazysizes": "^4.1.8",
     "object-fit-polyfill": "^0.1.0",
     "salvattore": "^1.0.9",
     "slick-carousel": "^1.8.1",
