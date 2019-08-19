@@ -756,7 +756,8 @@ var global = {
       prevArrow: false,
       nextArrow: false,
       waitForAnimate: false,
-      focusOnChange: true
+      focusOnChange: true,
+      lazyLoad: 'ondemand'
       // responsive: [
       //   {
       //     breakpoint: 600,

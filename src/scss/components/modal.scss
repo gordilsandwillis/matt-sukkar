@@ -274,6 +274,17 @@ body.open-modal {
 	}
 }
 
+.film-modal {
+	.modal {
+		.arrow-nav {
+			.prev-arrow,
+			.next-arrow {
+				display: block !important;
+			}
+		}
+	}
+}
+
 .film-slideshow {
 	.slide {
 		.lazy-wrap {
