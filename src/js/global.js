@@ -13,6 +13,11 @@ var disableBodyScroll = bodyScrollLock.disableBodyScroll;
 var enableBodyScroll = bodyScrollLock.enableBodyScroll;
 var $slickCache;
 
+// global variables for swipe detect
+
+var initialX = null;
+var initialY = null;
+
 var global = {
   init: function(){
   },
@@ -283,6 +288,58 @@ var global = {
     // });
   },
 
+  startTouch: function (e) {
+    initialX = e.touches[0].clientX;
+    initialY = e.touches[0].clientY;
+  },
+
+  moveTouch: function (e) {
+    if (initialX === null) {
+      return;
+    }
+
+    if (initialY === null) {
+      return;
+    }
+
+    var currentX = e.touches[0].clientX;
+    var currentY = e.touches[0].clientY;
+
+    var diffX = initialX - currentX;
+    var diffY = initialY - currentY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      // sliding horizontally
+      if (diffX > 0) {
+        console.log('swiped left');
+        if (!$('.explore-overlay').hasClass('hidden')){
+          $('.explore-overlay').addClass('hidden');
+          $('.slideshow.explore-slideshow').slick("slickSetOption", "swipe", true);
+        }
+        // swiped left
+      } else {
+        console.log('swiped right');
+        // swiped right
+        if (!$('.explore-overlay').hasClass('hidden')){
+          $('.explore-overlay').addClass('hidden');
+          $('.slideshow.explore-slideshow').slick("slickSetOption", "swipe", true);
+        }
+      }  
+    } else {
+      // sliding vertically
+      if (diffY > 0) {
+        // swiped up
+      } else {
+        // swiped down
+      }  
+    }
+
+    initialX = null;
+    initialY = null;
+
+    e.preventDefault();
+  },
+
   swipedetect: function(el, callback){
   
     var touchsurface = el,
@@ -331,75 +388,28 @@ var global = {
     }, false)
   },
 
-  isSwipe: function () {
-    var container = document.querySelector("#explore-page-swipe");
-
-    container.addEventListener("touchstart", startTouch, false);
-    container.addEventListener("touchmove", moveTouch, false);
-
-    // Swipe Up / Down / Left / Right
-    var initialX = null;
-    var initialY = null;
-
-    function startTouch(e) {
-      initialX = e.touches[0].clientX;
-      initialY = e.touches[0].clientY;
-    };
-
-    function moveTouch(e) {
-      if (initialX === null) {
-        return;
-      }
-
-      if (initialY === null) {
-        return;
-      }
-
-      var currentX = e.touches[0].clientX;
-      var currentY = e.touches[0].clientY;
-
-      var diffX = initialX - currentX;
-      var diffY = initialY - currentY;
-
-      if (Math.abs(diffX) > Math.abs(diffY)) {
-        // sliding horizontally
-        if (diffX > 0) {
-          // swiped left
-        } else {
-          // swiped right
-        }  
-      } else {
-        // sliding vertically
-        if (diffY > 0) {
-          // swiped up
-        } else {
-          // swiped down
-        }  
-      }
-
-      initialX = null;
-      initialY = null;
-
-      e.preventDefault();
-    };
-  },
-
   explorePageSwipe: function () {
     // if ( (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) ) {
-      var el = document.getElementById('explore-page-swipe');
+      // var el = document.getElementById('explore-page-swipe');
 
-      if ( el ) {
-        global.swipedetect(el, function(swipedir){
-          if (swipedir != 'none') {
-            console.log('SWIPED!!')
-            if (!$('.explore-overlay').hasClass('hidden')){
-              $('.explore-overlay').addClass('hidden');
-              $('.slideshow.explore-slideshow').slick("slickSetOption", "swipe", true);
-            }
-          }
-        })
-      }
+      // if ( el ) {
+      //   global.swipedetect(el, function(swipedir){
+      //     if (swipedir != 'none') {
+      //       console.log('SWIPED!!')
+      //       if (!$('.explore-overlay').hasClass('hidden')){
+      //         $('.explore-overlay').addClass('hidden');
+      //         $('.slideshow.explore-slideshow').slick("slickSetOption", "swipe", true);
+      //       }
+      //     }
+      //   })
+      // }
     // }
+
+    var container = document.getElementById('explore-page-swipe');
+    if ( container ) {
+      container.addEventListener("touchstart", global.startTouch, false);
+      container.addEventListener("touchmove", global.moveTouch, false);
+    }
   },
 
   getInstalink: function () {
@@ -477,14 +487,16 @@ var global = {
       if(event.keyCode == 37){
         if (!$('.explore-overlay').hasClass('hidden')){
           $('.explore-overlay').addClass('hidden');
+        } else {
+          $('.slideshow.explore-slideshow').slick('slickPrev');
         }
-        $('.slideshow.explore-slideshow').slick('slickPrev');
       }
       if (event.keyCode == 39){
         if (!$('.explore-overlay').hasClass('hidden')){
           $('.explore-overlay').addClass('hidden');
+        } else {
+          $('.slideshow.explore-slideshow').slick('slickNext');
         }
-        $('.slideshow.explore-slideshow').slick('slickNext');
       }
     });
 
@@ -502,6 +514,12 @@ var global = {
         console.log("Last slide");
         $('.explore-page .explore-prev').addClass('hidden');
         $('.explore-page .explore-next').addClass('hidden');
+
+        var container = document.getElementById('explore-page-swipe');
+        if ( container ) {
+          container.removeEventListener("touchstart", global.startTouch, false);
+          container.removeEventListener("touchmove", global.moveTouch, false);
+        }
         setTimeout(function(){ 
           $('.explore-page .explore-more').removeClass('hidden');
         }, 1000);
