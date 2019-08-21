@@ -434,9 +434,7 @@ var global = {
   },
 
   exploreSlideshow: function() {
-    $('.slideshow.explore-slideshow').on('init', function(event, slick){
-  
-    }).slick({
+    $('.slideshow.explore-slideshow').slick({
       slidesToShow: 1,
       centerMode: false,
       slidesToScroll: 1,
@@ -482,20 +480,26 @@ var global = {
       }
 
     });
-
-    $(document).on("keydown", function(event) {
+    if ($("#explore-page-swipe")[0]){
+      $("#explore-page-swipe").focus();
+    }
+    $("#explore-page-swipe").on("keydown", function(event) {
       if(event.keyCode == 37){
         if (!$('.explore-overlay').hasClass('hidden')){
           $('.explore-overlay').addClass('hidden');
         } else {
-          $('.slideshow.explore-slideshow').slick('slickPrev');
+          if ($('.explore-overlay').hasClass('hidden')){
+            $('.slideshow.explore-slideshow').slick('slickPrev');
+          }
         }
       }
       if (event.keyCode == 39){
         if (!$('.explore-overlay').hasClass('hidden')){
           $('.explore-overlay').addClass('hidden');
         } else {
-          $('.slideshow.explore-slideshow').slick('slickNext');
+          if ($('.explore-overlay').hasClass('hidden')){
+            $('.slideshow.explore-slideshow').slick('slickNext');
+          }
         }
       }
     });
