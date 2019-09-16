@@ -61,11 +61,14 @@
 								<div class="pt-margin slide-content">
 									<div class="image-wrap" 
 									data-image-id="{{i.id}}" 
-									data-image-src="{{ TimberImage(i).src('sukkar-lg') }}" data-permalink="{{i.link}}">
+									data-image-src='srcset="{{ TimberImage(i).src('gw-md') }} 1200w,{{ TimberImage(i).src('gw-lg') }} 1500w,{{ TimberImage(i).src('sukkar-lg') }} 2001w" src="{{ TimberImage(i).src('gw-md') }}"' data-permalink="{{i.link}}">
 
 										{% if loop.index < 4 %}
 											<img 
-												src="{{ TimberImage(i).src('sukkar-lg') }}" 
+												srcset="{{ TimberImage(i).src('gw-md') }} 1200w,
+													{{ TimberImage(i).src('gw-lg') }} 1500w,
+													{{ TimberImage(i).src('sukkar-lg') }} 2001w" 
+												src="{{ TimberImage(i).src('gw-md') }}"
 											>
 										{% endif %}
 
