@@ -121,39 +121,37 @@ var global = {
   },
 
   togglePhotoView: () => {
-    if ( $(window).width() > 600 ){
-      if ($('.staggered-photo-grid').length) {
-        salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
+    if ($('.staggered-photo-grid').length) {
+      salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
 
-        $('.photography-page .toggle-view .toggle-full').click(() => {
-          if ($('.staggered-photo-grid').hasClass('grid-view')) {
-            $('.staggered-photo-grid').addClass('animate-out');
-            setTimeout(() => {
-              $('.photography-page .toggle-view .toggle-full').addClass('active');
-              $('.photography-page .toggle-view .toggle-grid').removeClass('active');
-              $('.staggered-photo-grid').removeClass('animate-out');
-              $('.staggered-photo-grid').addClass('full-width');
-              $('.staggered-photo-grid').removeClass('grid-view');
-              salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
-            }, 250)
-          } else {
-          }
-        })
-        $('.photography-page .toggle-view .toggle-grid').click(() => {
-          if ($('.staggered-photo-grid').hasClass('full-width')) {
-            $('.staggered-photo-grid').addClass('animate-out');
-            setTimeout(() => {
-              $('.photography-page .toggle-view .toggle-full').removeClass('active');
-              $('.photography-page .toggle-view .toggle-grid').addClass('active');
-              $('.staggered-photo-grid').removeClass('animate-out');
-              $('.staggered-photo-grid').addClass('grid-view');
-              $('.staggered-photo-grid').removeClass('full-width');
-              salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
-            }, 250)
-          } else {
-          }
-        })
-      }
+      $('.photography-page .toggle-view .toggle-full').click(() => {
+        if ($('.staggered-photo-grid').hasClass('grid-view')) {
+          $('.staggered-photo-grid').addClass('animate-out');
+          setTimeout(() => {
+            $('.photography-page .toggle-view .toggle-full').addClass('active');
+            $('.photography-page .toggle-view .toggle-grid').removeClass('active');
+            $('.staggered-photo-grid').removeClass('animate-out');
+            $('.staggered-photo-grid').addClass('full-width');
+            $('.staggered-photo-grid').removeClass('grid-view');
+            salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
+          }, 250)
+        } else {
+        }
+      })
+      $('.photography-page .toggle-view .toggle-grid').click(() => {
+        if ($('.staggered-photo-grid').hasClass('full-width')) {
+          $('.staggered-photo-grid').addClass('animate-out');
+          setTimeout(() => {
+            $('.photography-page .toggle-view .toggle-full').removeClass('active');
+            $('.photography-page .toggle-view .toggle-grid').addClass('active');
+            $('.staggered-photo-grid').removeClass('animate-out');
+            $('.staggered-photo-grid').addClass('grid-view');
+            $('.staggered-photo-grid').removeClass('full-width');
+            salvattore.recreateColumns(document.querySelector('.staggered-photo-grid'));
+          }, 250)
+        } else {
+        }
+      })
     }
   },
 
