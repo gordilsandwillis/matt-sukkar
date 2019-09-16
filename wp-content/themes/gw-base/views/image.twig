@@ -12,11 +12,11 @@
 			<!-- <img class="attachment-image" src={{img_src}} /> -->
 			<img 
 				class="attachment-image" 
-				srcset="{{ TimberImage(post.id).src('sukkar-thumb') }} 750w,
+				srcset="{{ TimberImage(post.id).src('gw-sm') }} 750w,
 					{{ TimberImage(post.id).src('gw-md') }} 1200w,
 					{{ TimberImage(post.id).src('gw-lg') }} 1500w,
 					{{ TimberImage(post.id).src('sukkar-lg') }} 2001w" 
-				src="{{ TimberImage(post.id).src('sukkar-thumb') }}"
+				src="{{ TimberImage(post.id).src('gw-sm') }}"
 				alt="{% if post.id.alt %}{{ post.id.alt }}{% else %}{{ post.id.title }}{% endif %}"
 				width="{{ post.id.width }}"
 				height="{{ post.id.height }}"

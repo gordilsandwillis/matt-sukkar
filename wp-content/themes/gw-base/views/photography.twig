@@ -16,11 +16,11 @@
 									style="padding-bottom: {{ i.height / i.width * 100}}%"
 								>
 									<img 
-										srcset="{{ TimberImage(i).src('sukkar-thumb') }} 750w,
+										srcset="{{ TimberImage(i).src('gw-sm') }} 750w,
 											{{ TimberImage(i).src('gw-md') }} 1200w,
 											{{ TimberImage(i).src('gw-lg') }} 1500w,
 											{{ TimberImage(i).src('sukkar-lg') }} 2001w" 
-										src="{{ TimberImage(i).src('sukkar-thumb') }}"
+										src="{{ TimberImage(i).src('gw-sm') }}"
 										alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}"
 										data-imageID="{{i.id}}"
 										data-permalink="{{i.link}}"
