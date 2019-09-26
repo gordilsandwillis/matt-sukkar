@@ -191,6 +191,12 @@ body.open-modal {
 				.slick-track {
 					height: 100%;
 					.slick-slide {
+						@include respond-smaller-than($md) {
+							display: none;
+							&.slick-active {
+								display: block;
+							}
+						}
 						&:focus {
 							outline: none;
 						}
