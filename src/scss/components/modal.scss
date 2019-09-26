@@ -192,9 +192,14 @@ body.open-modal {
 					height: 100%;
 					.slick-slide {
 						@include respond-smaller-than($md) {
-							display: none;
+							img{
+								display: none;
+							}
+							&.slick-current,
 							&.slick-active {
-								display: block;
+								img {
+									display: block;
+								}
 							}
 						}
 						&:focus {
