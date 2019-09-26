@@ -527,7 +527,7 @@ var global = {
       slidesToScroll: 1,
       arrows: true,
       infinite: false,
-      fade: false,
+      fade: true,
       speed: 750,
       autoplay: false,
       swipeToSlide: true,
