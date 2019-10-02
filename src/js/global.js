@@ -37,6 +37,7 @@ var global = {
     this.mailchimpFooter();
     this.togglePhotoView();
     this.photoModal();
+    this.photoModalSwipe();
     this.photographySlideshow();
     this.filmSlideshowModal();
     this.filmSlideshow();
