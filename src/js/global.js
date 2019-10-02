@@ -536,6 +536,7 @@ var global = {
       prevArrow: false,
       nextArrow: false,
       waitForAnimate: false,
+      useTransform: false,
       focusOnChange: true
       // responsive: [
       //   {
