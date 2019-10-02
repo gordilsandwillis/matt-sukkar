@@ -200,7 +200,7 @@ var global = {
   photoModal : function() {
     var modalTrigger = $('.grid-view .photo-modal-trigger');
     var targetElement = document.querySelector(".photo-modal");
-    var photoModal = document.getElementById('photo-modal-slide');
+    var photoModal = document.getElementById('photo-modal-wrap');
       modalTrigger.click(function(event) {
         if ( $('.staggered-photo-grid').hasClass('grid-view') ) {
           event.preventDefault();
@@ -406,8 +406,8 @@ var global = {
   },
 
   photoModalSwipe: function () {
-    var photoModal = document.getElementById('photo-modal-slide');
-    if ( photoModal && $('.modal-wrap.photo-modal').hasClass('open') ) {
+    var photoModal = document.getElementById('photo-modal-wrap');
+    if ( photoModal && $('#photo-modal-wrap').hasClass('open') ) {
       photoModal.addEventListener("touchstart", global.startTouch, false);
       photoModal.addEventListener("touchmove", global.moveTouch, false);
     }
