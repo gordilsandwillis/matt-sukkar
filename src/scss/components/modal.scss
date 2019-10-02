@@ -85,6 +85,9 @@ body.open-modal {
 			background: $bg-color;
 		}
 	}
+	&.photo-modal {
+		display: none;
+	}
 	.overlay {
 		position: fixed;
 		top: 0;

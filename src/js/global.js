@@ -199,9 +199,11 @@ var global = {
   photoModal : function() {
     var modalTrigger = $('.grid-view .photo-modal-trigger');
     var targetElement = document.querySelector(".photo-modal");
+    var photoModal = document.getElementById('photo-modal-slide');
       modalTrigger.click(function(event) {
         if ( $('.staggered-photo-grid').hasClass('grid-view') ) {
           event.preventDefault();
+          $('.modal-wrap.photo-modal').show();
           var modal = $('.modal#photo-modal-slide');
           $(modal).closest('.modal-wrap').addClass('open');
           $(modal).addClass('visible');
@@ -211,6 +213,7 @@ var global = {
       });
 
       var closeModal = function() {
+
         $('.modal-wrap.open').removeClass('open');
         $('body').removeClass('open-modal');
         setTimeout(function(){ 
@@ -221,6 +224,10 @@ var global = {
       $('.photo-modal .close-modal').click(function() {
         closeModal();
         enableBodyScroll(targetElement);
+        if ( photoModal ) {
+          photoModal.removeEventListener("touchstart", global.startTouch, false);
+          photoModal.removeEventListener("touchmove", global.moveTouch, false);
+        }
         window.history.pushState({}, "", '/photography');
       });
   },
@@ -309,12 +316,20 @@ var global = {
           $('.explore-overlay').addClass('hidden');
           $('.slideshow.explore-slideshow').slick("slickSetOption", "swipe", true);
         }
+
+        if ($('.modal-wrap.photo-modal').hasClass('open')){
+          $('.photo-slideshow').slick("slickSetOption", "swipe", true);
+        }
         // swiped left
       } else {
         // swiped right
         if (!$('.explore-overlay').hasClass('hidden')){
           $('.explore-overlay').addClass('hidden');
           $('.slideshow.explore-slideshow').slick("slickSetOption", "swipe", true);
+        }
+
+        if ($('.modal-wrap.photo-modal').hasClass('open')){
+          $('.photo-slideshow').slick("slickSetOption", "swipe", true);
         }
       }  
     } else {
@@ -386,6 +401,14 @@ var global = {
     if ( container ) {
       container.addEventListener("touchstart", global.startTouch, false);
       container.addEventListener("touchmove", global.moveTouch, false);
+    }
+  },
+
+  photoModalSwipe: function () {
+    var photoModal = document.getElementById('photo-modal-slide');
+    if ( photoModal && $('.modal-wrap.photo-modal').hasClass('open') ) {
+      photoModal.addEventListener("touchstart", global.startTouch, false);
+      photoModal.addEventListener("touchmove", global.moveTouch, false);
     }
   },
 
@@ -527,7 +550,7 @@ var global = {
       slidesToScroll: 1,
       arrows: true,
       infinite: false,
-      fade: true,
+      fade: false,
       speed: 750,
       autoplay: false,
       swipeToSlide: true,
@@ -537,20 +560,16 @@ var global = {
       nextArrow: false,
       waitForAnimate: false,
       useTransform: false,
-      focusOnChange: true
-      // responsive: [
-      //   {
-      //     breakpoint: 600,
-      //     settings: {
-      //       slidesToShow: 1,
-      //       slidesToScroll: 1,
-      //       infinite: true,
-      //       dots: true,
-      //       centerMode: false,
-      //       arrows: true,
-      //     }
-      //   }
-      // ]
+      focusOnChange: true,
+      responsive: [
+        {
+          breakpoint: 600,
+          settings: {
+            useTransform: false,
+            fade: true
+          }
+        }
+      ]
     });
 
     $('.staggered-photo-grid.grid-view img').click(function() {
