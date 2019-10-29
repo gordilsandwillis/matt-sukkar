@@ -152,4 +152,20 @@ add_action( 'after_setup_theme', 'default_attachment_display_settings' );
 // }
 // add_action('init', 'start_session', 1);
 
+// Custom CSS for Login Recaptcha
+
+function recaptcha_custom_css() { ?>
+    <style type="text/css">
+			#loginform div.g-recaptcha {
+				margin: 12px 0 24px 0 !important;
+			}
+
+			#loginform div.g-recaptcha > div {
+				margin: 0 auto !important;
+			}
+
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'recaptcha_custom_css' );
+
 new GW();
