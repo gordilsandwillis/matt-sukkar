@@ -220,7 +220,7 @@ var global = {
         // change url 
         var photoPermalink = modal.find('div.image-wrap').attr('data-permalink');
         if($('.photo-modal').hasClass('open')) {
-          window.history.pushState({}, "", photoPermalink);
+          window.history.pushState({}, "", photoPermalink+"#");
         }
       });
 
