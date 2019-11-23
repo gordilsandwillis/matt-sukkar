@@ -179,6 +179,57 @@ body.open-modal {
 				}
 			}
 		}
+
+		&.mobile-photo-modal {
+			height: 100%;
+			.slide {
+				height: 100%;
+				padding: 0;
+				@include respond($md) {
+	    		padding: 0 $margin;
+	    	}
+				.slide-content {
+		    	width: 100%;
+		    	height: 100%;
+					display: flex;
+		    	flex-direction: column;
+		    	padding: $mobile-margin 0;
+		    	@include respond($md) {
+		    		padding: $margin;
+		    	}
+					.video-wrap,
+					.image-wrap {
+			    	width: 100%;
+						flex-grow: 3;
+			    	flex-shrink: 0;
+			    	position: relative;
+						img {
+							position: absolute;
+			    		width: 100%;
+			    		height: 100%;
+			    		top: 0;
+			    		left: 0;
+			    		right: 0;
+			    		bottom: 0;
+			    		object-fit: contain;
+						}
+					}
+					.video-wrap {
+						flex-shrink: 1;
+						padding-bottom: 0;
+					}
+					.caption {
+						width: 100%;
+						min-width: 100%;
+						flex-grow: 0;
+						flex-shrink: 0;
+						padding-top: $margin;
+						// padding-bottom: $margin;
+					}
+				}
+			}
+
+		}
 	}
 }
 
@@ -186,76 +237,83 @@ body.open-modal {
 .film-modal,
 .photo-modal {
 	.modal {
-		.film-slideshow,
-		.photo-slideshow {
-			height: 100%;
-			.slick-list {
+		@include respond-smaller-than($md) {
+			.photo-slideshow {
+				display: none;
+			}
+		}
+		@include respond($md){
+			.film-slideshow,
+			.photo-slideshow {
 				height: 100%;
-				.slick-track {
+				.slick-list {
 					height: 100%;
-					.slick-slide {
-						@include respond-smaller-than($md) {
-							// float: none;	
-							img{
-								display: none;
-							}
-							&.slick-current,
-							&.slick-active {
-								// left: 0 !important; position: absolute !important; top: 0 !important;
-								img {
-									display: block;
+					.slick-track {
+						height: 100%;
+						.slick-slide {
+							@include respond-smaller-than($md) {
+								// float: none;	
+								img{
+									display: none;
 								}
-							}
-						}
-						&:focus {
-							outline: none;
-						}
-						> div {
-							height: 100%;
-						}
-						.slide {
-							height: 100%;
-							padding: 0;
-							@include respond($md) {
-				    		padding: 0 $margin;
-				    	}
-							.slide-content {
-					    	width: 100%;
-					    	height: 100%;
-								display: flex;
-					    	flex-direction: column;
-					    	padding: $mobile-margin;
-					    	@include respond($md) {
-					    		padding: $margin;
-					    	}
-								.video-wrap,
-								.image-wrap {
-						    	width: 100%;
-									flex-grow: 1;
-						    	flex-shrink: 0;
-						    	position: relative;
+								&.slick-current,
+								&.slick-active {
+									// left: 0 !important; position: absolute !important; top: 0 !important;
 									img {
-										position: absolute;
-						    		width: 100%;
-						    		height: 100%;
-						    		top: 0;
-						    		left: 0;
-						    		right: 0;
-						    		bottom: 0;
-						    		object-fit: contain;
+										display: block;
 									}
 								}
-								.video-wrap {
-									flex-shrink: 1;
-									padding-bottom: 0;
-								}
-								.caption {
-									width: 100%;
-									min-width: 100%;
-									flex-grow: 0;
-									flex-shrink: 0;
-									padding-top: $margin;
-									// padding-bottom: $margin;
+							}
+							&:focus {
+								outline: none;
+							}
+							> div {
+								height: 100%;
+							}
+							.slide {
+								height: 100%;
+								padding: 0;
+								@include respond($md) {
+					    		padding: 0 $margin;
+					    	}
+								.slide-content {
+						    	width: 100%;
+						    	height: 100%;
+									display: flex;
+						    	flex-direction: column;
+						    	padding: $mobile-margin;
+						    	@include respond($md) {
+						    		padding: $margin;
+						    	}
+									.video-wrap,
+									.image-wrap {
+							    	width: 100%;
+										flex-grow: 1;
+							    	flex-shrink: 0;
+							    	position: relative;
+										img {
+											position: absolute;
+							    		width: 100%;
+							    		height: 100%;
+							    		top: 0;
+							    		left: 0;
+							    		right: 0;
+							    		bottom: 0;
+							    		object-fit: contain;
+										}
+									}
+									.video-wrap {
+										flex-shrink: 1;
+										padding-bottom: 0;
+									}
+									.caption {
+										width: 100%;
+										min-width: 100%;
+										flex-grow: 0;
+										flex-shrink: 0;
+										padding-top: $margin;
+										// padding-bottom: $margin;
+									}
 								}
 							}
 						}
@@ -308,3 +366,5 @@ body.open-modal {
 		}
 	}
 }
+
+

@@ -12,7 +12,7 @@
 								<div class="photo-thumb-wrapper">
 								<div
 									class="lazy-wrap lazyload photo-thumb photo-modal-trigger"
-									data-modal-id="photo-modal-{{ i.id }}"
+									data-modal-id="mobile-photo-modal-{{ i.id }}"
 									style="padding-bottom: {{ i.height / i.width * 100}}%"
 								>
 									<img 
@@ -85,6 +85,38 @@
 					{% endfor %}
 				</div>
 			</div>
+
+
+			{% for i in post.get_field('image_gallery') %}
+				{% if i.url %}
+					<div class="modal mobile-photo-modal" id="mobile-photo-modal-{{i.id}}">
+						<div class="close-modal"><span class="material-icons md-24">close</span></div>
+
+						<div class="slide">
+							<div class="slide-content">
+								<div class="image-wrap" 
+								data-image-id="{{i.id}}" 
+								data-permalink="{{i.link}}">
+									<img 
+										srcset="{{ TimberImage(i).src('gw-md') }} 1200w,
+											{{ TimberImage(i).src('gw-lg') }} 1500w,
+											{{ TimberImage(i).src('sukkar-lg') }} 2001w" 
+										src="{{ TimberImage(i).src('gw-md') }}"
+									>
+
+								</div>
+								<div class="align-center caption">
+									<p class="medium-weight">{{ i.title }}</p>
+									{% if i.caption %}
+										<p class="mt">{{ i.caption }}</p>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+
+					</div>
+				{% endif %}
+			{% endfor %}
 	</div>
 </div>
 
