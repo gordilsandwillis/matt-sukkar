@@ -62,7 +62,8 @@ a {
 	width: 100%;
 	img,
 	video,
-	iframe {
+	iframe,
+	picture {
 		position: absolute;
 		opacity: 0;
 		transition: opacity .5s .2s $ease;
@@ -94,7 +95,7 @@ a {
 	&.lazyload {
 	}
 	&.lazyloaded {
-		img, video, iframe {
+		img, video, iframe, picture {
 			opacity: 1;
 		}
 		&:after {

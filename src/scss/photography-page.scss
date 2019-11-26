@@ -113,7 +113,8 @@
 				.photo-thumb {
 					overflow: hidden;
 					position: relative;
-					img {
+					img,
+					picture {
 						position: absolute;
 						top: 0;
 						left: 0;
@@ -121,7 +122,8 @@
 				}
 				&:hover {
 					.photo-thumb {
-						img {
+						img,
+						picture {
 							opacity: 0.9;
 							transition: opacity $md-speed $ease;
 						}

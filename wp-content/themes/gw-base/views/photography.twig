@@ -15,18 +15,31 @@
 									data-modal-id="mobile-photo-modal-{{ i.id }}"
 									style="padding-bottom: {{ i.height / i.width * 100}}%"
 								>
-									<img 
-										srcset="{{ TimberImage(i).src('gw-sm') }} 750w,
+								<picture>
+								  <source srcset="{{ TimberImage(i).src('gw-sm') }} 750w"
+								          media="(max-width: 750px)">
+								  <source srcset="{{ TimberImage(i).src('gw-md') }} 1200w"
+								          media="(min-width: 751px) and (max-width: 1199px)">
+								  <source srcset="{{ TimberImage(i).src('gw-lg') }} 1500w"
+								          media="(min-width: 1200px) and (max-width: 2000px)">
+								  <source srcset="{{ TimberImage(i).src('sukkar-lg') }} 2001w"
+								          media="(min-width: 2001px)">        
+								  <img src="{{ TimberImage(i).src('gw-sm') }}">
+								</picture>
+									{# <img 
+										srcset="
+											{{ TimberImage(i).src('gw-sm') }} 750w,
 											{{ TimberImage(i).src('gw-md') }} 1200w,
 											{{ TimberImage(i).src('gw-lg') }} 1500w,
 											{{ TimberImage(i).src('sukkar-lg') }} 2001w" 
+	
 										src="{{ TimberImage(i).src('gw-sm') }}"
 										alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}"
 										data-imageID="{{i.id}}"
 										data-permalink="{{i.link}}"
 										width="{{ i.width }}"
 										height="{{ i.height }}"
-										>
+										> #}
 								</div>
 							</div>
 						<div class="item-caption pt-gutter align-center">
@@ -97,13 +110,23 @@
 								<div class="image-wrap" 
 								data-image-id="{{i.id}}" 
 								data-permalink="{{i.link}}">
-									<img 
+									{# <img 
 										srcset="{{ TimberImage(i).src('gw-md') }} 1200w,
 											{{ TimberImage(i).src('gw-lg') }} 1500w,
 											{{ TimberImage(i).src('sukkar-lg') }} 2001w" 
 										src="{{ TimberImage(i).src('gw-md') }}"
-									>
-
+									> #}
+									<picture>
+									  <source srcset="{{ TimberImage(i).src('gw-sm') }} 750w"
+									          media="(max-width: 750px)">
+									  <source srcset="{{ TimberImage(i).src('gw-md') }} 1200w"
+									          media="(min-width: 751px) and (max-width: 1199px)">
+									  <source srcset="{{ TimberImage(i).src('gw-lg') }} 1500w"
+									          media="(min-width: 1200px) and (max-width: 2000px)">
+									  <source srcset="{{ TimberImage(i).src('sukkar-lg') }} 2001w"
+									          media="(min-width: 2001px)">        
+									  <img src="{{ TimberImage(i).src('gw-sm') }}">
+									</picture>
 								</div>
 								<div class="align-center caption">
 									<p class="medium-weight">{{ i.title }}</p>
