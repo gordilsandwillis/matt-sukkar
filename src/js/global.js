@@ -53,7 +53,7 @@ var global = {
   
   resize:function(){
     this.exploreVerticalCenter();
-    this.togglePhotoView();
+    // this.togglePhotoView();
   },
   
   scroll: function(){
