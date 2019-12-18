@@ -24,7 +24,12 @@
 								          media="(min-width: 1200px) and (max-width: 2000px)">
 								  <source srcset="{{ TimberImage(i).src('sukkar-lg') }} 2001w"
 								          media="(min-width: 2001px)">        
-								  <img src="{{ TimberImage(i).src('gw-sm') }}">
+								  <img 
+								  	src="{{ TimberImage(i).src('gw-sm') }}"
+								  	alt="{% if i.alt %}{{ i.alt }}{% else %}{{ i.title }}{% endif %}"
+										data-imageID="{{i.id}}"
+										data-permalink="{{i.link}}"
+								  >
 								</picture>
 									{# <img 
 										srcset="
@@ -74,19 +79,27 @@
 								<div class="pt-margin slide-content">
 									<div class="image-wrap" 
 									data-image-id="{{i.id}}" 
-									data-image-src='srcset="{{ TimberImage(i).src('gw-md') }} 1200w,{{ TimberImage(i).src('gw-lg') }} 1500w,{{ TimberImage(i).src('sukkar-lg') }} 2001w" src="{{ TimberImage(i).src('gw-md') }}"' data-permalink="{{i.link}}">
+									data-image-src='<picture><source srcset="{{ TimberImage(i).src('gw-sm') }} 750w" media="(max-width: 750px)"><source srcset="{{ TimberImage(i).src('gw-md') }} 1200w" media="(min-width: 751px) and (max-width: 1199px)"><source srcset="{{ TimberImage(i).src('gw-lg') }} 1500w" media="(min-width: 1200px) and (max-width: 2000px)"><source srcset="{{ TimberImage(i).src('sukkar-lg') }} 2001w" media="(min-width: 2001px)"><img src="{{ TimberImage(i).src('gw-md') }}"></picture>' data-permalink="{{i.link}}">
 
-										{% if loop.index < 4 %}
-											<img 
-												srcset="{{ TimberImage(i).src('gw-md') }} 1200w,
-													{{ TimberImage(i).src('gw-lg') }} 1500w,
-													{{ TimberImage(i).src('sukkar-lg') }} 2001w" 
-												src="{{ TimberImage(i).src('gw-md') }}"
-											>
-										{% endif %}
+										{# {% if loop.index < 4 %} #}
+											
+											{# <picture>
+											  <source srcset="{{ TimberImage(i).src('gw-sm') }} 750w"
+											          media="(max-width: 750px)">
+											  <source srcset="{{ TimberImage(i).src('gw-md') }} 1200w"
+											          media="(min-width: 751px) and (max-width: 1199px)">
+											  <source srcset="{{ TimberImage(i).src('gw-lg') }} 1500w"
+											          media="(min-width: 1200px) and (max-width: 2000px)">
+											  <source srcset="{{ TimberImage(i).src('sukkar-lg') }} 2001w"
+											          media="(min-width: 2001px)">        
+											  <img 
+											  	src="{{ TimberImage(i).src('gw-md') }}"
+											  >
+											</picture> #}
+										{# {% endif %} #}
 
 									</div>
-									<div class="align-center caption">
+									<div class="align-center caption hide">
 										<p class="medium-weight">{{ i.title }}</p>
 										{% if i.caption %}
 											<p class="mt">{{ i.caption }}</p>

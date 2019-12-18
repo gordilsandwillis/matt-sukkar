@@ -43,11 +43,11 @@ $context['body_class'] = 'explore-page';
 // COOOKIES 
 
 if (isset($_COOKIE["explore_cook"]) && count(json_decode($_COOKIE['explore_cook'])) == 10){
-	
-	$random_index = mt_rand(1,10);
-  $init_value = array($random_index);
-  $init_value = json_encode($init_value, true);
-  setcookie('explore_cook', $init_value, time()+3600);
+	$context['explore_finish'] = true;
+	// $random_index = mt_rand(1,10);
+ //  $init_value = array($random_index);
+ //  $init_value = json_encode($init_value, true);
+ //  setcookie('explore_cook', $init_value, time()+3600);
 } else {
 
 	if (!isset($_COOKIE["explore_cook"]) ) {
@@ -93,9 +93,9 @@ shuffle($random_gallery);
 // $random_gallery = get_field($random_field, $post);
 // shuffle($random_gallery);
 
-if (count(json_decode($_COOKIE["explore_cook"])) == 10) {
-	$context['explore_finish'] = true;
-}
+// if (count(json_decode($_COOKIE["explore_cook"])) == 10) {
+// 	$context['explore_finish'] = true;
+// }
 
 $context['explore_finish_text'] = get_field('explore_page_message', $post);
 

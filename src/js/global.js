@@ -225,7 +225,7 @@ var global = {
       });
 
     } else {
-      console.log('desktop slick carousel open sequence');
+      // console.log('desktop slick carousel open sequence');
       // desktop slick carousel open sequence
       modalTrigger.click(function(event) {
         if ( $('.staggered-photo-grid').hasClass('grid-view') ) {
@@ -574,16 +574,33 @@ var global = {
 
   isMobileDevice: function() {
    
-    var ua = window.navigator.userAgent;
-    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-    var webkit = !!ua.match(/WebKit/i);
-    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+    // var ua = window.navigator.userAgent;
+    // var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    // var webkit = !!ua.match(/WebKit/i);
+    // var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
-    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) || iOSSafari ;
+    // return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) || iOSSafari ;
+
+
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+        return true;
+    } else {
+      return false;
+    }
+  },
+
+  justOpenPhotoModal: function() {
+    $('.modal-wrap.photo-modal').show();
+    $('.modal#photo-modal-slide').addClass('visible');
+    $('body').addClass('open-modal');
+  },
+
+  goToSlideCallback: function(idx, callback) {
+    $('.photo-slideshow').slick('slickGoTo', idx, true);
+    callback();
   },
 
   photographySlideshow: function() {
-    console.log('photographySlideshow isMobileDevice? :',global.isMobileDevice());
 
     if ( global.isMobileDevice() ){
       // true, mobile device -> don't slick.
@@ -639,10 +656,12 @@ var global = {
         var idx = $slides.index( $tar );
 
         // replace image for target
+        console.log('replace image for current slide')
         global.replaceSlideshowImage(imageIndex);
         
         // replace image for next slide
         if ( idx + 1 < $slides.length ){
+          console.log('replace image for next slide')
           var nextSlideIndex = idx +1 ;
           var nextSlideDom = $($slides.get(nextSlideIndex));
           var nextImageID = nextSlideDom.find('div.image-wrap').attr('data-image-id');
@@ -651,6 +670,7 @@ var global = {
 
         // replace image for previous slide
         if ( idx - 1 > 0 ){
+          console.log('replace image for previous slide')
           var prevSlideIndex = idx -1 ;
           var prevSlideDom = $($slides.get(prevSlideIndex));
           var prevImageID = prevSlideDom.find('div.image-wrap').attr('data-image-id');
@@ -667,21 +687,21 @@ var global = {
           $('#photo-modal-slide .arrow-nav .next-arrow').addClass('hidden');
         }
 
-        $('.photo-slideshow').slick("refresh");
+        // $('.photo-slideshow').slick("refresh");
         // $('.photo-slideshow')[0].slick.cssTransitions = false;
-        $('.photo-slideshow').slick('slickGoTo', idx, true);
+        console.log('slickGoTo--------------')
+        // $('.photo-slideshow').slick('slickGoTo', idx, false);
+        global.goToSlideCallback(idx, global.justOpenPhotoModal)
         // $('.photo-slideshow').slick('slickGoTo', slideIndex, true);
         $('.photo-slideshow').slick("refresh");
         $('.photo-slideshow .slick-track').attr('tabindex', 0);
       });
 
-      // $('.photo-slideshow').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-      //   var nextSlideDom = $(slick.$slides.get(nextSlide));
-      //   var imageID = nextSlideDom.find('div.image-wrap').attr('data-image-id');
-      //   global.replaceSlideshowImage(imageID);
-      // });
-
       $('.photo-slideshow').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+        // var nextSlideDom = $(slick.$slides.get(nextSlide));
+        // var imageID = nextSlideDom.find('div.image-wrap').attr('data-image-id');
+        // console.log('beforeChange, replaceSlideshowImage next slide')
+        // global.replaceSlideshowImage(imageID);
 
         var futureSlideIndex = nextSlide + 2;
         
@@ -692,22 +712,29 @@ var global = {
           var imageID = futureSlideDom.find('div.image-wrap').attr('data-image-id');
           
           if ( futureSlideDom.find('div.image-wrap').children().length < 1 ){
+            console.log('beforeChange, replaceSlideshowImage future slide')
             global.replaceSlideshowImage(imageID);
           }
         }
 
         var prevSlideIndex = nextSlide -2;
-
+        console.log('prevSlideIndex : ', prevSlideIndex)
         if ( prevSlideIndex > 0 ){
           var prevSlideDom = $(slick.$slides.get(prevSlideIndex));
           var imageID = prevSlideDom.find('div.image-wrap').attr('data-image-id');
           
           if ( prevSlideDom.find('div.image-wrap').children().length < 1 ){
+            console.log('beforeChange, replaceSlideshowImage past slide')
             global.replaceSlideshowImage(imageID);
           }
         }
-
       });
+
+      // $('.photo-slideshow').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+
+        
+
+      // });
 
       $('.photo-slideshow').on('afterChange', function(event, slick, currentSlide){
         var slideDom = $(slick.$slides.get(currentSlide));
@@ -738,10 +765,13 @@ var global = {
   },
 
   replaceSlideshowImage: function(imageId) {
+    console.log('replaceSlideshowImage imageId',imageId)
     var thisSlideImage = $('.photo-slideshow .slide').find('.image-wrap[data-image-id="'+ imageId +'"]');
-    var thisImageSrc = thisSlideImage.attr('data-image-src');
-    // thisSlideImage.html('<img src="'+ thisImageSrc +'">');
-    thisSlideImage.html('<img '+ thisImageSrc + '>');
+    var thisImageHtml = thisSlideImage.attr('data-image-src');
+    console.log('replaceSlideshowImage thisImageHtml = ', thisImageHtml);
+    thisSlideImage.html(thisImageHtml);
+    thisSlideImage.siblings('.caption').removeClass('hide')
+    // thisSlideImage.html('<img '+ thisImageSrc + '>');
   },
 
   stopVideo: function(videoId) {
