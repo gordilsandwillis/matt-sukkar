@@ -43,11 +43,10 @@ $context['body_class'] = 'explore-page';
 // COOOKIES 
 
 if (isset($_COOKIE["explore_cook"]) && count(json_decode($_COOKIE['explore_cook'])) == 10){
-	$context['explore_finish'] = true;
-	// $random_index = mt_rand(1,10);
- //  $init_value = array($random_index);
- //  $init_value = json_encode($init_value, true);
- //  setcookie('explore_cook', $init_value, time()+3600);
+	$random_index = mt_rand(1,10);
+  $init_value = array($random_index);
+  $init_value = json_encode($init_value, true);
+  setcookie('explore_cook', $init_value, time()+3600);
 } else {
 
 	if (!isset($_COOKIE["explore_cook"]) ) {
@@ -74,6 +73,11 @@ if (isset($_COOKIE["explore_cook"]) && count(json_decode($_COOKIE['explore_cook'
 
 	  $new_value = json_encode($prev_value, true);
 	  setcookie('explore_cook', $new_value, time()+3600);
+
+	  if ( count($prev_value) == 10 ){
+  		$context['explore_finish'] = true;
+  		// setcookie('explore_cook', '', time() - 3600);
+  	}
 
 	}
 }
@@ -102,13 +106,15 @@ $context['explore_finish_text'] = get_field('explore_page_message', $post);
 $context['images'] = $random_gallery;
 
 
-// echo '<pre>';
-// var_dump($context['explore_finish_text']);
-// // var_dump($random_index);
-// // var_dump($_SESSION['explore_index']);
+echo '<pre>';
+var_dump($random_index);
+var_dump(count($prev_value));
+var_dump($prev_value);
+var_dump($_COOKIE["explore_cook"]);
+// var_dump($_SESSION['explore_index']);
 // var_dump(count($_SESSION['explore_index']));
-// // var_dump($group_field_object['value'][$random_index]);
-// // var_dump($random_index);
-// echo '</pre>';
+// var_dump($group_field_object['value'][$random_index]);
+// var_dump($random_index);
+echo '</pre>';
 
 Timber::render( 'explore.twig' , $context );
