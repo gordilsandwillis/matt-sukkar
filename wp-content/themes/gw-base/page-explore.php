@@ -106,15 +106,4 @@ $context['explore_finish_text'] = get_field('explore_page_message', $post);
 $context['images'] = $random_gallery;
 
 
-echo '<pre>';
-var_dump($random_index);
-var_dump(count($prev_value));
-var_dump($prev_value);
-var_dump($_COOKIE["explore_cook"]);
-// var_dump($_SESSION['explore_index']);
-// var_dump(count($_SESSION['explore_index']));
-// var_dump($group_field_object['value'][$random_index]);
-// var_dump($random_index);
-echo '</pre>';
-
 Timber::render( 'explore.twig' , $context );
