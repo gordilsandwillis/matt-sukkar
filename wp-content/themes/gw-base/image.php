@@ -18,8 +18,4 @@ $context['img_title'] = $post->post_title;
 $context['img_caption'] = $post->post_excerpt;
 $context['img_description'] = $post->post_content;
 
-// echo '<pre>';
-// var_dump($context['img_src']);
-// echo '</pre>';
-
 Timber::render( 'image.twig', $context );
