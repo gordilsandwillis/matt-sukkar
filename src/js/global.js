@@ -791,6 +791,7 @@ var global = {
     var onEnd = function(data) {
       $(iframe).closest('.modal-wrap.open').removeClass('open');
       $(iframe).closest('.modal.visible').removeClass('visible');
+      $('body').removeClass('open-modal');
       var targetElement = document.querySelector(".film-modal");
       enableBodyScroll(targetElement);
     };
